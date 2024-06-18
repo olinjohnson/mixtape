@@ -7,18 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
+		0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C482B9E1A7F00E6178F /* Entry.swift */; };
+		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
+		0BF4054B2B8964B600902D59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4054A2B8964B600902D59 /* HomeView.swift */; };
 		0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */; };
-		0BFDD12B2B81B4D000C5726F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD12A2B81B4D000C5726F /* ContentView.swift */; };
+		0BFDD12B2B81B4D000C5726F /* MixtapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD12A2B81B4D000C5726F /* MixtapesView.swift */; };
 		0BFDD12D2B81B4D300C5726F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFDD12C2B81B4D300C5726F /* Assets.xcassets */; };
 		0BFDD1302B81B4D300C5726F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFDD12F2B81B4D300C5726F /* Preview Assets.xcassets */; };
+		0BFDD1382B8400E900C5726F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1372B8400E900C5726F /* Theme.swift */; };
+		0BFDD13A2B843E0A00C5726F /* Tape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1392B843E0A00C5726F /* Tape.swift */; };
+		0BFDD13C2B843FFD00C5726F /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD13B2B843FFD00C5726F /* Song.swift */; };
+		0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD13D2B8448C000C5726F /* TapeCardView.swift */; };
+		0BFDD1442B85248B00C5726F /* NavbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1432B85248B00C5726F /* NavbarView.swift */; };
+		0BFDD1462B855A7500C5726F /* _OldNavbarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1452B855A7500C5726F /* _OldNavbarView.swift */; };
+		0BFDD1482B855FE200C5726F /* MixtapeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1472B855FE200C5726F /* MixtapeDetailView.swift */; };
+		0BFDD14A2B858A2300C5726F /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1492B858A2300C5726F /* SongView.swift */; };
+		0BFDD14C2B87F10000C5726F /* NewMixtapeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD14B2B87F10000C5726F /* NewMixtapeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B905C412B9E10EC00E6178F /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
+		0B905C482B9E1A7F00E6178F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
+		0BF4054A2B8964B600902D59 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0BF4054C2B897ABD00902D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0BFDD1252B81B4D000C5726F /* mixtape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mixtapeApp.swift; sourceTree = "<group>"; };
-		0BFDD12A2B81B4D000C5726F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		0BFDD12A2B81B4D000C5726F /* MixtapesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtapesView.swift; sourceTree = "<group>"; };
 		0BFDD12C2B81B4D300C5726F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0BFDD12F2B81B4D300C5726F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		0BFDD1372B8400E900C5726F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		0BFDD1392B843E0A00C5726F /* Tape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tape.swift; sourceTree = "<group>"; };
+		0BFDD13B2B843FFD00C5726F /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
+		0BFDD13D2B8448C000C5726F /* TapeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TapeCardView.swift; sourceTree = "<group>"; tabWidth = 4; };
+		0BFDD1432B85248B00C5726F /* NavbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarView.swift; sourceTree = "<group>"; };
+		0BFDD1452B855A7500C5726F /* _OldNavbarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _OldNavbarView.swift; sourceTree = "<group>"; };
+		0BFDD1472B855FE200C5726F /* MixtapeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixtapeDetailView.swift; sourceTree = "<group>"; };
+		0BFDD1492B858A2300C5726F /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
+		0BFDD14B2B87F10000C5726F /* NewMixtapeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMixtapeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +59,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B905C402B9E10B100E6178F /* JournalPage */ = {
+			isa = PBXGroup;
+			children = (
+				0B905C412B9E10EC00E6178F /* JournalView.swift */,
+			);
+			path = JournalPage;
+			sourceTree = "<group>";
+		};
+		0BF405462B8963DA00902D59 /* MixtapePage */ = {
+			isa = PBXGroup;
+			children = (
+				0BFDD1472B855FE200C5726F /* MixtapeDetailView.swift */,
+				0BF405472B89644A00902D59 /* partials */,
+				0BFDD12A2B81B4D000C5726F /* MixtapesView.swift */,
+				0BFDD14B2B87F10000C5726F /* NewMixtapeView.swift */,
+			);
+			path = MixtapePage;
+			sourceTree = "<group>";
+		};
+		0BF405472B89644A00902D59 /* partials */ = {
+			isa = PBXGroup;
+			children = (
+				0BFDD1492B858A2300C5726F /* SongView.swift */,
+				0BFDD13D2B8448C000C5726F /* TapeCardView.swift */,
+			);
+			path = partials;
+			sourceTree = "<group>";
+		};
+		0BF405482B89646D00902D59 /* partials */ = {
+			isa = PBXGroup;
+			children = (
+				0BF405442B88602000902D59 /* NavBackView.swift */,
+			);
+			path = partials;
+			sourceTree = "<group>";
+		};
+		0BF405492B8964A500902D59 /* HomePage */ = {
+			isa = PBXGroup;
+			children = (
+				0BF4054A2B8964B600902D59 /* HomeView.swift */,
+			);
+			path = HomePage;
+			sourceTree = "<group>";
+		};
 		0BFDD11C2B81B4D000C5726F = {
 			isa = PBXGroup;
 			children = (
@@ -51,8 +122,15 @@
 		0BFDD1272B81B4D000C5726F /* mixtape */ = {
 			isa = PBXGroup;
 			children = (
+				0BF4054C2B897ABD00902D59 /* Info.plist */,
+				0BFDD1362B8400C000C5726F /* Models */,
+				0BF405492B8964A500902D59 /* HomePage */,
+				0B905C402B9E10B100E6178F /* JournalPage */,
+				0BF405462B8963DA00902D59 /* MixtapePage */,
+				0BF405482B89646D00902D59 /* partials */,
+				0BFDD1452B855A7500C5726F /* _OldNavbarView.swift */,
+				0BFDD1432B85248B00C5726F /* NavbarView.swift */,
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
-				0BFDD12A2B81B4D000C5726F /* ContentView.swift */,
 				0BFDD12C2B81B4D300C5726F /* Assets.xcassets */,
 				0BFDD12E2B81B4D300C5726F /* Preview Content */,
 			);
@@ -65,6 +143,17 @@
 				0BFDD12F2B81B4D300C5726F /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0BFDD1362B8400C000C5726F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0BFDD1372B8400E900C5726F /* Theme.swift */,
+				0BFDD1392B843E0A00C5726F /* Tape.swift */,
+				0B905C482B9E1A7F00E6178F /* Entry.swift */,
+				0BFDD13B2B843FFD00C5726F /* Song.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +226,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BFDD12B2B81B4D000C5726F /* ContentView.swift in Sources */,
+				0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */,
+				0BFDD1482B855FE200C5726F /* MixtapeDetailView.swift in Sources */,
+				0BF4054B2B8964B600902D59 /* HomeView.swift in Sources */,
+				0BFDD1442B85248B00C5726F /* NavbarView.swift in Sources */,
+				0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */,
+				0BFDD1462B855A7500C5726F /* _OldNavbarView.swift in Sources */,
+				0BFDD1382B8400E900C5726F /* Theme.swift in Sources */,
+				0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */,
+				0BF405452B88602000902D59 /* NavBackView.swift in Sources */,
+				0BFDD12B2B81B4D000C5726F /* MixtapesView.swift in Sources */,
 				0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */,
+				0BFDD14A2B858A2300C5726F /* SongView.swift in Sources */,
+				0BFDD14C2B87F10000C5726F /* NewMixtapeView.swift in Sources */,
+				0BFDD13A2B843E0A00C5726F /* Tape.swift in Sources */,
+				0BFDD13C2B843FFD00C5726F /* Song.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -275,6 +377,7 @@
 				DEVELOPMENT_TEAM = 2ADJVT7P37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = mixtape/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -304,6 +407,7 @@
 				DEVELOPMENT_TEAM = 2ADJVT7P37;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = mixtape/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
