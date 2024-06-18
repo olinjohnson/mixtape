@@ -9,7 +9,7 @@ import SwiftUI
 
 struct JournalView: View {
     let entries: [Entry] = Entry.sample_entries
-    //@State private var searchText = ""
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack {
@@ -17,41 +17,20 @@ struct JournalView: View {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
                         ForEach(entries, id: \.title) {entry in
-                            HStack {
-                                Image("dog")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .cornerRadius(5)
-                                VStack(alignment:.leading) {
-                                    Text(entry.title)
-                                        .font(.headline)
-                                        .padding([.bottom, .top], 1)
-                                    Text(entry.body)
-                                        .lineLimit(2)
-                                        .truncationMode(.tail)
-                                        .font(.subheadline)
-                                        //.foregroundColor(Color(UIColor.systemGray))
-                                }
-                                .padding(.leading, 5)
-                                Spacer()
+                            NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
+                                EntryCardView(entry:entry)
                             }
-                            .frame(height:74)
-                            .padding(12)
-                            .background(Color(UIColor.systemGray6))
-                            .cornerRadius(10)
-                            /*NavigationLink(destination:MixtapeDetailView(mixtape: tape).toolbar(.hidden, for: .tabBar)) {
-                                TapeCardView(tape:tape)
-                                    .padding(5)
-                            }*/
+                            .buttonStyle(PlainButtonStyle())
                         }
                         .navigationTitle("Journal")
-                        //.searchable(text: $searchText)
+                        .searchable(text: $searchText)
                         Spacer()
                         Spacer()
                     }
                     .padding([.leading, .trailing, .top], 20)
                     .scrollClipDisabled()
                 }
+                // "New" button
                 NavigationLink(destination: NewMixtapeView().toolbar(.hidden, for: .tabBar)) {
                     Text("+ NEW")
                         //.font(.title2)
