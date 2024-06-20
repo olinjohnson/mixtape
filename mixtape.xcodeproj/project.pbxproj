@@ -12,8 +12,7 @@
 		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
 		0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C482B9E1A7F00E6178F /* Entry.swift */; };
 		0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC4BC92C23DF590002E41F /* NewEntryView.swift */; };
-		0BC1D64F2C248AB300132542 /* InstructionBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D64E2C248AB300132542 /* InstructionBarView.swift */; };
-		0BC1D6512C248ACF00132542 /* FormButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6502C248ACF00132542 /* FormButtonsView.swift */; };
+		0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6522C24975000132542 /* ImagePickerView.swift */; };
 		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
 		0BF4054B2B8964B600902D59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4054A2B8964B600902D59 /* HomeView.swift */; };
 		0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */; };
@@ -37,8 +36,7 @@
 		0B905C412B9E10EC00E6178F /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		0B905C482B9E1A7F00E6178F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0BAC4BC92C23DF590002E41F /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
-		0BC1D64E2C248AB300132542 /* InstructionBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstructionBarView.swift; sourceTree = "<group>"; };
-		0BC1D6502C248ACF00132542 /* FormButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormButtonsView.swift; sourceTree = "<group>"; };
+		0BC1D6522C24975000132542 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
 		0BF4054A2B8964B600902D59 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0BF4054C2B897ABD00902D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -112,8 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				0BF405442B88602000902D59 /* NavBackView.swift */,
-				0BC1D64E2C248AB300132542 /* InstructionBarView.swift */,
-				0BC1D6502C248ACF00132542 /* FormButtonsView.swift */,
+				0BC1D6522C24975000132542 /* ImagePickerView.swift */,
 			);
 			path = partials;
 			sourceTree = "<group>";
@@ -249,9 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0BC1D64F2C248AB300132542 /* InstructionBarView.swift in Sources */,
 				0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */,
-				0BC1D6512C248ACF00132542 /* FormButtonsView.swift in Sources */,
 				0B721C0D2C2136E3000939B9 /* EntryDetailView.swift in Sources */,
 				0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */,
 				0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */,
@@ -269,6 +264,7 @@
 				0BFDD14C2B87F10000C5726F /* NewMixtapeView.swift in Sources */,
 				0BFDD13A2B843E0A00C5726F /* Tape.swift in Sources */,
 				0BFDD13C2B843FFD00C5726F /* Song.swift in Sources */,
+				0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
