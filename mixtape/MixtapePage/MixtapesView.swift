@@ -16,7 +16,7 @@ struct MixtapesView: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
-                        ForEach(mixtapes, id: \.title) {tape in
+                        ForEach(mixtapes, id: \.id) {tape in
                             NavigationLink(destination:MixtapeDetailView(mixtape: tape).toolbar(.hidden, for: .tabBar)) {
                                 TapeCardView(tape:tape)
                                     .padding(5)

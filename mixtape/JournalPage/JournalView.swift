@@ -16,7 +16,7 @@ struct JournalView: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
-                        ForEach(entries, id: \.title) {entry in
+                        ForEach(entries, id: \.id) {entry in
                             NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
                                 EntryCardView(entry:entry)
                             }
