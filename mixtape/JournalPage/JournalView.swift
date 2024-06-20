@@ -31,7 +31,7 @@ struct JournalView: View {
                     .scrollClipDisabled()
                 }
                 // "New" button
-                NavigationLink(destination: NewMixtapeView().toolbar(.hidden, for: .tabBar)) {
+                NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
                     Text("+ NEW")
                         //.font(.title2)
                         .font(.title3)
