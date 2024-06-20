@@ -34,7 +34,7 @@ struct MixtapeDetailView: View {
                                                 .padding(20)
                                                 .padding([.leading, .trailing], 6)
                                                 .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
-                                                .shadow(color:.black.opacity(0.2), radius:6, x:2, y:2)
+                                                .shadow(color:.black.opacity(0.2), radius:3, x:0, y:0)
                                         }
                                         Spacer()
                                     }

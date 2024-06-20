@@ -41,16 +41,19 @@ struct MixtapesView: View {
                     //NavbarView()
                 }
                 NavigationLink(destination: NewMixtapeView().toolbar(.hidden, for: .tabBar)) {
-                    Text("+ NEW")
-                        //.font(.title2)
-                        .font(.title3)
-                        .bold()
-                        .padding(10)
+                    VStack {
+                        Text("+")
+                            .font(.title2)
+//                            .font(.title3)
+                            .bold()
                         //.foregroundColor(.white)
                         //.background(Theme.accent_color)
-                        .foregroundColor(.black)
-                        .background(.white)
-                        .cornerRadius(10)
+                            .foregroundColor(.black)
+                    }
+                    .frame(width:50, height:50)
+                    .background(.white)
+                    .cornerRadius(100)
+                    .padding([.leading, .trailing], 10)
                 }
                 .shadow(color: .black.opacity(0.4), radius: 10, x: 2, y: 2)
                 .offset(x: -16, y:-30)

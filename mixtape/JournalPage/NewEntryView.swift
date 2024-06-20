@@ -34,10 +34,11 @@ struct NewEntryView: View {
                             ImagePickerView(gr:gr)
                             HStack {
                                 VStack(alignment:.leading){
-                                    Text("Click text to edit")
+                                    Text("New entry")
                                         .font(.title2)
                                         .bold()
-                                    Text("Bottom buttons to create or cancel")
+                                        .padding([.bottom], 2)
+                                    Text("Add an image  |  Add text")
                                         .font(.caption)
                                         .foregroundStyle(.black.opacity(0.6))
                                 }

@@ -14,7 +14,7 @@ struct TapeCardView: View {
             HStack {
                 Text(tape.title)
                     .font(.largeTitle.bold())
-                    .shadow(color: .black.opacity(0.4), radius: 10, x:1, y:1)
+                    .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
                     //.shadow(color:.black, radius:1)
                     .padding(.leading, 28)
                     .padding(.top, 20)

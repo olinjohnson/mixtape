@@ -13,7 +13,7 @@ struct ImagePickerView: View {
     let gr: GeometryProxy
     
     @State var selectedPhoto: PhotosPickerItem?
-    @State private var image: Image?
+    @State var image: Image?
     
     var body: some View {
         ZStack(alignment:.center){
@@ -37,7 +37,7 @@ struct ImagePickerView: View {
             .offset(y: -gr.frame(in: .global).origin.y)
         }
         .task(id: selectedPhoto) {
-            image = try? await selectedPhoto?.loadTransferable(type: Image.self) ?? Image("ed_sheeran")
+            image = try? await selectedPhoto?.loadTransferable(type: Image.self) ?? Image("no_select")
         }
     }
 }
