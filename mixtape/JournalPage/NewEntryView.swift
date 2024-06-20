@@ -31,13 +31,7 @@ struct NewEntryView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                                Image("ed_sheeran")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fill)
-                                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
-                                    .offset(y: -gr.frame(in: .global).origin.y)
-                            }
+                            ImagePickerView(gr:gr)
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("Click text to edit")
@@ -82,6 +76,7 @@ struct NewEntryView: View {
                             .padding([.leading, .trailing])
                         }
                         .frame(height:350)
+                        
                         VStack {
                             VStack(alignment:.leading) {
                                 DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
