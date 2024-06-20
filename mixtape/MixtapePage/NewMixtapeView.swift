@@ -33,9 +33,7 @@ struct NewMixtapeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            Image("ed_sheeran")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
+                            ImagePickerView(gr:gr)
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -54,8 +52,6 @@ struct NewMixtapeView: View {
                                         Spacer()
                                     }
                                 }
-                                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
-                                .offset(y: -gr.frame(in: .global).origin.y)
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("Click text to edit")
