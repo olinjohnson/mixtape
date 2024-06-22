@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct NewEntryView: View {
     enum Fields {
         case title
         case body
     }
+    
+    @Environment(\.modelContext) private var modelContext
     
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
@@ -119,8 +122,12 @@ struct NewEntryView: View {
                                     )
                                 }
                                 
-                                Button(action:{}) {
-                                    NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
+                                
+                                NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
+                                    Button(action:{
+                                        let newEntry = Entry(id: UUID(), cover: (UIImage(named: "dog")?.pngData())!, title: inputTitle, body: inputBody, date: inputDate)
+                                        modelContext.insert(newEntry)
+                                    }) {
                                         Text("Create")
                                             .padding()
                                             .frame(maxWidth:.infinity)
@@ -130,8 +137,8 @@ struct NewEntryView: View {
                                             .font(.title3)
                                             .bold()
                                     }
+                                    .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
-                                .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                             }
                         }
                         .padding()

@@ -8,6 +8,7 @@
 
 import SwiftUI
 import SwiftData
+import UIKit
 
 struct EntryDetailView: View {
     
@@ -22,7 +23,7 @@ struct EntryDetailView: View {
                 VStack {
                     GeometryReader { gr in
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                            entry.cover
+                            Image(uiImage: UIImage(data: entry.cover)!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))

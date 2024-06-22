@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct EntryCardView: View {
     
@@ -13,7 +14,7 @@ struct EntryCardView: View {
     
     var body: some View {
         HStack {
-            entry.cover
+            Image(uiImage: UIImage(data: entry.cover)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(5)
