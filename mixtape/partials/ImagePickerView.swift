@@ -14,6 +14,7 @@ struct ImagePickerView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     @State var image: Image?
+    @Binding var imageData: Data?
     
     var body: some View {
         ZStack(alignment:.center){
@@ -38,13 +39,14 @@ struct ImagePickerView: View {
         }
         .task(id: selectedPhoto) {
             image = try? await selectedPhoto?.loadTransferable(type: Image.self) ?? Image("no_select")
+            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? NSDataAsset(name: "no_select")?.data
         }
     }
 }
 
-#Preview {
-    GeometryReader { gr in
-        ImagePickerView(gr:gr)
-    }
-    .frame(height:150)
-}
+//#Preview {
+//    GeometryReader { gr in
+//        ImagePickerView(gr:gr)
+//    }
+//    .frame(height:150)
+//}

@@ -22,6 +22,7 @@ struct NewEntryView: View {
     @State var inputTitle = ""
     @State var inputBody = ""
     @State var inputDate = Date()
+    @State var inputCover: Data?
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
@@ -34,7 +35,7 @@ struct NewEntryView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            ImagePickerView(gr:gr)
+                            ImagePickerView(gr:gr, imageData:self.$inputCover)
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("New entry")
@@ -135,7 +136,7 @@ struct NewEntryView: View {
                                         .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
                                 .simultaneousGesture(TapGesture().onEnded {
-                                    let newEntry = Entry(id: UUID(), cover: (UIImage(named: "dog")?.pngData())!, title: inputTitle, body: inputBody, date: inputDate)
+                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle, body: inputBody, date: inputDate)
                                     modelContext.insert(newEntry)
                                 })
                             }
