@@ -19,9 +19,11 @@ struct EntryCardView: View {
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(5)
             VStack(alignment:.leading) {
+                Text(entry.date, style:.date)
+                    .font(.caption)
                 Text(entry.title)
                     .font(.headline)
-                    .padding([.bottom, .top], 1)
+                    //.padding([.bottom], 1)
                 Text(entry.body)
                     .lineLimit(2)
                     .truncationMode(.tail)
@@ -31,7 +33,7 @@ struct EntryCardView: View {
             .padding(.leading, 5)
             Spacer()
         }
-        .frame(height:74)
+        .frame(height:84)
         .padding(12)
         .background(Color(UIColor.systemGray6))
         //.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray4), lineWidth:3))
@@ -41,8 +43,8 @@ struct EntryCardView: View {
     }
 }
 
-/*
-#Preview {
-    EntryCardView(entry:Entry.sample_entries[0])
-}
-*/
+
+//#Preview {
+//    EntryCardView(entry:)
+//}
+

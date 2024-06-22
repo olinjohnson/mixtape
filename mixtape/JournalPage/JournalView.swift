@@ -21,7 +21,7 @@ struct JournalView: View {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
                         if (entries.count > 0) {
-                            ForEach(entries) {entry in
+                            ForEach(entries.sorted(by: {$0.date < $1.date}).reversed()) {entry in
                                 NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
                                     EntryCardView(entry:entry)
                                 }
@@ -34,15 +34,16 @@ struct JournalView: View {
                             VStack {
                                 Text("No entries yet")
                                     .navigationTitle("Journal")
-                                    .searchable(text: $searchText)
-                                    .font(.title2)
+                                    .font(.title)
+                                    .bold()
                                 NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
-                                    Text("Write your first entry")
+                                    Text(" Write your first entry")
                                 }
                             }
+                            .padding([.top], 40)
+                            .searchable(text: $searchText)
                         }
                         
-
                     }
                     .padding([.top], 20)
                     .scrollClipDisabled()

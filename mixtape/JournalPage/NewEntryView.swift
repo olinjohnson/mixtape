@@ -124,21 +124,20 @@ struct NewEntryView: View {
                                 
                                 
                                 NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
-                                    Button(action:{
-                                        let newEntry = Entry(id: UUID(), cover: (UIImage(named: "dog")?.pngData())!, title: inputTitle, body: inputBody, date: inputDate)
-                                        modelContext.insert(newEntry)
-                                    }) {
-                                        Text("Create")
-                                            .padding()
-                                            .frame(maxWidth:.infinity)
-                                            .background(.green)
-                                            .cornerRadius(10)
-                                            .foregroundColor(.white)
-                                            .font(.title3)
-                                            .bold()
-                                    }
-                                    .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
+                                    Text("Create")
+                                        .padding()
+                                        .frame(maxWidth:.infinity)
+                                        .background(.green)
+                                        .cornerRadius(10)
+                                        .foregroundColor(.white)
+                                        .font(.title3)
+                                        .bold()
+                                        .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    let newEntry = Entry(id: UUID(), cover: (UIImage(named: "dog")?.pngData())!, title: inputTitle, body: inputBody, date: inputDate)
+                                    modelContext.insert(newEntry)
+                                })
                             }
                         }
                         .padding()
