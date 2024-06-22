@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftData
 
 @main
 struct mixtapeApp: App {
@@ -13,5 +14,6 @@ struct mixtapeApp: App {
         WindowGroup {
             NavbarView()
         }
+        .modelContainer(for: Entry.self)
     }
 }

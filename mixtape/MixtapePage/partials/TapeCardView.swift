@@ -23,7 +23,7 @@ struct TapeCardView: View {
             Spacer()
         }
         .background(
-            tape.background
+            tape.cover
                 .resizable()
                 .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
                 //.saturation(0.5)

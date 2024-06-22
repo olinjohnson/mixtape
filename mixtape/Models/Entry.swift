@@ -7,28 +7,36 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
-struct Entry {
-    var title: String
-    var date: String
-    var body: String
-    // #TODO: COVER NEEDS TO BE AN OPTIONAL PARAM
+@Model
+class Entry {
+    
+    @Attribute(.unique)
+    let id: UUID
     var cover: Image
-    var id: UUID
+    var title: String
+    var body: String
+    var date: Date
+    // #TODO: COVER NEEDS TO BE AN OPTIONAL PARAM
     //var songs: [Song]
     // attachments, images, formatting options
+    
+    init(id: UUID, cover: Image, title: String, body: String, date: Date) {
+        self.id = id
+        self.cover = cover
+        self.title = title
+        self.body = body
+        self.date = date
+    }
 }
 
+/*
 extension Entry {
     static let sample_entries: [Entry] = [
-        Entry(title:"Feeling angry", date:"March 1st 2024", body:"something awful happened at work today. I was going to go grab a coffee and then jack said", cover: Image("dog"), id:UUID()),
-        Entry(title:"Crazy weekend", date:"December 31st 2023", body:"this weekend was absolutely wild", cover: Image("dog"), id:UUID()),
-        Entry(title:"Hype for the holidays", date:"December 11th 2023", body:"I literally cannot wait nother day until christmas. Grandma is making her home made pie and driving up, its gonna be awesome.", cover: Image("dog"), id:UUID()),
-        Entry(title:"Feeling angry", date:"March 1st 2024", body:"something awful happened at work today. I was going to go grab a coffee and then jack said", cover: Image("dog"), id:UUID()),
-        Entry(title:"Crazy weekend", date:"December 31st 2023", body:"this weekend was absolutely wild", cover: Image("dog"), id:UUID()),
-        Entry(title:"Hype for the holidays", date:"December 11th 2023", body:"I literally cannot wait nother day until christmas. Grandma is making her home made pie and driving up, its gonna be awesome.", cover: Image("dog"), id:UUID()),
-        Entry(title:"Feeling angry", date:"March 1st 2024", body:"something awful happened at work today. I was going to go grab a coffee and then jack said", cover: Image("dog"), id:UUID()),
-        Entry(title:"Crazy weekend", date:"December 31st 2023", body:"this weekend was absolutely wild", cover: Image("dog"), id:UUID()),
-        Entry(title:"Hype for the holidays", date:"December 11th 2023", body:"I literally cannot wait nother day until christmas. Grandma is making her home made pie and driving up, its gonna be awesome.", cover: Image("dog"), id:UUID()),
+        Entry(id:UUID(), cover: Image("dog"), title:"Feeling angry", body:"something awful happened at work today. I was going to go grab a coffee and then jack said", date:Date()),
+        Entry(id:UUID(), cover: Image("dog"), title:"WOOHOOOO", body:"I went to the carnival with my best friend john and we had an awesome time", date:Date()),
+        Entry(id:UUID(), cover: Image("dog"), title:"work day", body:"swamped with work today - had to work overtime and missed dinner", date:Date()),
     ]
 }
+*/

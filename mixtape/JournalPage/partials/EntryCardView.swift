@@ -40,6 +40,8 @@ struct EntryCardView: View {
     }
 }
 
+/*
 #Preview {
     EntryCardView(entry:Entry.sample_entries[0])
 }
+*/

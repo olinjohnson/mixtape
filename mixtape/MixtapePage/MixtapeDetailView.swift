@@ -20,9 +20,9 @@ struct MixtapeDetailView: View {
                 VStack {
                     GeometryReader { gr in
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                            mixtape.background
+                            mixtape.cover
                                 .resizable()
-                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                .aspectRatio(contentMode: .fill)
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -33,7 +33,7 @@ struct MixtapeDetailView: View {
                                                 .bold()
                                                 .padding(20)
                                                 .padding([.leading, .trailing], 6)
-                                                .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+                                                .multilineTextAlignment(.leading)
                                                 .shadow(color:.black.opacity(0.2), radius:3, x:0, y:0)
                                         }
                                         Spacer()
@@ -54,7 +54,7 @@ struct MixtapeDetailView: View {
                     VStack {
                         // date
                         HStack {
-                            Text(mixtape.date)
+                            Text(mixtape.date, style:.date)
                                 .font(.footnote)
                                 .padding([.leading, .trailing])
                             Spacer()
@@ -62,7 +62,7 @@ struct MixtapeDetailView: View {
                         
                         // title
                         HStack {
-                            Text(mixtape.text_title)
+                            Text(mixtape.heading)
                                 .font(.title)
                                 .bold()
                                 .padding([.leading, .trailing, .bottom])
@@ -71,7 +71,7 @@ struct MixtapeDetailView: View {
                         
                         // body text
                         HStack {
-                            Text(mixtape.body_text)
+                            Text(mixtape.body)
                                 .padding([.leading, .trailing])
                             Spacer()
                         }

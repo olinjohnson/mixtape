@@ -6,9 +6,13 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct JournalView: View {
-    let entries: [Entry] = Entry.sample_entries
+    
+    @Environment(\.modelContext) private var modelContext
+    @Query private var entries: [Entry]
+    //let entries: [Entry] = Entry.sample_entries
     @State private var searchText = ""
     
     var body: some View {
@@ -16,12 +20,13 @@ struct JournalView: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
-                        ForEach(entries, id: \.id) {entry in
-                            NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
+                        ForEach(entries) {entry in
+                            /*NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
                                 EntryCardView(entry:entry)
                             }
                             .buttonStyle(PlainButtonStyle())
-                            .padding([.bottom], 8)
+                            .padding([.bottom], 8)*/
+                            Text("hi")
                         }
                         .navigationTitle("Journal")
                         .searchable(text: $searchText)

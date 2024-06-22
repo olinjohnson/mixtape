@@ -7,9 +7,12 @@
 
 
 import SwiftUI
+import SwiftData
 
 struct EntryDetailView: View {
+    
     @Environment(\.dismiss) private var dismiss
+    
     let entry: Entry
     
     var body: some View {
@@ -21,7 +24,7 @@ struct EntryDetailView: View {
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
                             entry.cover
                                 .resizable()
-                                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                                .aspectRatio(contentMode: .fill)
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
                                 .offset(y: -gr.frame(in: .global).origin.y)
 
@@ -37,7 +40,7 @@ struct EntryDetailView: View {
                     VStack {
                         // date
                         HStack {
-                            Text(entry.date)
+                            Text(entry.date, style: .date)
                                 .font(.footnote)
                                 .padding([.leading, .trailing])
                             Spacer()
@@ -71,6 +74,8 @@ struct EntryDetailView: View {
     }
 }
 
+/*
 #Preview {
     EntryDetailView(entry: Entry.sample_entries[0])
 }
+*/
