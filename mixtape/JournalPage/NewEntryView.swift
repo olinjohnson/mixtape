@@ -136,7 +136,7 @@ struct NewEntryView: View {
                                         .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
                                 .simultaneousGesture(TapGesture().onEnded {
-                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle, body: inputBody, date: inputDate)
+                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
                                     modelContext.insert(newEntry)
                                 })
                             }
@@ -146,7 +146,7 @@ struct NewEntryView: View {
                         // Cover image box
                         // add music
                     }
-                    .offset(y:CGFloat(-keyboardOffsetAmt))
+                    //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
                 }
                 //.edgesIgnoringSafeArea(.all)

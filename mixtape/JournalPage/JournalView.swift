@@ -45,7 +45,7 @@ struct JournalView: View {
                         }
                         
                     }
-                    .padding([.top], 20)
+                    .padding([.top], 10)
                     .scrollClipDisabled()
                 }
 

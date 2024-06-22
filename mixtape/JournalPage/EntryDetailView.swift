@@ -12,7 +12,11 @@ import UIKit
 
 struct EntryDetailView: View {
     
+    @Environment(\.modelContext) private var modelContext
+    
     @Environment(\.dismiss) private var dismiss
+    
+    @State var showingDeleteAlert = false
     
     let entry: Entry
     
@@ -28,13 +32,44 @@ struct EntryDetailView: View {
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
                                 .offset(y: -gr.frame(in: .global).origin.y)
                             
-                            NavigationLink(destination: JournalView().toolbar(.hidden, for: .tabBar)) {
-                                NavBackView(dismiss:self.dismiss)
+                            HStack{
+                                NavigationLink(destination: JournalView().toolbar(.hidden, for: .tabBar)) {
+                                    NavBackView(dismiss:self.dismiss)
+                                }
+                                Spacer()
+                                Menu {
+                                    Button(action:{}) {
+                                        Label("Edit entry", systemImage: "pencil")
+                                    }
+                                    Button(role: .destructive, action:{showingDeleteAlert = true}) {
+                                        Label("Delete entry", systemImage: "trash")
+                                    }
+                                } label: {
+                                    Text(Image(systemName: "ellipsis"))
+                                        .font(.system(size: 16))
+                                        .bold()
+                                        .padding(10)
+                                        .foregroundColor(.white)
+                                        .frame(minWidth:40, minHeight:40)
+                                        .background(.gray.opacity(0.5))
+                                        .cornerRadius(14)
+                                        .padding(40)
+                                }
+                                .alert(isPresented:$showingDeleteAlert) {
+                                    Alert(
+                                        title:Text("Are you sure you want to delete this entry?"),
+                                        message:Text("This operation cannot be undone."),
+                                        primaryButton: .destructive(Text("I'm sure")) {
+                                            modelContext.delete(entry)
+                                            dismiss()
+                                        },
+                                        secondaryButton: .cancel(Text("No, go back"))
+                                    )
+                                }
                             }
-                            .offset(y: -gr.frame(in: .global).origin.y)
+                            .offset(y: -gr.frame(in: .global).origin.y + 20)
                         }
                         .frame(height:350)
-                        .border(.cyan, width:5)
                         
                         // Info stack
                         VStack {
@@ -62,16 +97,15 @@ struct EntryDetailView: View {
                                 Spacer()
                             }
                             .padding(.bottom)
+                            Spacer()
                         }
                         .padding()
+                        //.frame(height:abs(reader.size.height - 350))
                         .background(.white)
-                        .border(.purple, width:4)
                     }
-                    .border(.blue, width:4)
-                    .frame(minHeight: reader.size.height)
+                    //.frame(maxHeight:.infinity)
                 }
                 //.edgesIgnoringSafeArea(.all)
-                .border(.yellow, width:4)
             }
         }
         .navigationBarBackButtonHidden(true)
