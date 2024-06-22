@@ -16,7 +16,9 @@ struct EntryCardView: View {
         HStack {
             Image(uiImage: UIImage(data: entry.cover)!)
                 .resizable()
-                .aspectRatio(contentMode: .fit)
+                .aspectRatio(contentMode: .fill)
+                .frame(maxWidth:84, maxHeight:84)
+                .clipped()
                 .cornerRadius(5)
             VStack(alignment:.leading) {
                 Text(entry.date, style:.date)

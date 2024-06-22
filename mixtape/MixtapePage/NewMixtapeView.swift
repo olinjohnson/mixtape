@@ -33,7 +33,7 @@ struct NewMixtapeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            ImagePickerView(gr:gr)
+                            /*ImagePickerView(gr:gr)
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -51,7 +51,7 @@ struct NewMixtapeView: View {
                                         Spacer()
                                     }
                                     .offset(y: -gr.frame(in: .global).origin.y)
-                                }
+                                }*/
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("New entry")

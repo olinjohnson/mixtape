@@ -7,22 +7,30 @@
 
 import SwiftUI
 import PhotosUI
+import UIKit
 
 struct ImagePickerView: View {
     
     let gr: GeometryProxy
     
     @State var selectedPhoto: PhotosPickerItem?
-    @State var image: Image?
     @Binding var imageData: Data?
     
     var body: some View {
         ZStack(alignment:.center){
-            image?
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
-                .offset(y: -gr.frame(in: .global).origin.y)
+            if(imageData == nil){
+                Image("no_select")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
+                    .offset(y: -gr.frame(in: .global).origin.y)
+            } else {
+                Image(uiImage: UIImage(data: imageData!)!)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
+                    .offset(y: -gr.frame(in: .global).origin.y)
+            }
             PhotosPicker(selection:$selectedPhoto, matching:.images) {
                 VStack(alignment: .center) {
                     Image(systemName: "camera.fill")
@@ -38,8 +46,7 @@ struct ImagePickerView: View {
             .offset(y: -gr.frame(in: .global).origin.y)
         }
         .task(id: selectedPhoto) {
-            image = try? await selectedPhoto?.loadTransferable(type: Image.self) ?? Image("no_select")
-            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? NSDataAsset(name: "no_select")?.data
+            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? UIImage(named: "no_select")?.pngData()
         }
     }
 }
