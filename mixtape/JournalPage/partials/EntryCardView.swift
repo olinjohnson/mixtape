@@ -15,6 +15,7 @@ struct EntryCardView: View {
     var body: some View {
         HStack {
             Image(uiImage: UIImage(data: entry.cover)!)
+//            Image("dog")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(maxWidth:84, maxHeight:84)
@@ -22,11 +23,14 @@ struct EntryCardView: View {
                 .cornerRadius(5)
             VStack(alignment:.leading) {
                 Text(entry.date, style:.date)
+//                Text("Date")
                     .font(.caption)
                 Text(entry.title)
+//                Text("Title")
                     .font(.headline)
                     //.padding([.bottom], 1)
                 Text(entry.body)
+//                Text("Body")
                     .lineLimit(2)
                     .truncationMode(.tail)
                     .font(.subheadline)
@@ -41,12 +45,12 @@ struct EntryCardView: View {
         //.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray4), lineWidth:3))
         .cornerRadius(10)
         .padding([.leading, .trailing])
-        .shadow(color: .black.opacity(0.12), radius:3, x:1, y:1)
+        .shadow(color: .black.opacity(0.1), radius:3, x:2, y:2)
     }
 }
 
 
 //#Preview {
-//    EntryCardView(entry:)
+//    EntryCardView()
 //}
 

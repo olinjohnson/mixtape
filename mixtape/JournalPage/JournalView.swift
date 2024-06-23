@@ -12,6 +12,7 @@ import UIKit
 struct JournalView: View {
     
     @Environment(\.modelContext) private var modelContext
+    
     @Query private var entries: [Entry]
     @State private var searchText = ""
     
@@ -29,7 +30,7 @@ struct JournalView: View {
                                 .padding([.bottom], 8)
                             }
                             .navigationTitle("Journal")
-                            .searchable(text: $searchText)
+                            //.searchable(text: $searchText)
                         } else {
                             VStack {
                                 Text("No entries yet")

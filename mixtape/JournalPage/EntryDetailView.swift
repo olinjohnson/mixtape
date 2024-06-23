@@ -18,6 +18,8 @@ struct EntryDetailView: View {
     
     @State var showingDeleteAlert = false
     
+    @State private var imageHeight: CGFloat = 350
+    
     let entry: Entry
     
     var body: some View {
@@ -29,9 +31,9 @@ struct EntryDetailView: View {
                             Image(uiImage: UIImage(data: entry.cover)!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
-                                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
+                                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
                                 .offset(y: -gr.frame(in: .global).origin.y)
-                            
+                                //.blur
                             HStack{
                                 NavigationLink(destination: JournalView().toolbar(.hidden, for: .tabBar)) {
                                     NavBackView(dismiss:self.dismiss)
@@ -67,7 +69,7 @@ struct EntryDetailView: View {
                                     )
                                 }
                             }
-                            .offset(y: -gr.frame(in: .global).origin.y + 20)
+                                .offset(y: -gr.frame(in: .global).origin.y + 20)
                         }
                         .frame(height:350)
                         
@@ -99,13 +101,27 @@ struct EntryDetailView: View {
                             .padding(.bottom)
                             Spacer()
                         }
-                        .padding()
-                        //.frame(height:abs(reader.size.height - 350))
-                        .background(.white)
+                            .overlay {
+                                GeometryReader { gr2 in
+                                    Color.clear.onAppear() {
+                                        imageHeight = reader.size.height - abs(-gr2.frame(in:.local).origin.y) + 2 * reader.frame(in: .local).origin.y
+                                    }
+                                }
+                            }
+                            .padding()
+                            .edgesIgnoringSafeArea(.bottom)
+                            /*
+                            .frame(minHeight:abs(reader.size.height - 350 + reader.frame(in: .global).origin.y + gr2.frame(in: .global).origin.y))
+                            .frame(minHeight:(reader.size.height - abs(-gr2.frame(in:.global).origin.y) + 2 * reader.frame(in: .global).origin.y))
+                            .frame(minHeight: abs(-gr2.frame(in:.global).origin.y))
+                            https://appbakery.medium.com/passing-geometry-information-to-parent-sibling-views-in-swiftui-c2fff433afc1
+                        
+                            */
+                            .frame(minHeight: reader.size.height - 350 + reader.frame(in: .global).origin.y)
+                            .background(.white)
                     }
                     //.frame(maxHeight:.infinity)
                 }
-                //.edgesIgnoringSafeArea(.all)
             }
         }
         .navigationBarBackButtonHidden(true)

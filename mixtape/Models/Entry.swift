@@ -22,9 +22,6 @@ class Entry {
     var title: String
     var body: String
     var date: Date
-    // #TODO: COVER NEEDS TO BE AN OPTIONAL PARAM
-    //var songs: [Song]
-    // attachments, images, formatting options
     
     init(id: UUID, cover: Data, title: String, body: String, date: Date) {
         self.id = id
