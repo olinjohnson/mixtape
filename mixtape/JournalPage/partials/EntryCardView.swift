@@ -14,7 +14,7 @@ struct EntryCardView: View {
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: entry.cover!) ?? UIImage(named: "no_select")!)
+            Image(uiImage: UIImage(data: entry.cover ?? (UIImage(named: "no_select")!.pngData())!)!)
 //            Image("dog")
                 .resizable()
                 .aspectRatio(contentMode: .fill)

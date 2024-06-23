@@ -28,7 +28,7 @@ struct EntryDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            Image(uiImage: UIImage(data: entry.cover!) ?? UIImage(named: "no_select")!)
+                            Image(uiImage: UIImage(data: entry.cover ?? (UIImage(named: "no_select")!.pngData())!)!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)

@@ -20,10 +20,6 @@ struct EditEntryView: View {
     private let titleCharLimit = 100
     
     @Binding var entry: Entry
-//    @Binding var inputTitle: String
-//    @Binding var inputBody: String
-//    @Binding var inputDate: Date
-//    @Binding var inputCover: Data?
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
@@ -124,8 +120,12 @@ struct EditEntryView: View {
                                     )
                                 }
                                 
-                                
-                                NavigationLink(destination:EntryDetailView(entry:entry).toolbar(.visible, for: .tabBar)) {
+                                Button(action:{
+                                    do {
+                                        try modelContext.save()
+                                    } catch {dismiss()}
+                                    dismiss()
+                                }) {
                                     Text("Save")
                                         .padding()
                                         .frame(maxWidth:.infinity)
@@ -134,13 +134,25 @@ struct EditEntryView: View {
                                         .foregroundColor(.white)
                                         .font(.title3)
                                         .bold()
-                                        .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
-                                .simultaneousGesture(TapGesture().onEnded {
-                                    do {
-                                        try modelContext.save()
-                                    } catch {dismiss()}
-                                })
+                                .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
+                                
+//                                NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
+//                                    Text("Save")
+//                                        .padding()
+//                                        .frame(maxWidth:.infinity)
+//                                        .background(.green)
+//                                        .cornerRadius(10)
+//                                        .foregroundColor(.white)
+//                                        .font(.title3)
+//                                        .bold()
+//                                        .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
+//                                }
+//                                .simultaneousGesture(TapGesture().onEnded {
+//                                    do {
+//                                        try modelContext.save()
+//                                    } catch {dismiss()}
+//                                })
                             }
                         }
                         .padding()
