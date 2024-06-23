@@ -1,14 +1,13 @@
 //
-//  NewEntryView.swift
+//  EditEntryView.swift
 //  mixtape
 //
-//  Created by Olin Johnson on 6/19/24.
+//  Created by Olin Johnson on 6/23/24.
 //
 
 import SwiftUI
-import SwiftData
 
-struct NewEntryView: View {
+struct EditEntryView: View {
     
     enum Fields {
         case title
@@ -20,10 +19,11 @@ struct NewEntryView: View {
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
-    @State var inputTitle = ""
-    @State var inputBody = ""
-    @State var inputDate = Date()
-    @State var inputCover: Data?
+    @Binding var entry: Entry
+//    @Binding var inputTitle: String
+//    @Binding var inputBody: String
+//    @Binding var inputDate: Date
+//    @Binding var inputCover: Data?
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
@@ -36,14 +36,14 @@ struct NewEntryView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            ImagePickerView(gr:gr, imageData:self.$inputCover)
+                            ImagePickerView(gr:gr, imageData:$entry.cover)
                             HStack {
                                 VStack(alignment:.leading){
-                                    Text("New entry")
+                                    Text("Edit entry")
                                         .font(.title2)
                                         .bold()
                                         .padding([.bottom], 2)
-                                    Text("Add cover image  |  Add text")
+                                    Text("Edit cover image  |  Edit text")
                                         .font(.caption)
                                         .foregroundStyle(.black.opacity(0.6))
                                 }
@@ -85,17 +85,17 @@ struct NewEntryView: View {
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
+                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $entry.date, displayedComponents: .date)//.labelsHidden()
                                     .padding([.bottom, .top])
                                     .font(.title3)
                                 //.bold()
                                 Divider()
                                     .padding([.top, .bottom])
-                                TextField("Put your title here...", text: $inputTitle, axis:.vertical)
+                                TextField("", text: $entry.title, axis:.vertical)
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.title)
-                                TextField("What would you like to write about today?", text: $inputBody, axis:.vertical)
+                                TextField("", text: $entry.body, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
                             }
                             .padding([.leading, .trailing, .bottom])
@@ -125,8 +125,8 @@ struct NewEntryView: View {
                                 }
                                 
                                 
-                                NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
-                                    Text("Create")
+                                NavigationLink(destination:EntryDetailView(entry:entry).toolbar(.visible, for: .tabBar)) {
+                                    Text("Save")
                                         .padding()
                                         .frame(maxWidth:.infinity)
                                         .background(.green)
@@ -137,8 +137,9 @@ struct NewEntryView: View {
                                         .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
                                 .simultaneousGesture(TapGesture().onEnded {
-                                    let newEntry = Entry(id: UUID(), cover: inputCover ?? (UIImage(named: "no_select")!.pngData())!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
-                                    modelContext.insert(newEntry)
+                                    do {
+                                        try modelContext.save()
+                                    } catch {dismiss()}
                                 })
                             }
                         }
@@ -157,6 +158,6 @@ struct NewEntryView: View {
     }
 }
 
-#Preview {
-    NewEntryView()
-}
+//#Preview {
+//    EditEntryView()
+//}

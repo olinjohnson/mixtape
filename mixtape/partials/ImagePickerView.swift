@@ -46,7 +46,7 @@ struct ImagePickerView: View {
             .offset(y: -gr.frame(in: .global).origin.y)
         }
         .task(id: selectedPhoto) {
-            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? UIImage(named: "no_select")?.pngData()
+            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self)
         }
     }
 }

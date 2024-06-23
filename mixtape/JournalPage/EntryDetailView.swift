@@ -17,10 +17,10 @@ struct EntryDetailView: View {
     @Environment(\.dismiss) private var dismiss
     
     @State var showingDeleteAlert = false
-    
+    @State var editNavigationReady = false
     @State private var imageHeight: CGFloat = 350
     
-    let entry: Entry
+    @State var entry: Entry
     
     var body: some View {
         NavigationStack {
@@ -28,7 +28,7 @@ struct EntryDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            Image(uiImage: UIImage(data: entry.cover)!)
+                            Image(uiImage: UIImage(data: entry.cover!) ?? UIImage(named: "no_select")!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
@@ -40,7 +40,7 @@ struct EntryDetailView: View {
                                 }
                                 Spacer()
                                 Menu {
-                                    Button(action:{}) {
+                                    Button(action:{editNavigationReady = true}) {
                                         Label("Edit entry", systemImage: "pencil")
                                     }
                                     Button(role: .destructive, action:{showingDeleteAlert = true}) {
@@ -68,6 +68,9 @@ struct EntryDetailView: View {
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
+                                .navigationDestination(isPresented: $editNavigationReady, destination: {
+                                    EditEntryView(entry: $entry)
+                                })
                             }
                                 .offset(y: -gr.frame(in: .global).origin.y + 20)
                         }

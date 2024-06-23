@@ -17,7 +17,7 @@ class Entry {
     let id: UUID
     
     @Attribute(.externalStorage)
-    var cover: Data
+    var cover: Data?
     
     var title: String
     var body: String
