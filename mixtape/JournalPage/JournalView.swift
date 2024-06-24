@@ -42,7 +42,6 @@ struct JournalView: View {
                                 }
                             }
                             .padding([.top], 40)
-                            .searchable(text: $searchText)
                         }
                         
                     }

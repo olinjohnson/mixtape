@@ -19,23 +19,19 @@ struct EditEntryView: View {
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
-    @Binding var entry: Entry
     @State private var inputTitle = ""
     @State private var inputBody = ""
     @State private var inputDate = Date()
     @State private var inputCover: Data?
     
+    @State private var saveNavigationReady = false
+    
     @FocusState private var textFieldFocus: Fields?
-    @State private var keyboardOffsetAmt = 0
+//    @State private var keyboardOffsetAmt = 0
     
     @State var showingCancelAlert = false
     
-    init(entry: Entry) {
-        self.inputTitle = entry.title
-        self.inputBody = entry.body
-        self.inputDate = entry.date
-        self.inputCover = entry.cover
-    }
+    var entry: Entry
     
     var body: some View {
         NavigationStack {
@@ -62,11 +58,11 @@ struct EditEntryView: View {
                                     }) {
                                         Text("Done")
                                     }
-                                    .onAppear {
-                                        if textFieldFocus != .title {
-                                            keyboardOffsetAmt = 210
-                                        }
-                                    }
+//                                    .onAppear {
+//                                        if textFieldFocus != .title {
+//                                            keyboardOffsetAmt = 210
+//                                        }
+//                                    }
                                 }else{
                                     Button(action:{
                                         textFieldFocus = .body
@@ -75,9 +71,9 @@ struct EditEntryView: View {
                                             .font(.largeTitle)
                                             .foregroundColor(.blue)
                                     }
-                                    .onAppear {
-                                        keyboardOffsetAmt = 0
-                                    }
+//                                    .onAppear {
+//                                        keyboardOffsetAmt = 0
+//                                    }
                                 }
                             }
                             .padding(20)
@@ -102,7 +98,7 @@ struct EditEntryView: View {
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.title)
-                                TextField("", text: $inputBody, axis:.vertical)
+                                TextField(inputBody.count > 0 ? inputBody : "There's nothing here yet", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
                             }
                             .padding([.leading, .trailing, .bottom])
@@ -135,7 +131,7 @@ struct EditEntryView: View {
                                     do {
                                         try modelContext.save()
                                     } catch {}
-                                    dismiss()
+                                    saveNavigationReady = true
                                 }) {
                                     Text("Save")
                                         .padding()
@@ -173,11 +169,20 @@ struct EditEntryView: View {
                     }
                     //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
+                    .navigationDestination(isPresented: $saveNavigationReady, destination: {
+                        EntryDetailView(entry: entry)
+                    })
                 }
                 //.edgesIgnoringSafeArea(.all)
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
+            inputCover = entry.cover
+            inputTitle = entry.title
+            inputBody = entry.body
+            inputDate = entry.date
+        })
     }
 }
 

@@ -28,7 +28,7 @@ struct EntryDetailView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            Image(uiImage: UIImage(data: entry.cover ?? (UIImage(named: "no_select")!.pngData())!)!)
+                            Image(uiImage: UIImage(data: entry.cover) ?? UIImage(named: "no_select")!)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
@@ -68,11 +68,8 @@ struct EntryDetailView: View {
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
-                                .navigationDestination(isPresented: $editNavigationReady, destination: {
-                                    EditEntryView(entry: $entry)
-                                })
                             }
-                                .offset(y: -gr.frame(in: .global).origin.y + 20)
+                            .offset(y: -gr.frame(in: .global).origin.y + 20)
                         }
                         .frame(height:350)
                         
@@ -124,6 +121,9 @@ struct EntryDetailView: View {
                             .background(.white)
                     }
                     //.frame(maxHeight:.infinity)
+                    .navigationDestination(isPresented: $editNavigationReady, destination: {
+                        EditEntryView(entry: entry)
+                    })
                 }
             }
         }
