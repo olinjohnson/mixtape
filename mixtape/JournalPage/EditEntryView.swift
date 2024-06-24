@@ -31,7 +31,7 @@ struct EditEntryView: View {
     
     @State var showingCancelAlert = false
     
-    var entry: Entry
+    @Binding var entry: Entry
     
     var body: some View {
         NavigationStack {
@@ -122,15 +122,16 @@ struct EditEntryView: View {
                                     Alert(
                                         title:Text("Are you sure you want to cancel?"),
                                         message:Text("Your changes will not be saved."),
-                                        primaryButton: .destructive(Text("I'm sure")) {dismiss()},
+                                        primaryButton: .destructive(Text("I'm sure")) {saveNavigationReady = true},
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
                                 
                                 Button(action:{
-                                    do {
-                                        try modelContext.save()
-                                    } catch {}
+                                    modelContext.delete(entry)
+                                    entry = Entry(id: entry.id, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    modelContext.insert(entry)
+                                    do { try modelContext.save() } catch {}
                                     saveNavigationReady = true
                                 }) {
                                     Text("Save")
@@ -170,7 +171,7 @@ struct EditEntryView: View {
                     //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
                     .navigationDestination(isPresented: $saveNavigationReady, destination: {
-                        EntryDetailView(entry: entry)
+                        EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)
                     })
                 }
                 //.edgesIgnoringSafeArea(.all)

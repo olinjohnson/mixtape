@@ -63,6 +63,7 @@ struct EntryDetailView: View {
                                         message:Text("This operation cannot be undone."),
                                         primaryButton: .destructive(Text("I'm sure")) {
                                             modelContext.delete(entry)
+                                            do { try modelContext.save() } catch {}
                                             dismiss()
                                         },
                                         secondaryButton: .cancel(Text("No, go back"))
@@ -122,7 +123,7 @@ struct EntryDetailView: View {
                     }
                     //.frame(maxHeight:.infinity)
                     .navigationDestination(isPresented: $editNavigationReady, destination: {
-                        EditEntryView(entry: entry)
+                        EditEntryView(entry: $entry).toolbar(.hidden, for: .tabBar)
                     })
                 }
             }

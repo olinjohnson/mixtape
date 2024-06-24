@@ -85,7 +85,7 @@ struct NewEntryView: View {
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
+                                DatePicker("What date?            \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
                                     .padding([.bottom, .top])
                                     .font(.title3)
                                 //.bold()
@@ -124,8 +124,12 @@ struct NewEntryView: View {
                                     )
                                 }
                                 
-                                
-                                NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
+                                Button(action:{
+                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    modelContext.insert(newEntry)
+                                    do { try modelContext.save() } catch {}
+                                    dismiss()
+                                }) {
                                     Text("Create")
                                         .padding()
                                         .frame(maxWidth:.infinity)
@@ -134,12 +138,25 @@ struct NewEntryView: View {
                                         .foregroundColor(.white)
                                         .font(.title3)
                                         .bold()
-                                        .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                                 }
-                                .simultaneousGesture(TapGesture().onEnded {
-                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
-                                    modelContext.insert(newEntry)
-                                })
+                                .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
+                                
+//                                NavigationLink(destination:JournalView().toolbar(.visible, for: .tabBar)) {
+//                                    Text("Create")
+//                                        .padding()
+//                                        .frame(maxWidth:.infinity)
+//                                        .background(.green)
+//                                        .cornerRadius(10)
+//                                        .foregroundColor(.white)
+//                                        .font(.title3)
+//                                        .bold()
+//                                        .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
+//                                }
+//                                .simultaneousGesture(TapGesture().onEnded {
+//                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+//                                    modelContext.insert(newEntry)
+//                                    do { try modelContext.save() } catch {}
+//                                })
                             }
                         }
                         .padding()
