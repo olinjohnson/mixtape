@@ -20,11 +20,22 @@ struct EditEntryView: View {
     private let titleCharLimit = 100
     
     @Binding var entry: Entry
+    @State private var inputTitle = ""
+    @State private var inputBody = ""
+    @State private var inputDate = Date()
+    @State private var inputCover: Data?
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
     
     @State var showingCancelAlert = false
+    
+    init(entry: Entry) {
+        self.inputTitle = entry.title
+        self.inputBody = entry.body
+        self.inputDate = entry.date
+        self.inputCover = entry.cover
+    }
     
     var body: some View {
         NavigationStack {
@@ -32,7 +43,7 @@ struct EditEntryView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            ImagePickerView(gr:gr, imageData:$entry.cover)
+                            ImagePickerView(gr:gr, imageData:$inputCover)
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("Edit entry")
@@ -81,17 +92,17 @@ struct EditEntryView: View {
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $entry.date, displayedComponents: .date)//.labelsHidden()
+                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
                                     .padding([.bottom, .top])
                                     .font(.title3)
                                 //.bold()
                                 Divider()
                                     .padding([.top, .bottom])
-                                TextField("", text: $entry.title, axis:.vertical)
+                                TextField("", text: $inputTitle, axis:.vertical)
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.title)
-                                TextField("", text: $entry.body, axis:.vertical)
+                                TextField("", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
                             }
                             .padding([.leading, .trailing, .bottom])
@@ -123,7 +134,7 @@ struct EditEntryView: View {
                                 Button(action:{
                                     do {
                                         try modelContext.save()
-                                    } catch {dismiss()}
+                                    } catch {}
                                     dismiss()
                                 }) {
                                     Text("Save")

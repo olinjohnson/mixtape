@@ -18,19 +18,11 @@ struct ImagePickerView: View {
     
     var body: some View {
         ZStack(alignment:.center){
-            if(imageData == nil){
-                Image("no_select")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
-                    .offset(y: -gr.frame(in: .global).origin.y)
-            } else {
-                Image(uiImage: UIImage(data: imageData!)!)
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
-                    .offset(y: -gr.frame(in: .global).origin.y)
-            }
+            Image(uiImage: UIImage(data: imageData!) ?? UIImage(named: "no_select")!)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
+                .offset(y: -gr.frame(in: .global).origin.y)
             PhotosPicker(selection:$selectedPhoto, matching:.images) {
                 VStack(alignment: .center) {
                     Image(systemName: "camera.fill")
@@ -46,7 +38,7 @@ struct ImagePickerView: View {
             .offset(y: -gr.frame(in: .global).origin.y)
         }
         .task(id: selectedPhoto) {
-            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self)
+            imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? UIImage(named: "no_select")?.pngData()
         }
     }
 }
