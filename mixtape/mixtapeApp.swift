@@ -12,13 +12,14 @@ import SwiftData
 struct mixtapeApp: App {
     
     @State var isAuthenticated = false
+    @State var userProfile = User.empty
     
     var body: some Scene {
         WindowGroup {
             if isAuthenticated {
-                NavbarView(isAuthenticated: $isAuthenticated)
+                NavbarView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
             } else {
-                LoginView(isAuthenticated: $isAuthenticated)
+                LoginView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
             }
         }
         .modelContainer(for: Entry.self)

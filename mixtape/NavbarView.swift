@@ -55,10 +55,11 @@ struct NavbarView: View {
     @State private var selection = 0
     
     @Binding var isAuthenticated: Bool
+    @Binding var userProfile: User
     
     var body: some View {
         TabView(selection:$selection) {
-            AccountView(isAuthenticated: $isAuthenticated)
+            AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 .tabItem {
                     Label("Account", systemImage: "person.crop.circle")
                 }

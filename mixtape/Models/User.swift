@@ -19,6 +19,11 @@ struct User {
 }
 
 extension User {
+    
+    static var empty: Self {
+        return User(id: "", name: "", email: "", emailVerified: false, picture: "")
+    }
+
     static func from(_ idToken: String) -> Self {
         
         guard
@@ -29,7 +34,7 @@ extension User {
             let emailVerified = jwt.claim(name: "email_verified").boolean,
             let picture = jwt.claim(name: "picture").string
         else {
-            return User(id: "", name: "", email: "", emailVerified: false, picture: "")
+            return User.empty
         }
         
         return User(id: id, name: name, email: email, emailVerified: emailVerified, picture: picture)

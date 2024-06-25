@@ -83,6 +83,7 @@ extension LoginView {
                     case .failure(let error):
                         print("Failed with \(error)")
                     case .success(let credentials):
+                    self.userProfile = User.from(credentials.idToken)
                         self.isAuthenticated = true
                 }
             }

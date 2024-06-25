@@ -21,10 +21,23 @@ import Auth0
 struct AccountView: View {
     
     @Binding var isAuthenticated: Bool
+    @Binding var userProfile: User
     
     var body: some View {
         NavigationStack {
-            VStack(alignment:.center) {
+            VStack(alignment:.leading) {
+                AsyncImage(url: URL(string: userProfile.picture)) {image in
+                    image.frame(maxWidth:160)
+                } placeholder: {
+                    Image(systemName: "person.crop.circle")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width:160)
+                }
+                Text(userProfile.name)
+                    .font(.title)
+                Text(userProfile.email)
+                    .font(.subheadline)
                 Spacer()
                 Button(action:{
                     logout()
@@ -53,6 +66,7 @@ extension AccountView {
                     case .failure(let error):
                         print("Failed with \(error)")
                     case .success:
+                        self.userProfile = User.empty
                         self.isAuthenticated = false
                 }
             }
