@@ -53,7 +53,7 @@ import SwiftUI
 struct NavbarView: View {
     var body: some View {
         TabView() {
-            HomeView()
+            SettingsView()
                 .tabItem {
                     Label("Home", systemImage: "music.note.house")
                 }

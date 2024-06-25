@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D74272C27E09E00719187 /* EditEntryView.swift */; };
+		0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406ADC2C2A222000631FEB /* SpotifyiOS */; };
+		0B406ADF2C2A524D00631FEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406ADE2C2A524D00631FEB /* User.swift */; };
+		0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406AE12C2A53C300631FEB /* Auth0 */; };
+		0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B406AE32C2A55DA00631FEB /* Auth0.plist */; };
 		0B721C0D2C2136E3000939B9 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0C2C2136E3000939B9 /* EntryDetailView.swift */; };
 		0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0E2C213A0F000939B9 /* EntryCardView.swift */; };
 		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
@@ -15,7 +19,7 @@
 		0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC4BC92C23DF590002E41F /* NewEntryView.swift */; };
 		0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6522C24975000132542 /* ImagePickerView.swift */; };
 		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
-		0BF4054B2B8964B600902D59 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4054A2B8964B600902D59 /* HomeView.swift */; };
+		0BF4054B2B8964B600902D59 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4054A2B8964B600902D59 /* SettingsView.swift */; };
 		0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */; };
 		0BFDD12B2B81B4D000C5726F /* MixtapesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD12A2B81B4D000C5726F /* MixtapesView.swift */; };
 		0BFDD12D2B81B4D300C5726F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0BFDD12C2B81B4D300C5726F /* Assets.xcassets */; };
@@ -33,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		0B1D74272C27E09E00719187 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
+		0B406ADE2C2A524D00631FEB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		0B406AE32C2A55DA00631FEB /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
 		0B721C0C2C2136E3000939B9 /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		0B721C0E2C213A0F000939B9 /* EntryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCardView.swift; sourceTree = "<group>"; };
 		0B905C412B9E10EC00E6178F /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
@@ -40,7 +46,7 @@
 		0BAC4BC92C23DF590002E41F /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		0BC1D6522C24975000132542 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
-		0BF4054A2B8964B600902D59 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0BF4054A2B8964B600902D59 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0BF4054C2B897ABD00902D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		0BFDD1252B81B4D000C5726F /* mixtape.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mixtape.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mixtapeApp.swift; sourceTree = "<group>"; };
@@ -63,6 +69,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */,
+				0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,12 +126,12 @@
 			path = partials;
 			sourceTree = "<group>";
 		};
-		0BF405492B8964A500902D59 /* HomePage */ = {
+		0BF405492B8964A500902D59 /* SettingsPage */ = {
 			isa = PBXGroup;
 			children = (
-				0BF4054A2B8964B600902D59 /* HomeView.swift */,
+				0BF4054A2B8964B600902D59 /* SettingsView.swift */,
 			);
-			path = HomePage;
+			path = SettingsPage;
 			sourceTree = "<group>";
 		};
 		0BFDD11C2B81B4D000C5726F = {
@@ -147,7 +155,7 @@
 			children = (
 				0BF4054C2B897ABD00902D59 /* Info.plist */,
 				0BFDD1362B8400C000C5726F /* Models */,
-				0BF405492B8964A500902D59 /* HomePage */,
+				0BF405492B8964A500902D59 /* SettingsPage */,
 				0B905C402B9E10B100E6178F /* JournalPage */,
 				0BF405462B8963DA00902D59 /* MixtapePage */,
 				0BF405482B89646D00902D59 /* partials */,
@@ -156,6 +164,7 @@
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
 				0BFDD12C2B81B4D300C5726F /* Assets.xcassets */,
 				0BFDD12E2B81B4D300C5726F /* Preview Content */,
+				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
 			);
 			path = mixtape;
 			sourceTree = "<group>";
@@ -175,6 +184,7 @@
 				0BFDD1392B843E0A00C5726F /* Tape.swift */,
 				0B905C482B9E1A7F00E6178F /* Entry.swift */,
 				0BFDD13B2B843FFD00C5726F /* Song.swift */,
+				0B406ADE2C2A524D00631FEB /* User.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -195,6 +205,10 @@
 			dependencies = (
 			);
 			name = mixtape;
+			packageProductDependencies = (
+				0B406ADC2C2A222000631FEB /* SpotifyiOS */,
+				0B406AE12C2A53C300631FEB /* Auth0 */,
+			);
 			productName = mixtape;
 			productReference = 0BFDD1252B81B4D000C5726F /* mixtape.app */;
 			productType = "com.apple.product-type.application";
@@ -223,6 +237,10 @@
 				Base,
 			);
 			mainGroup = 0BFDD11C2B81B4D000C5726F;
+			packageReferences = (
+				0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */,
+				0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */,
+			);
 			productRefGroup = 0BFDD1262B81B4D000C5726F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -238,6 +256,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BFDD1302B81B4D300C5726F /* Preview Assets.xcassets in Resources */,
+				0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */,
 				0BFDD12D2B81B4D300C5726F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -255,7 +274,7 @@
 				0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */,
 				0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */,
 				0BFDD1482B855FE200C5726F /* MixtapeDetailView.swift in Sources */,
-				0BF4054B2B8964B600902D59 /* HomeView.swift in Sources */,
+				0BF4054B2B8964B600902D59 /* SettingsView.swift in Sources */,
 				0BFDD1442B85248B00C5726F /* NavbarView.swift in Sources */,
 				0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */,
 				0BFDD1462B855A7500C5726F /* _OldNavbarView.swift in Sources */,
@@ -269,6 +288,7 @@
 				0BFDD13A2B843E0A00C5726F /* Tape.swift in Sources */,
 				0BFDD13C2B843FFD00C5726F /* Song.swift in Sources */,
 				0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */,
+				0B406ADF2C2A524D00631FEB /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -476,6 +496,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/spotify/ios-sdk";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/auth0/Auth0.swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.8.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0B406ADC2C2A222000631FEB /* SpotifyiOS */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */;
+			productName = SpotifyiOS;
+		};
+		0B406AE12C2A53C300631FEB /* Auth0 */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */;
+			productName = Auth0;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0BFDD11D2B81B4D000C5726F /* Project object */;
 }
