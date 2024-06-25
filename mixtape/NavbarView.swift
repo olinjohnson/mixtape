@@ -51,11 +51,16 @@ import SwiftUI
  */
 
 struct NavbarView: View {
+    
+    @State private var selection = 0
+    
+    @Binding var isAuthenticated: Bool
+    
     var body: some View {
-        TabView() {
-            SettingsView()
+        TabView(selection:$selection) {
+            AccountView(isAuthenticated: $isAuthenticated)
                 .tabItem {
-                    Label("Home", systemImage: "music.note.house")
+                    Label("Account", systemImage: "person.crop.circle")
                 }
                 .tag(0)
             JournalView()
@@ -72,8 +77,8 @@ struct NavbarView: View {
     }
 }
 
-struct NavbarView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavbarView()
-    }
-}
+//struct NavbarView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        NavbarView()
+//    }
+//}

@@ -79,6 +79,6 @@ struct JournalView: View {
     }
 }
 
-#Preview {
-    JournalView()
-}
+//#Preview {
+//    JournalView()
+//}

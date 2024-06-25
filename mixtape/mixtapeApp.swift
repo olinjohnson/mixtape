@@ -10,9 +10,16 @@ import SwiftData
 
 @main
 struct mixtapeApp: App {
+    
+    @State var isAuthenticated = false
+    
     var body: some Scene {
         WindowGroup {
-            NavbarView()
+            if isAuthenticated {
+                NavbarView(isAuthenticated: $isAuthenticated)
+            } else {
+                LoginView(isAuthenticated: $isAuthenticated)
+            }
         }
         .modelContainer(for: Entry.self)
     }
