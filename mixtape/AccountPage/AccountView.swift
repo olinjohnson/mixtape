@@ -26,18 +26,22 @@ struct AccountView: View {
     var body: some View {
         NavigationStack {
             VStack(alignment:.leading) {
-                AsyncImage(url: URL(string: userProfile.picture)) {image in
-                    image.frame(maxWidth:160)
-                } placeholder: {
-                    Image(systemName: "person.crop.circle")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width:160)
-                }
+//                AsyncImage(url: URL(string: userProfile.picture)) {image in
+//                    image.frame(maxWidth:160)
+//                } placeholder: {
+//                    Image(systemName: "person.crop.circle")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .frame(width:160)
+//                }
                 Text(userProfile.name)
                     .font(.title)
-                Text(userProfile.email)
-                    .font(.subheadline)
+                
+                if !userProfile.name.elementsEqual(userProfile.email) {
+                    Text(userProfile.email)
+                        .font(.subheadline)
+                }
+                
                 Spacer()
                 Button(action:{
                     logout()

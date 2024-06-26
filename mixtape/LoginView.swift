@@ -55,7 +55,9 @@ struct LoginView: View {
                             }
                         }
                         
-                        Button(action:{}) {
+                        Button(action:{
+                            login(["screen_hint": "signup"])
+                        }) {
                             Text("Create an account")
                                 .font(.title2)
                                 .bold()
@@ -75,9 +77,10 @@ struct LoginView: View {
 }
 
 extension LoginView {
-    private func login() {
+    private func login(_ parameters: [String : String] = ["" : ""]) {
         Auth0
             .webAuth()
+            .parameters(parameters)
             .start { result in
                 switch result {
                     case .failure(let error):
