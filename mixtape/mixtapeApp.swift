@@ -14,6 +14,8 @@ struct mixtapeApp: App {
     @State var isAuthenticated = false
     @State var userProfile = User.empty
     
+    @StateObject var spotifyController = SpotifyController()
+    
     var body: some Scene {
         WindowGroup {
             if isAuthenticated {

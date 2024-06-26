@@ -23,6 +23,8 @@ struct AccountView: View {
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
     
+    @EnvironmentObject var spotifyController: SpotifyController
+    
     var body: some View {
         NavigationStack {
             VStack(alignment:.leading) {
@@ -40,6 +42,40 @@ struct AccountView: View {
                 if !userProfile.name.elementsEqual(userProfile.email) {
                     Text(userProfile.email)
                         .font(.subheadline)
+                }
+                
+                Spacer()
+                Button(action:{
+                    
+                }) {
+                    HStack {
+                        Text("Connect to Spotify")
+                        Image("spotify_icon")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .font(.title2)
+                    .bold()
+                    .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+                    .background(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
+                }
+                Button(action:{
+                    
+                }) {
+                    HStack {
+                        Text("Connect to Apple Music")
+//                        Image("spotify_icon")
+//                            .resizable()
+//                            .scaledToFit()
+                    }
+                    .font(.title2)
+                    .bold()
+                    .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+                    .background(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                    .foregroundColor(.white)
+                    .cornerRadius(10)
                 }
                 
                 Spacer()

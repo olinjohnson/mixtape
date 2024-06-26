@@ -1,0 +1,11 @@
+//
+//  SpotifyConfig.xcconfig
+//  mixtape
+//
+//  Created by Olin Johnson on 6/26/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+SPOTIFY_CLIENT_ID = "66327df3a9b046199b92b090fa93a27e"
