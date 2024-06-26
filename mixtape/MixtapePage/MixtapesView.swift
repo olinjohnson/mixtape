@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct MixtapesView: View {
+    
     let mixtapes: [Tape] = Tape.sample_tapes
     @State private var searchText = ""
+    
+    @Binding var userProfile: User
     
     var body: some View {
         NavigationStack {
@@ -66,8 +69,8 @@ struct MixtapesView: View {
     }
 }
 
-struct MixtapesViewPreviews: PreviewProvider {
-    static var previews: some View {
-        MixtapesView()
-    }
-}
+//struct MixtapesViewPreviews: PreviewProvider {
+//    static var previews: some View {
+//        MixtapesView()
+//    }
+//}

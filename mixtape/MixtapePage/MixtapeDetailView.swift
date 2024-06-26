@@ -42,9 +42,10 @@ struct MixtapeDetailView: View {
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
                                 .offset(y: -gr.frame(in: .global).origin.y)
 
-                            NavigationLink(destination: MixtapesView().toolbar(.hidden, for: .tabBar)) {
-                                NavBackView(dismiss:self.dismiss)
-                            }
+//                            NavigationLink(destination: MixtapesView().toolbar(.hidden, for: .tabBar)) {
+//                                NavBackView(dismiss:self.dismiss)
+//                            }
+                            NavBackView(dismiss: self.dismiss)
                             .offset(y: -gr.frame(in: .global).origin.y + 20)
                         }
                     }

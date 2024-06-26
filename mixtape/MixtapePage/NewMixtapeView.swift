@@ -145,8 +145,9 @@ struct NewMixtapeView: View {
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
-                                Button(action:{}) {
-                                    NavigationLink(destination:MixtapesView().toolbar(.visible, for: .tabBar)) {
+                                //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
+                                Button(action:{self.dismiss()}) {
+                                    //NavigationLink(destination:MixtapesView().toolbar(.visible, for: .tabBar)) {
                                         Text("Create")
                                             .padding()
                                             .frame(maxWidth:.infinity)
@@ -155,7 +156,7 @@ struct NewMixtapeView: View {
                                             .foregroundColor(.white)
                                             .font(.title3)
                                             .bold()
-                                    }
+                                    //}
                                 }
                                 .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                             }

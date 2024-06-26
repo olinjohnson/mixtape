@@ -69,7 +69,7 @@ struct NavbarView: View {
                     Label("Journal", systemImage: "book.closed")
                 }
                 .tag(1)
-            MixtapesView()
+            MixtapesView(userProfile: $userProfile)
                 .tabItem {
                     Label("Mixtapes", systemImage: "recordingtape")
                 }

@@ -17,6 +17,7 @@
 		0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0E2C213A0F000939B9 /* EntryCardView.swift */; };
 		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
 		0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C482B9E1A7F00E6178F /* Entry.swift */; };
+		0B93B9162C2BC5C300588663 /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93B9152C2BC5C300588663 /* SpotifyController.swift */; };
 		0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC4BC92C23DF590002E41F /* NewEntryView.swift */; };
 		0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6522C24975000132542 /* ImagePickerView.swift */; };
 		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
@@ -45,6 +46,8 @@
 		0B721C0E2C213A0F000939B9 /* EntryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCardView.swift; sourceTree = "<group>"; };
 		0B905C412B9E10EC00E6178F /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		0B905C482B9E1A7F00E6178F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
+		0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtape-Bridging-Header.h"; sourceTree = "<group>"; };
+		0B93B9152C2BC5C300588663 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
 		0BAC4BC92C23DF590002E41F /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		0BC1D6522C24975000132542 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
@@ -139,6 +142,7 @@
 		0BFDD11C2B81B4D000C5726F = {
 			isa = PBXGroup;
 			children = (
+				0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */,
 				0BFDD1272B81B4D000C5726F /* mixtape */,
 				0BFDD1262B81B4D000C5726F /* Products */,
 			);
@@ -156,7 +160,6 @@
 			isa = PBXGroup;
 			children = (
 				0B406AE52C2A676000631FEB /* AccountPage */,
-				0BF4054C2B897ABD00902D59 /* Info.plist */,
 				0BFDD1362B8400C000C5726F /* Models */,
 				0B905C402B9E10B100E6178F /* JournalPage */,
 				0BF405462B8963DA00902D59 /* MixtapePage */,
@@ -164,10 +167,12 @@
 				0BFDD1452B855A7500C5726F /* _OldNavbarView.swift */,
 				0BFDD1432B85248B00C5726F /* NavbarView.swift */,
 				0BF4054A2B8964B600902D59 /* LoginView.swift */,
+				0B93B9152C2BC5C300588663 /* SpotifyController.swift */,
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
+				0BF4054C2B897ABD00902D59 /* Info.plist */,
+				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
 				0BFDD12C2B81B4D300C5726F /* Assets.xcassets */,
 				0BFDD12E2B81B4D300C5726F /* Preview Content */,
-				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
 			);
 			path = mixtape;
 			sourceTree = "<group>";
@@ -275,6 +280,7 @@
 				0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */,
 				0B721C0D2C2136E3000939B9 /* EntryDetailView.swift in Sources */,
 				0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */,
+				0B93B9162C2BC5C300588663 /* SpotifyController.swift in Sources */,
 				0B406AE72C2A678400631FEB /* AccountView.swift in Sources */,
 				0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */,
 				0BFDD1482B855FE200C5726F /* MixtapeDetailView.swift in Sources */,
@@ -440,9 +446,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "mixtape-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -470,9 +478,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "mixtape-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
