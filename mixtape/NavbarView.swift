@@ -75,6 +75,22 @@ struct NavbarView: View {
                 }
                 .tag(2)
         }
+        .edgesIgnoringSafeArea(.bottom)
+        .overlay(
+            VStack {
+                Spacer()
+                PlayerView()
+                    .padding([.leading, .trailing], 5)
+                    //.offset(y:-geo.size.height)
+            }
+            .offset(y:-50)
+        )
+//
+//            VStack {
+//                Spacer()
+//                PlayerView()
+//                    .padding([.leading, .trailing], 5)
+//            }
     }
 }
 

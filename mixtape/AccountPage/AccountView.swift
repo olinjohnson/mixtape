@@ -25,8 +25,6 @@ struct AccountView: View {
     
     @StateObject var spotifyController: SpotifyController = SpotifyController()
     
-    @State var spotifyAuthorized: Bool = false
-    
     var body: some View {
         NavigationStack {
             VStack(alignment:.leading) {
@@ -48,11 +46,10 @@ struct AccountView: View {
                 
                 Spacer()
                 
-                if !spotifyAuthorized {
+                if !spotifyController.connected {
                     Button(action:{
                         if !spotifyController.appRemote.isConnected {
                             spotifyController.authorize()
-                            spotifyAuthorized = true
                         }
                     }) {
                         HStack {
@@ -81,8 +78,7 @@ struct AccountView: View {
                     .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
                     .background(.white)
                     .foregroundColor(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                    .border(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)), width:4)
-                    .cornerRadius(10)
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)), lineWidth: 2))
                 }
                 
                 Button(action:{
@@ -121,9 +117,6 @@ struct AccountView: View {
         .onOpenURL { url in
             spotifyController.setAccessToken(from: url)
         }
-//        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didFinishLaunchingNotification), perform: { _ in
-//                            spotifyController.connect()
-//                        })
         .environmentObject(spotifyController)
     }
 }

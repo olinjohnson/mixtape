@@ -17,6 +17,8 @@ class SpotifyController: NSObject, ObservableObject {
     let SpotifyClientID: String = "66327df3a9b046199b92b090fa93a27e"
     let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback/")!
     
+    @Published var connected = false
+    
     var accessToken: String? = nil
     
     var playURI = ""
@@ -50,17 +52,20 @@ class SpotifyController: NSObject, ObservableObject {
     func connect() {
         if let _ = self.appRemote.connectionParameters.accessToken {
             appRemote.connect()
+            connected = true
         }
     }
 
     func disconnect() {
         if appRemote.isConnected {
             appRemote.disconnect()
+            connected = false
         }
     }
     
     func authorize() {
         self.appRemote.authorizeAndPlayURI("")
+        connected = true
     }
     
     override init() {
@@ -84,14 +89,17 @@ extension SpotifyController: SPTAppRemoteDelegate {
     
     func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
         print("spotify connected")
+        self.connected = true
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: (any Error)?) {
         print("failed spotify connection with error")//: \(error!)")
+        self.connected = false
     }
     
     func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: (any Error)?) {
         print("spotify disconnected with error")//: \(error!)")
+        self.connected = false
     }
     
 }
