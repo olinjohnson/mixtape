@@ -23,7 +23,9 @@ struct AccountView: View {
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
     
-    @EnvironmentObject var spotifyController: SpotifyController
+    @StateObject var spotifyController: SpotifyController = SpotifyController()
+    
+    @State var spotifyAuthorized: Bool = false
     
     var body: some View {
         NavigationStack {
@@ -45,22 +47,44 @@ struct AccountView: View {
                 }
                 
                 Spacer()
-                Button(action:{
-                    
-                }) {
+                
+                if !spotifyAuthorized {
+                    Button(action:{
+                        if !spotifyController.appRemote.isConnected {
+                            spotifyController.authorize()
+                            spotifyAuthorized = true
+                        }
+                    }) {
+                        HStack {
+                            Text("Connect to Spotify")
+                            Image("spotify_icon_white")
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+                        .background(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
+//                    .buttonStyle(.plain)
+                } else {
                     HStack {
-                        Text("Connect to Spotify")
-                        Image("spotify_icon")
+                        Text("Connected to Spotify")
+                        Image("spotify_icon_green")
                             .resizable()
                             .scaledToFit()
                     }
                     .font(.title2)
                     .bold()
                     .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
-                    .background(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                    .foregroundColor(.white)
+                    .background(.white)
+                    .foregroundColor(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                    .border(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)), width:4)
                     .cornerRadius(10)
                 }
+                
                 Button(action:{
                     
                 }) {
@@ -94,6 +118,13 @@ struct AccountView: View {
             .padding()
             .navigationTitle("Account")
         }
+        .onOpenURL { url in
+            spotifyController.setAccessToken(from: url)
+        }
+//        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didFinishLaunchingNotification), perform: { _ in
+//                            spotifyController.connect()
+//                        })
+        .environmentObject(spotifyController)
     }
 }
 

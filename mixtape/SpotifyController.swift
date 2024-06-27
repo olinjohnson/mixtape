@@ -10,11 +10,12 @@ import SpotifyiOS
 import SwiftUI
 import Combine
 
-
+@MainActor
 class SpotifyController: NSObject, ObservableObject {
 
-    let SpotifyClientID: String = try! Configuration.value(for: "SPOTIFY_CLIENT_ID")
-    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
+//    let SpotifyClientID: String = try! Configuration.value(for: "SPOTIFY_CLIENT_ID")
+    let SpotifyClientID: String = "66327df3a9b046199b92b090fa93a27e"
+    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback/")!
     
     var accessToken: String? = nil
     
@@ -58,6 +59,10 @@ class SpotifyController: NSObject, ObservableObject {
         }
     }
     
+    func authorize() {
+        self.appRemote.authorizeAndPlayURI("")
+    }
+    
     override init() {
         super.init()
         connectCancellable = NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)
@@ -90,3 +95,4 @@ extension SpotifyController: SPTAppRemoteDelegate {
     }
     
 }
+

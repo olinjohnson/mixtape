@@ -18,7 +18,6 @@
 		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
 		0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C482B9E1A7F00E6178F /* Entry.swift */; };
 		0B93B9162C2BC5C300588663 /* SpotifyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93B9152C2BC5C300588663 /* SpotifyController.swift */; };
-		0B93B9192C2C704F00588663 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B93B9182C2C704F00588663 /* Configuration.swift */; };
 		0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC4BC92C23DF590002E41F /* NewEntryView.swift */; };
 		0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6522C24975000132542 /* ImagePickerView.swift */; };
 		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
@@ -49,8 +48,6 @@
 		0B905C482B9E1A7F00E6178F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
 		0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtape-Bridging-Header.h"; sourceTree = "<group>"; };
 		0B93B9152C2BC5C300588663 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
-		0B93B9172C2C6BB500588663 /* SpotifyConfig.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = SpotifyConfig.xcconfig; sourceTree = "<group>"; };
-		0B93B9182C2C704F00588663 /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 		0BAC4BC92C23DF590002E41F /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		0BC1D6522C24975000132542 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
 		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
@@ -145,8 +142,6 @@
 		0BFDD11C2B81B4D000C5726F = {
 			isa = PBXGroup;
 			children = (
-				0B93B9182C2C704F00588663 /* Configuration.swift */,
-				0B93B9172C2C6BB500588663 /* SpotifyConfig.xcconfig */,
 				0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */,
 				0BFDD1272B81B4D000C5726F /* mixtape */,
 				0BFDD1262B81B4D000C5726F /* Products */,
@@ -287,7 +282,6 @@
 				0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */,
 				0B93B9162C2BC5C300588663 /* SpotifyController.swift in Sources */,
 				0B406AE72C2A678400631FEB /* AccountView.swift in Sources */,
-				0B93B9192C2C704F00588663 /* Configuration.swift in Sources */,
 				0BFDD13E2B8448C000C5726F /* TapeCardView.swift in Sources */,
 				0BFDD1482B855FE200C5726F /* MixtapeDetailView.swift in Sources */,
 				0BF4054B2B8964B600902D59 /* LoginView.swift in Sources */,
@@ -313,7 +307,6 @@
 /* Begin XCBuildConfiguration section */
 		0BFDD1312B81B4D300C5726F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B93B9172C2C6BB500588663 /* SpotifyConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
@@ -377,7 +370,6 @@
 		};
 		0BFDD1322B81B4D300C5726F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B93B9172C2C6BB500588663 /* SpotifyConfig.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
