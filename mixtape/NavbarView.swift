@@ -57,7 +57,7 @@ struct NavbarView: View {
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
     
-    var body: some View {
+    /*var body: some View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 .tabItem {
@@ -76,21 +76,86 @@ struct NavbarView: View {
                 .tag(2)
         }
         .edgesIgnoringSafeArea(.bottom)
-        .overlay(
-            VStack {
-                Spacer()
-                PlayerView()
-                    .padding([.leading, .trailing], 5)
-                    //.offset(y:-geo.size.height)
-            }
-            .offset(y:-50)
-        )
+//        .overlay(
+//            VStack {
+//                Spacer()
+//                PlayerView()
+//                    .padding([.leading, .trailing], 5)
+//                    //.offset(y:-geo.size.height)
+//            }
+//            .offset(y:-50)
+//        )
 //
 //            VStack {
 //                Spacer()
 //                PlayerView()
 //                    .padding([.leading, .trailing], 5)
 //            }
+    }*/
+    
+    var body: some View {
+        VStack {
+            if selection == 0 {
+                AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
+                    .backgroundStyle(.yellow)
+            } else if selection == 1 {
+                JournalView()
+                    .backgroundStyle(.yellow)
+            } else {
+                MixtapesView(userProfile: $userProfile)
+                    .backgroundStyle(.yellow)
+            }
+            HStack(alignment:.bottom) {
+                Button(action: {selection = 0}){
+                    VStack(alignment:.center) {
+                        Image(systemName: "person.crop.circle")
+                            .font(.title2)
+                            .padding(.bottom, 1)
+                        Text("Account")
+                            .font(.caption)
+                            .bold()
+                    }
+                }
+                .foregroundStyle(selection == 0 ? .blue : .gray)
+                Spacer()
+                Button(action: {selection = 1}){
+                    VStack(alignment:.center) {
+                        Image(systemName: "book.closed.fill")
+                            .font(.title2)
+                            .padding(.bottom, 1)
+                        Text("Journal")
+                            .font(.caption2)
+                            .bold()
+                    }
+                }
+                .foregroundStyle(selection == 1 ? .blue : .gray)
+                Spacer()
+                Button(action: {selection = 2}){
+                    VStack(alignment:.center) {
+                        Image(systemName: "recordingtape")
+                            .font(.title2)
+                            .padding(.bottom, 1)
+                        Text("Mixtapes")
+                            .font(.caption2)
+                            .bold()
+                    }
+                }
+                .foregroundStyle(selection == 2 ? .blue : .gray)
+            }
+            .padding(.top, 3)
+            .padding(.bottom, 30)
+            .padding([.leading, .trailing], 40)
+        }
+        .edgesIgnoringSafeArea(.bottom)
+//        .overlay(
+//            VStack {
+//                Spacer()
+//                PlayerView()
+//                    .padding([.leading, .trailing], 5)
+//                    //.offset(y:-geo.size.height)
+//            }
+//            .offset(y:-50)
+//        )
     }
 }
 
