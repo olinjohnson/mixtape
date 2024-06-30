@@ -106,41 +106,46 @@ struct NavbarView: View {
                     .backgroundStyle(.yellow)
             }
             HStack(alignment:.bottom) {
-                Button(action: {selection = 0}){
-                    VStack(alignment:.center) {
-                        Image(systemName: "person.crop.circle")
-                            .font(.title2)
-                            .padding(.bottom, 1)
-                        Text("Account")
-                            .font(.caption)
-                            .bold()
-                    }
+                
+                VStack(alignment:.center) {
+                    Image(systemName: "person.crop.circle")
+                        .font(.title2)
+                        .padding(.bottom, 1)
+                    Text("Account")
+                        .font(.caption)
+                        .bold()
+                }
+                .onTapGesture {
+                    selection = 0
                 }
                 .foregroundStyle(selection == 0 ? .blue : .gray)
                 Spacer()
-                Button(action: {selection = 1}){
-                    VStack(alignment:.center) {
-                        Image(systemName: "book.closed.fill")
-                            .font(.title2)
-                            .padding(.bottom, 1)
-                        Text("Journal")
-                            .font(.caption2)
-                            .bold()
-                    }
+                VStack(alignment:.center) {
+                    Image(systemName: "book.closed.fill")
+                        .font(.title2)
+                        .padding(.bottom, 1)
+                    Text("Journal")
+                        .font(.caption2)
+                        .bold()
+                }
+                .onTapGesture {
+                    selection = 1
                 }
                 .foregroundStyle(selection == 1 ? .blue : .gray)
                 Spacer()
-                Button(action: {selection = 2}){
-                    VStack(alignment:.center) {
-                        Image(systemName: "recordingtape")
-                            .font(.title2)
-                            .padding(.bottom, 1)
-                        Text("Mixtapes")
-                            .font(.caption2)
-                            .bold()
-                    }
+                VStack(alignment:.center) {
+                    Image(systemName: "recordingtape")
+                        .font(.title)
+                        .padding(.bottom, 2)
+                    Text("Mixtapes")
+                        .font(.caption2)
+                        .bold()
+                }
+                .onTapGesture {
+                    selection = 2
                 }
                 .foregroundStyle(selection == 2 ? .blue : .gray)
+                
             }
             .padding(.top, 3)
             .padding(.bottom, 30)
