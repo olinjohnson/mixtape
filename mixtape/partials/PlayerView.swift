@@ -24,14 +24,14 @@ struct PlayerView: View {
                     Image(systemName: "backward.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height:20)
+                        .frame(height:15)
                 }
                 .foregroundStyle(.black)
                 Button(action:{}) {
                     Image(systemName: "play.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height:25)
+                        .frame(height:20)
                         .padding([.leading, .trailing], 10)
                 }
                 .foregroundStyle(.black)
@@ -39,7 +39,7 @@ struct PlayerView: View {
                     Image(systemName: "forward.fill")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(height:20)
+                        .frame(height:15)
                 }
                 .foregroundStyle(.black)
             }
@@ -50,7 +50,6 @@ struct PlayerView: View {
         .background(Color(UIColor.systemGray6))
         //.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray4), lineWidth:3))
         .cornerRadius(10)
-        .shadow(color: .black.opacity(0.1), radius:3, x:2, y:2)
         .edgesIgnoringSafeArea(.horizontal)
     }
 }

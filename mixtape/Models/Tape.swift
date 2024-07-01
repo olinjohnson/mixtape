@@ -31,38 +31,35 @@ struct Tape {
 extension Tape {
     static let sample_tapes: [Tape] =
     [
-        Tape(id:UUID(), cover: Image("zach_bryan"), date: Date(), title: "2023", heading: "On the fence", body: "2023 was a year for the ages. There were highs, there were lows, but we made it through. Lots of good and bad memories. (more thorough reflection) Here are some songs to remember the new year by:", songs: [
+        Tape(id:UUID(), cover: Image("dog"), date: Date(), title: "2023", heading: "On the fence", body: "2023 was a year for the ages. There were highs, there were lows, but we made it through. Lots of good and bad memories. (more thorough reflection) Here are some songs to remember the new year by:", songs: [
             Song(cover: Image("noah_kahan"), artist: "Noah Kahan", name: "The View Between Villages"),
-            Song(cover: Image("ed_sheeran"), artist: "Dermot Kennedy", name: "Lucky"),
-            Song(cover: Image("hozier"), artist: "Gracie Abrams", name: "I Know It Won't Work"),
-            Song(cover: Image("chance_pena"), artist: "Rascall Flatts", name: "Life is a Highway"),
-            Song(cover: Image("dylan_gossett"), artist: "Kenny Loggins", name: "Danger Zone"),
-            Song(cover: Image("ed_sheeran"), artist: "Luke Combs", name: "You Found Yours"),
-            Song(cover: Image("noah_kahan"), artist: "Dylan Gossett", name: "Coal"),
-            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
-            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together"),
+            Song(cover: Image("ed_sheeran"), artist: "Ed Sheeran", name: "Touch and Go"),
+            Song(cover: Image("hozier"), artist: "Hozier", name: "De Selby (Pt. 1)"),
+            Song(cover: Image("chance_pena"), artist: "Chance Peña", name: "i am not who i was"),
+            Song(cover: Image("dylan_gossett"), artist: "Dylan Gossett", name: "Coal"),
+            Song(cover: Image("dan+shay"), artist: "Dan + Shay", name: "Tequila"),
         ]),
-        Tape(id:UUID(), cover: Image("hozier"), date: Date(), title: "i am typing out 100 characters i am typing out 100 charactersi am typing out 100 characters i am typ", heading: "On the fence", body: "2023 was a year for the ages. There were highs, there were lows, but we made it through. Lots of good and bad memories. (more thorough reflection) Here are some songs to remember the new year by:", songs: [
-            Song(cover: Image("noah_kahan"), artist: "Noah Kahan", name: "The View Between Villages"),
-            Song(cover: Image("ed_sheeran"), artist: "Dermot Kennedy", name: "Lucky"),
-            Song(cover: Image("hozier"), artist: "Gracie Abrams", name: "I Know It Won't Work"),
-            Song(cover: Image("chance_pena"), artist: "Rascall Flatts", name: "Life is a Highway"),
-            Song(cover: Image("dylan_gossett"), artist: "Kenny Loggins", name: "Danger Zone"),
-            Song(cover: Image("ed_sheeran"), artist: "Luke Combs", name: "You Found Yours"),
-            Song(cover: Image("noah_kahan"), artist: "Dylan Gossett", name: "Coal"),
-            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
-            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together"),
-            
+//        Tape(id:UUID(), cover: Image("hozier"), date: Date(), title: "i am typing out 100 characters i am typing out 100 charactersi am typing out 100 characters i am typ", heading: "On the fence", body: "2023 was a year for the ages. There were highs, there were lows, but we made it through. Lots of good and bad memories. (more thorough reflection) Here are some songs to remember the new year by:", songs: [
+//            Song(cover: Image("noah_kahan"), artist: "Noah Kahan", name: "The View Between Villages"),
+//            Song(cover: Image("ed_sheeran"), artist: "Dermot Kennedy", name: "Lucky"),
+//            Song(cover: Image("hozier"), artist: "Gracie Abrams", name: "I Know It Won't Work"),
+//            Song(cover: Image("chance_pena"), artist: "Rascall Flatts", name: "Life is a Highway"),
+//            Song(cover: Image("dylan_gossett"), artist: "Kenny Loggins", name: "Danger Zone"),
+//            Song(cover: Image("ed_sheeran"), artist: "Luke Combs", name: "You Found Yours"),
+//            Song(cover: Image("noah_kahan"), artist: "Dylan Gossett", name: "Coal"),
+//            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
+//            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together"),
+//            
+//        ]),
+        Tape(id:UUID(), cover: Image("mountains"), date: Date(), title: "Ski Trip", heading: "On the line", body: "Songs from our trek out west", songs: [
+            Song(cover: Image("noah_kahan"), artist: "Noah Kahan", name: "Homesick"),
+            Song(cover: Image("dylan_gossett"), artist: "Dylan Gossett", name: "Coal"),
+            Song(cover: Image("ed_sheeran"), artist: "Ed Sheeran", name: "I'm a Mess")
         ]),
-        Tape(id:UUID(), cover: Image("noah_kahan"), date: Date(), title: "Road Trip", heading: "On the fence", body: "Songs from our trek out west", songs: [
-            Song(cover: Image("chance_pena"), artist: "Rascall Flatts", name: "Life is a Highway"),
-            Song(cover: Image("dylan_gossett"), artist: "Kenny Loggins", name: "Danger Zone"),
-            Song(cover: Image("ed_sheeran"), artist: "Luke Combs", name: "You Found Yours")
-        ]),
-        Tape(id:UUID(), cover: Image("dan+shay"), date: Date(), title: "Quitting my Job", heading: "On the fence", body: "Songs from our trek out west", songs: [
-            Song(cover: Image("noah_kahan"), artist: "Dylan Gossett", name: "Coal"),
-            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
-            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together")
-        ]),
+//        Tape(id:UUID(), cover: Image("dan+shay"), date: Date(), title: "Quitting my Job", heading: "On the fence", body: "Songs from our trek out west", songs: [
+//            Song(cover: Image("noah_kahan"), artist: "Dylan Gossett", name: "Coal"),
+//            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
+//            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together")
+//        ]),
     ]
 }
