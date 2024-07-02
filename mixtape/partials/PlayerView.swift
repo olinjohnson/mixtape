@@ -50,6 +50,7 @@ struct PlayerView: View {
         .background(Color(UIColor.systemGray6))
         //.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray4), lineWidth:3))
         .cornerRadius(10)
+        .shadow(color: .black.opacity(0.1), radius: 2, x: 1, y: 1)
         .edgesIgnoringSafeArea(.horizontal)
     }
 }

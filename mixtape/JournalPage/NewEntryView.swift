@@ -20,6 +20,7 @@ struct NewEntryView: View {
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
+    @State var inputID = UUID()
     @State var inputTitle = ""
     @State var inputBody = ""
     @State var inputDate = Date()
@@ -30,8 +31,8 @@ struct NewEntryView: View {
     
     @State var showingCancelAlert = false
     
-    @State var createNavigationReady = false
-    @State var createdEntry: Entry?
+//    @State var createNavigationReady = false
+//    @State var createdEntry: Entry = Entry.empty
     
     var body: some View {
         NavigationStack {
@@ -128,10 +129,11 @@ struct NewEntryView: View {
                                 }
                                 
                                 Button(action:{
-                                    let createdEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
-                                    modelContext.insert(createdEntry)
+                                    let newEntry = Entry(id: inputID, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    modelContext.insert(newEntry)
                                     do { try modelContext.save() } catch {}
-                                    createNavigationReady = true
+                                    dismiss()
+//                                    createNavigationReady = true
                                 }) {
                                     Text("Create")
                                         .padding()
@@ -169,9 +171,6 @@ struct NewEntryView: View {
                     }
                     //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
-                    .navigationDestination(isPresented: $createNavigationReady, destination: {
-                        EntryDetailView(entry: createdEntry!)
-                    })
                 }
                 //.edgesIgnoringSafeArea(.all)
             }

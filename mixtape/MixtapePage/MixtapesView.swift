@@ -40,12 +40,12 @@ struct MixtapesView: View {
                             Text(" from Maine \(Image(systemName: "mappin.and.ellipse"))")
                                 .font(.caption)
                         )*/
-                        Spacer()
-                        Spacer()
+//                        Spacer()
+//                        Spacer()
                     }
                     //NavbarView()
                 }
-                NavigationLink(destination: NewMixtapeView().toolbar(.hidden, for: .tabBar)) {
+                NavigationLink(destination: NewMixtapeView()) {
                     VStack {
                         Text("+")
                             .font(.title2)
@@ -60,7 +60,7 @@ struct MixtapesView: View {
                     .cornerRadius(100)
                     .padding([.leading, .trailing], 10)
                 }
-                .shadow(color: .black.opacity(0.4), radius: 10, x: 2, y: 2)
+                .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                 .offset(x: -16, y:-30)
                 
             }

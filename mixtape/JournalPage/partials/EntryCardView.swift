@@ -41,9 +41,10 @@ struct EntryCardView: View {
         }
         .frame(height:84)
         .padding(12)
-        .background(Color(UIColor.systemGray6))
-        //.overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray4), lineWidth:3))
-        .cornerRadius(10)
+//        .background(Color(UIColor.systemGray6))
+        .background(.white)
+        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor.systemGray6), lineWidth:2))
+//        .cornerRadius(10)
         .padding([.leading, .trailing])
         //.shadow(color: .black.opacity(0.1), radius:3, x:2, y:2)
     }

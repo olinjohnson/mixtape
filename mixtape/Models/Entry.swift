@@ -32,6 +32,12 @@ class Entry {
     }
 }
 
+extension Entry {
+    static var empty: Entry {
+        return Entry(id: UUID(), cover: (UIImage(named: "no_select")?.pngData())!, title: "", body: "", date: Date())
+    }
+}
+
 /*
 extension Entry {
     static let sample_entries: [Entry] = [
