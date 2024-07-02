@@ -12,8 +12,8 @@ import UIKit
 
 struct EntryDetailView: View {
     
+    @EnvironmentObject var nBar: NBar
     @Environment(\.modelContext) private var modelContext
-    
     @Environment(\.dismiss) private var dismiss
     
     @State var showingDeleteAlert = false
@@ -35,7 +35,7 @@ struct EntryDetailView: View {
                                 .offset(y: -gr.frame(in: .global).origin.y)
                                 //.blur
                             HStack{
-                                NavigationLink(destination: JournalView().toolbar(.hidden, for: .tabBar)) {
+                                NavigationLink(destination: JournalView()) {
                                     NavBackView(dismiss:self.dismiss)
                                 }
                                 Spacer()
@@ -129,6 +129,7 @@ struct EntryDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 

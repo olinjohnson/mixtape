@@ -10,7 +10,9 @@
 import SwiftUI
 
 struct MixtapeDetailView: View {
+    
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var nBar: NBar
     let mixtape: Tape
     
     var body: some View {
@@ -114,9 +116,10 @@ struct MixtapeDetailView: View {
             .edgesIgnoringSafeArea(.all)
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 
-#Preview {
-    MixtapeDetailView(mixtape: Tape.sample_tapes[1])
-}
+//#Preview {
+//    MixtapeDetailView(mixtape: Tape.sample_tapes[1])
+//}

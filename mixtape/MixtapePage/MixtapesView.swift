@@ -9,6 +9,8 @@ import SwiftUI
 
 struct MixtapesView: View {
     
+    @EnvironmentObject var nBar: NBar
+    
     let mixtapes: [Tape] = Tape.sample_tapes
     @State private var searchText = ""
     
@@ -20,7 +22,7 @@ struct MixtapesView: View {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
                         ForEach(mixtapes, id: \.id) {tape in
-                            NavigationLink(destination:MixtapeDetailView(mixtape: tape).toolbar(.hidden, for: .tabBar)) {
+                            NavigationLink(destination: MixtapeDetailView(mixtape: tape)) {
                                 TapeCardView(tape:tape)
                                     .padding(5)
                             }
@@ -62,6 +64,7 @@ struct MixtapesView: View {
                 .offset(x: -16, y:-30)
                 
             }
+            .onAppear(perform: {nBar.isShowing = true})
             //.edgesIgnoringSafeArea(.bottom)
             //.background(Theme.secondary_accent_color)
         }

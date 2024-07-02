@@ -57,6 +57,8 @@ struct NavbarView: View {
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
     
+    @StateObject var nBar: NBar = NBar()
+    
     /*var body: some View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
@@ -94,70 +96,69 @@ struct NavbarView: View {
     }*/
     
     var body: some View {
-        VStack {
+        VStack(spacing:0) {
             if selection == 0 {
                 AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
-                    .backgroundStyle(.yellow)
             } else if selection == 1 {
                 JournalView()
-                    .backgroundStyle(.yellow)
             } else {
                 MixtapesView(userProfile: $userProfile)
-                    .backgroundStyle(.yellow)
             }
-            VStack {
-//                PlayerView()
-//                    .padding([.leading, .trailing], 5)
-//                    .border(.purple, width:1)
-                HStack(alignment:.bottom) {
-                    
-                    VStack(alignment:.center) {
-                        Image(systemName: "person.crop.circle")
-                            .font(.title2)
-                            .padding(.bottom, 1)
-                        Text("Account")
-                            .font(.caption)
-                            .bold()
+            if nBar.isShowing {
+                VStack(spacing:0) {
+                    PlayerView()
+                        .padding([.leading, .trailing], 5)
+                    HStack(alignment:.bottom) {
+                        
+                        VStack(alignment:.center) {
+                            Image(systemName: "person.crop.circle")
+                                .font(.title2)
+                                .padding(.bottom, 1)
+                            Text("Account")
+                                .font(.caption)
+                                .bold()
+                        }
+                        .onTapGesture {
+                            selection = 0
+                        }
+                        .foregroundStyle(selection == 0 ? .blue : .gray)
+                        Spacer()
+                        VStack(alignment:.center) {
+                            Image(systemName: "book.closed.fill")
+                                .font(.title2)
+                                .padding(.bottom, 1)
+                            Text("Journal")
+                                .font(.caption2)
+                                .bold()
+                        }
+                        .onTapGesture {
+                            selection = 1
+                        }
+                        .foregroundStyle(selection == 1 ? .blue : .gray)
+                        Spacer()
+                        VStack(alignment:.center) {
+                            Image(systemName: "recordingtape")
+                                .font(.title)
+                                .padding(.bottom, 2)
+                            Text("Mixtapes")
+                                .font(.caption2)
+                                .bold()
+                        }
+                        .onTapGesture {
+                            selection = 2
+                        }
+                        .foregroundStyle(selection == 2 ? .blue : .gray)
+                        
                     }
-                    .onTapGesture {
-                        selection = 0
-                    }
-                    .foregroundStyle(selection == 0 ? .blue : .gray)
-                    Spacer()
-                    VStack(alignment:.center) {
-                        Image(systemName: "book.closed.fill")
-                            .font(.title2)
-                            .padding(.bottom, 1)
-                        Text("Journal")
-                            .font(.caption2)
-                            .bold()
-                    }
-                    .onTapGesture {
-                        selection = 1
-                    }
-                    .foregroundStyle(selection == 1 ? .blue : .gray)
-                    Spacer()
-                    VStack(alignment:.center) {
-                        Image(systemName: "recordingtape")
-                            .font(.title)
-                            .padding(.bottom, 2)
-                        Text("Mixtapes")
-                            .font(.caption2)
-                            .bold()
-                    }
-                    .onTapGesture {
-                        selection = 2
-                    }
-                    .foregroundStyle(selection == 2 ? .blue : .gray)
-                    
+                    .padding(.top, 5)
+                    .padding(.bottom, 30)
+                    .padding([.leading, .trailing], 40)
                 }
-                .padding(.top, 1)
-                .padding(.bottom, 30)
-                .padding([.leading, .trailing], 40)
+                .padding(0)
             }
-            .padding(0)
         }
         .edgesIgnoringSafeArea(.bottom)
+        .environmentObject(nBar)
 //        .overlay(
 //            VStack {
 //                Spacer()
@@ -168,6 +169,10 @@ struct NavbarView: View {
 //            .offset(y:-50)
 //        )
     }
+}
+
+class NBar: ObservableObject {
+    @Published var isShowing: Bool = true
 }
 
 //struct NavbarView_Previews: PreviewProvider {

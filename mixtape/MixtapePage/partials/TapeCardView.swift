@@ -31,7 +31,7 @@ struct TapeCardView: View {
         .cornerRadius(20)
         .frame(height: 250)
         .padding([.leading, .trailing])
-        .shadow(color: .black.opacity(0.3), radius:10, x:3, y:3)
+        //.shadow(color: .black.opacity(0.3), radius:10, x:3, y:3)
     }
     
 }

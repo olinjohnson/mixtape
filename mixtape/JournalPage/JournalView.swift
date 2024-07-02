@@ -16,6 +16,8 @@ struct JournalView: View {
     @Query private var entries: [Entry]
     @State private var searchText = ""
     
+    @EnvironmentObject var nBar: NBar
+    
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .center, vertical: .bottom)) {
@@ -23,7 +25,7 @@ struct JournalView: View {
                     ScrollView(showsIndicators: false) {
                         if (entries.count > 0) {
                             ForEach(entries.sorted(by: {$0.date < $1.date}).reversed()) {entry in
-                                NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
+                                NavigationLink(destination:EntryDetailView(entry: entry)) {
                                     EntryCardView(entry:entry)
                                 }
                                 .buttonStyle(PlainButtonStyle())
@@ -52,7 +54,7 @@ struct JournalView: View {
                 // "New" button
                 HStack {
                     Spacer()
-                    NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
+                    NavigationLink(destination: NewEntryView()) {
                         VStack {
                             Text("+")
                                 .font(.title2)
@@ -72,6 +74,7 @@ struct JournalView: View {
                 .offset(x: -16, y:-30)
                 
             }
+            .onAppear(perform: {nBar.isShowing = true})
             //.edgesIgnoringSafeArea(.bottom)
             //.background(Theme.secondary_accent_color)
         }

@@ -15,8 +15,8 @@ struct NewEntryView: View {
         case body
     }
     
+    @EnvironmentObject var nBar: NBar
     @Environment(\.modelContext) private var modelContext
-    
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
@@ -29,6 +29,9 @@ struct NewEntryView: View {
     @State private var keyboardOffsetAmt = 0
     
     @State var showingCancelAlert = false
+    
+    @State var createNavigationReady = false
+    @State var createdEntry: Entry?
     
     var body: some View {
         NavigationStack {
@@ -125,10 +128,10 @@ struct NewEntryView: View {
                                 }
                                 
                                 Button(action:{
-                                    let newEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
-                                    modelContext.insert(newEntry)
+                                    let createdEntry = Entry(id: UUID(), cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    modelContext.insert(createdEntry)
                                     do { try modelContext.save() } catch {}
-                                    dismiss()
+                                    createNavigationReady = true
                                 }) {
                                     Text("Create")
                                         .padding()
@@ -166,14 +169,18 @@ struct NewEntryView: View {
                     }
                     //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
+                    .navigationDestination(isPresented: $createNavigationReady, destination: {
+                        EntryDetailView(entry: createdEntry!)
+                    })
                 }
                 //.edgesIgnoringSafeArea(.all)
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 
-#Preview {
-    NewEntryView()
-}
+//#Preview {
+//    NewEntryView()
+//}

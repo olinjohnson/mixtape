@@ -14,6 +14,7 @@ struct NewMixtapeView: View {
         case body
     }
     
+    @EnvironmentObject var nBar: NBar
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
@@ -172,9 +173,10 @@ struct NewMixtapeView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 
-#Preview {
-    NewMixtapeView()
-}
+//#Preview {
+//    NewMixtapeView()
+//}

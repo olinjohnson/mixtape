@@ -171,7 +171,7 @@ struct EditEntryView: View {
                     //.offset(y:CGFloat(-keyboardOffsetAmt))
                     .frame(minHeight: reader.size.height)
                     .navigationDestination(isPresented: $saveNavigationReady, destination: {
-                        EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)
+                        EntryDetailView(entry: entry)
                     })
                 }
                 //.edgesIgnoringSafeArea(.all)
