@@ -6,16 +6,132 @@
 //
 
 import Foundation
-import SpotifyiOS
+//import SpotifyiOS
 import SwiftUI
+import KeychainAccess
 import Combine
+import SpotifyWebAPI
 
+class SpotifyController: ObservableObject {
+    
+    init() {
+        self.spotify.authorizationManagerDidChange
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: authManagerChange)
+            .store(in: &cancellables)
+        self.spotify.authorizationManagerDidDeauthorize
+            .receive(on: RunLoop.main)
+            .sink(receiveValue: authManagerDeauthorized)
+            .store(in: &cancellables)
+        
+        if let authManagerData = keychain[data: Self.authManagerKey] {
+            do {
+                let authManager = try JSONDecoder().decode(
+                    AuthorizationCodeFlowManager.self,
+                    from: authManagerData
+                )
+                
+                self.spotify.authorizationManager = authManager
+                
+            } catch {
+                print("Error decoding authorizationManager from keychain data")
+            }
+        }
+    }
+    
+    let spotify = SpotifyAPI(
+        authorizationManager: AuthorizationCodeFlowManager(
+            clientId: SpotifyAuthKeys.client_ID,
+            clientSecret: SpotifyAuthKeys.client_secret
+        )
+    )
+    
+    static let authManagerKey = "authManager"
+    let redirect_URI = URL(string: "mixtape://callback")!
+    
+    var codeVerifier = String.randomURLSafe(length: 128)
+    lazy var codeChallenge = String.makeCodeChallenge(codeVerifier: self.codeVerifier)
+    var state = String.randomURLSafe(length: 128)
+    
+    var cancellables: Set<AnyCancellable> = []
+    
+    @Published var isAuthorized = false
+    
+    private let keychain = Keychain(service: "io.github.olinjohnson.mixtape")
+    
+    func authorize() {
+        
+        let authorizationURL = spotify.authorizationManager.makeAuthorizationURL(
+            redirectURI: self.redirect_URI,
+            showDialog: false,
+            state: self.state,
+            scopes: [
+                .playlistModifyPrivate,
+                .userModifyPlaybackState,
+                .playlistReadCollaborative,
+                .userReadPlaybackPosition
+            ]
+        )!
+        
+        UIApplication.shared.open(authorizationURL)
+    }
+    
+    func setAuthTokens(_ url: URL) {
+        
+        spotify.authorizationManager.requestAccessAndRefreshTokens(
+            redirectURIWithQuery: url,
+            state: self.state
+        )
+        .sink(receiveCompletion: { completion in
+            switch completion {
+                case .finished:
+                    print("Spotify authorization success")
+                case .failure(let error):
+                    if let authError = error as? SpotifyAuthorizationError, authError.accessWasDenied {
+                        print("Spotify authorization denied")
+                    }
+                    else {
+                        print("Error authorizing spotify: \(error)")
+                    }
+            }
+        })
+        .store(in: &cancellables)
+        
+        self.state = String.randomURLSafe(length: 128)
+        
+    }
+    
+    func authManagerChange() {
+        self.isAuthorized = self.spotify.authorizationManager.isAuthorized()
+        
+        do {
+            let authManagerData = try JSONEncoder().encode(self.spotify.authorizationManager)
+            
+            keychain[data:Self.authManagerKey] = authManagerData
+        } catch {
+            print("Error encoding auth manager data to keychain")
+        }
+    }
+
+    func authManagerDeauthorized() {
+        self.isAuthorized = false
+        
+        do {
+            try keychain.remove(Self.authManagerKey)
+        } catch {
+            print("Error removing authorization manager from keychain")
+        }
+    }
+    
+}
+ 
+/*
 @MainActor
 class SpotifyController: NSObject, ObservableObject {
 
 //    let SpotifyClientID: String = try! Configuration.value(for: "SPOTIFY_CLIENT_ID")
     let SpotifyClientID: String = "66327df3a9b046199b92b090fa93a27e"
-    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback/")!
+    let SpotifyRedirectURL = URL(string: "spotify-ios-quick-start://spotify-login-callback")!
     
     @Published var connected = false
     
@@ -103,4 +219,4 @@ extension SpotifyController: SPTAppRemoteDelegate {
     }
     
 }
-
+*/

@@ -13,6 +13,7 @@
 		0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406AE12C2A53C300631FEB /* Auth0 */; };
 		0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B406AE32C2A55DA00631FEB /* Auth0.plist */; };
 		0B406AE72C2A678400631FEB /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406AE62C2A678400631FEB /* AccountView.swift */; };
+		0B59BE4C2C4EB42600BA2FF4 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */; };
 		0B721C0D2C2136E3000939B9 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0C2C2136E3000939B9 /* EntryDetailView.swift */; };
 		0B721C0F2C213A0F000939B9 /* EntryCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0E2C213A0F000939B9 /* EntryCardView.swift */; };
 		0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B905C412B9E10EC00E6178F /* JournalView.swift */; };
@@ -21,6 +22,8 @@
 		0B9C997A2C2D9230002B0DEE /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B9C99792C2D9230002B0DEE /* PlayerView.swift */; };
 		0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BAC4BC92C23DF590002E41F /* NewEntryView.swift */; };
 		0BC1D6532C24975000132542 /* ImagePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC1D6522C24975000132542 /* ImagePickerView.swift */; };
+		0BC396322C4F30A3002D2419 /* KeychainAccess in Frameworks */ = {isa = PBXBuildFile; productRef = 0BC396312C4F30A3002D2419 /* KeychainAccess */; };
+		0BC396342C4F3FB9002D2419 /* secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BC396332C4F3FB9002D2419 /* secrets.swift */; };
 		0BF405452B88602000902D59 /* NavBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF405442B88602000902D59 /* NavBackView.swift */; };
 		0BF4054B2B8964B600902D59 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BF4054A2B8964B600902D59 /* LoginView.swift */; };
 		0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */; };
@@ -47,11 +50,11 @@
 		0B721C0E2C213A0F000939B9 /* EntryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCardView.swift; sourceTree = "<group>"; };
 		0B905C412B9E10EC00E6178F /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		0B905C482B9E1A7F00E6178F /* Entry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entry.swift; sourceTree = "<group>"; };
-		0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "mixtape-Bridging-Header.h"; sourceTree = "<group>"; };
 		0B93B9152C2BC5C300588663 /* SpotifyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyController.swift; sourceTree = "<group>"; };
 		0B9C99792C2D9230002B0DEE /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
 		0BAC4BC92C23DF590002E41F /* NewEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEntryView.swift; sourceTree = "<group>"; };
 		0BC1D6522C24975000132542 /* ImagePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerView.swift; sourceTree = "<group>"; };
+		0BC396332C4F3FB9002D2419 /* secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = secrets.swift; sourceTree = "<group>"; };
 		0BF405442B88602000902D59 /* NavBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBackView.swift; sourceTree = "<group>"; };
 		0BF4054A2B8964B600902D59 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		0BF4054C2B897ABD00902D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
@@ -76,7 +79,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0BC396322C4F30A3002D2419 /* KeychainAccess in Frameworks */,
 				0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */,
+				0B59BE4C2C4EB42600BA2FF4 /* SpotifyAPI in Frameworks */,
 				0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +150,6 @@
 		0BFDD11C2B81B4D000C5726F = {
 			isa = PBXGroup;
 			children = (
-				0B93B9142C2BC2EA00588663 /* mixtape-Bridging-Header.h */,
 				0BFDD1272B81B4D000C5726F /* mixtape */,
 				0BFDD1262B81B4D000C5726F /* Products */,
 			);
@@ -172,8 +176,9 @@
 				0BF4054A2B8964B600902D59 /* LoginView.swift */,
 				0B93B9152C2BC5C300588663 /* SpotifyController.swift */,
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
-				0BF4054C2B897ABD00902D59 /* Info.plist */,
 				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
+				0BF4054C2B897ABD00902D59 /* Info.plist */,
+				0BC396332C4F3FB9002D2419 /* secrets.swift */,
 				0BFDD12C2B81B4D300C5726F /* Assets.xcassets */,
 				0BFDD12E2B81B4D300C5726F /* Preview Content */,
 			);
@@ -219,6 +224,8 @@
 			packageProductDependencies = (
 				0B406ADC2C2A222000631FEB /* SpotifyiOS */,
 				0B406AE12C2A53C300631FEB /* Auth0 */,
+				0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */,
+				0BC396312C4F30A3002D2419 /* KeychainAccess */,
 			);
 			productName = mixtape;
 			productReference = 0BFDD1252B81B4D000C5726F /* mixtape.app */;
@@ -251,6 +258,8 @@
 			packageReferences = (
 				0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */,
 				0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */,
+				0BA6757B2C360D2A00079D45 /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
+				0BC396302C4F30A3002D2419 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 			);
 			productRefGroup = 0BFDD1262B81B4D000C5726F /* Products */;
 			projectDirPath = "";
@@ -291,6 +300,7 @@
 				0BF4054B2B8964B600902D59 /* LoginView.swift in Sources */,
 				0BFDD1442B85248B00C5726F /* NavbarView.swift in Sources */,
 				0B905C422B9E10EC00E6178F /* JournalView.swift in Sources */,
+				0BC396342C4F3FB9002D2419 /* secrets.swift in Sources */,
 				0BFDD1462B855A7500C5726F /* _OldNavbarView.swift in Sources */,
 				0BFDD1382B8400E900C5726F /* Theme.swift in Sources */,
 				0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */,
@@ -438,6 +448,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"mixtape/Preview Content\"";
 				DEVELOPMENT_TEAM = 2ADJVT7P37;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mixtape/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -445,6 +456,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -454,7 +466,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "mixtape-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -470,6 +482,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"mixtape/Preview Content\"";
 				DEVELOPMENT_TEAM = 2ADJVT7P37;
 				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTING_SEARCH_PATHS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = mixtape/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -477,16 +490,18 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+				NEW_SETTING = "";
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "mixtape-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -532,6 +547,22 @@
 				minimumVersion = 2.8.0;
 			};
 		};
+		0BA6757B2C360D2A00079D45 /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Peter-Schorn/SpotifyAPI";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.3;
+			};
+		};
+		0BC396302C4F30A3002D2419 /* XCRemoteSwiftPackageReference "KeychainAccess" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kishikawakatsumi/KeychainAccess";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -544,6 +575,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */;
 			productName = Auth0;
+		};
+		0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BA6757B2C360D2A00079D45 /* XCRemoteSwiftPackageReference "SpotifyAPI" */;
+			productName = SpotifyAPI;
+		};
+		0BC396312C4F30A3002D2419 /* KeychainAccess */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0BC396302C4F30A3002D2419 /* XCRemoteSwiftPackageReference "KeychainAccess" */;
+			productName = KeychainAccess;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

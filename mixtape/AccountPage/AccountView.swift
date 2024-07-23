@@ -46,11 +46,9 @@ struct AccountView: View {
                 
                 Spacer()
                 
-                if !spotifyController.connected {
+                if !spotifyController.isAuthorized {
                     Button(action:{
-                        if !spotifyController.appRemote.isConnected {
-                            spotifyController.authorize()
-                        }
+                        spotifyController.authorize()
                     }) {
                         HStack {
                             Text("Connect to Spotify")
@@ -115,7 +113,7 @@ struct AccountView: View {
             .navigationTitle("Account")
         }
         .onOpenURL { url in
-            spotifyController.setAccessToken(from: url)
+            spotifyController.setAuthTokens(url)
         }
         .environmentObject(spotifyController)
     }
