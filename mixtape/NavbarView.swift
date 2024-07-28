@@ -59,6 +59,8 @@ struct NavbarView: View {
     
     @StateObject var nBar: NBar = NBar()
     
+    @StateObject var spotifyController: SpotifyController = SpotifyController()
+    
     /*var body: some View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
@@ -96,78 +98,82 @@ struct NavbarView: View {
     }*/
     
     var body: some View {
-        VStack(spacing:0) {
-            if selection == 0 {
-                AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
-            } else if selection == 1 {
-                JournalView()
-            } else {
-                MixtapesView(userProfile: $userProfile)
-            }
-            if nBar.isShowing {
-                VStack(spacing:0) {
-                    PlayerView()
-                        .padding([.leading, .trailing], 5)
-                    HStack(alignment:.bottom) {
-                        
-                        VStack(alignment:.center) {
-                            Image(systemName: "person.crop.circle")
-                                .font(.title2)
-                                .padding(.bottom, 1)
-                            Text("Account")
-                                .font(.caption)
-                                .bold()
-                        }
-                        .onTapGesture {
-                            selection = 0
-                        }
-                        .foregroundStyle(selection == 0 ? .blue : .gray)
-                        Spacer()
-                        VStack(alignment:.center) {
-                            Image(systemName: "book.closed.fill")
-                                .font(.title2)
-                                .padding(.bottom, 1)
-                            Text("Journal")
-                                .font(.caption2)
-                                .bold()
-                        }
-                        .onTapGesture {
-                            selection = 1
-                        }
-                        .foregroundStyle(selection == 1 ? .blue : .gray)
-                        Spacer()
-                        VStack(alignment:.center) {
-                            Image(systemName: "recordingtape")
-                                .font(.title)
-                                .padding(.bottom, 2)
-                            Text("Mixtapes")
-                                .font(.caption2)
-                                .bold()
-                        }
-                        .onTapGesture {
-                            selection = 2
-                        }
-                        .foregroundStyle(selection == 2 ? .blue : .gray)
-                        
-                    }
-                    .padding(.top, 5)
-                    .padding(.bottom, 30)
-                    .padding([.leading, .trailing], 40)
+        NavigationStack {
+            VStack(spacing:0) {
+                if selection == 0 {
+                    AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
+                } else if selection == 1 {
+                    JournalView()
+                } else {
+                    MixtapesView(userProfile: $userProfile)
                 }
-                .padding(0)
+                if nBar.isShowing {
+                    VStack(spacing:0) {
+                        PlayerView()
+                            .padding([.leading, .trailing], 5)
+                        HStack(alignment:.bottom) {
+                            
+                            VStack(alignment:.center) {
+                                Image(systemName: "person.crop.circle")
+                                    .font(.title2)
+                                    .padding(.bottom, 1)
+                                Text("Account")
+                                    .font(.caption)
+                                    .bold()
+                            }
+                            .onTapGesture {
+                                selection = 0
+                            }
+                            .foregroundStyle(selection == 0 ? .blue : .gray)
+                            Spacer()
+                            VStack(alignment:.center) {
+                                Image(systemName: "book.closed.fill")
+                                    .font(.title2)
+                                    .padding(.bottom, 1)
+                                Text("Journal")
+                                    .font(.caption2)
+                                    .bold()
+                            }
+                            .onTapGesture {
+                                selection = 1
+                            }
+                            .foregroundStyle(selection == 1 ? .blue : .gray)
+                            Spacer()
+                            VStack(alignment:.center) {
+                                Image(systemName: "recordingtape")
+                                    .font(.title)
+                                    .padding(.bottom, 2)
+                                Text("Mixtapes")
+                                    .font(.caption2)
+                                    .bold()
+                            }
+                            .onTapGesture {
+                                selection = 2
+                            }
+                            .foregroundStyle(selection == 2 ? .blue : .gray)
+                            
+                        }
+                        .padding(.top, 5)
+                        .padding(.bottom, 30)
+                        .padding([.leading, .trailing], 40)
+                    }
+                    .padding(0)
+                    .background(.white)
+                }
             }
+            .edgesIgnoringSafeArea(.bottom)
+            .environmentObject(nBar)
+            //        .overlay(
+            //            VStack {
+            //                Spacer()
+            //                PlayerView()
+            //                    .padding([.leading, .trailing], 5)
+            //                    //.offset(y:-geo.size.height)
+            //            }
+            //            .offset(y:-50)
+            //        )
         }
-        .edgesIgnoringSafeArea(.bottom)
-        .environmentObject(nBar)
-//        .overlay(
-//            VStack {
-//                Spacer()
-//                PlayerView()
-//                    .padding([.leading, .trailing], 5)
-//                    //.offset(y:-geo.size.height)
-//            }
-//            .offset(y:-50)
-//        )
+        .environmentObject(spotifyController)
     }
 }
 

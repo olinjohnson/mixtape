@@ -30,8 +30,9 @@ struct EntryDetailView: View {
                         GeometryReader { gr in
                             Image(uiImage: UIImage(data: entry.cover) ?? UIImage(named: "no_select")!)
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
+                                .clipped()
                                 .offset(y: -gr.frame(in: .global).origin.y)
                                 //.blur
                             HStack{
@@ -129,7 +130,6 @@ struct EntryDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 

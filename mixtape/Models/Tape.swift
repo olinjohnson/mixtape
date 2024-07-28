@@ -61,5 +61,6 @@ extension Tape {
 //            Song(cover: Image("hozier"), artist: "Kelly Clarkson", name: "Behind These Hazel Eyes"),
 //            Song(cover: Image("zach_bryan"), artist: "Taylor Swift", name: "We Are Never Ever Getting Back Together")
 //        ]),
+        Tape(id:UUID(), cover: Image("mountains"), date: Date(), title: "Ski Trip", heading: "On the line", body: "Songs from our trek out west", songs: [])
     ]
 }

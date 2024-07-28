@@ -24,7 +24,9 @@ struct MixtapeDetailView: View {
                         ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
                             mixtape.cover
                                 .resizable()
-                                .aspectRatio(contentMode: .fill)
+                                .scaledToFill()
+                                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y), alignment:.center)
+//                                .clipped()
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -41,7 +43,6 @@ struct MixtapeDetailView: View {
                                         Spacer()
                                     }
                                 }
-                                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))
                                 .offset(y: -gr.frame(in: .global).origin.y)
 
 //                            NavigationLink(destination: MixtapesView().toolbar(.hidden, for: .tabBar)) {
@@ -95,6 +96,7 @@ struct MixtapeDetailView: View {
                         }
                         
                         // track list
+                        /*
                         VStack(spacing:0){
                             SongView(song: mixtape.songs[0])
                                 .padding([.leading, .trailing])
@@ -106,7 +108,8 @@ struct MixtapeDetailView: View {
                                 }
                                 .padding([.leading, .trailing])
                             }
-                        }
+                        }*/
+                        TracksView(tracks: mixtape.songs)
                     }
                     .padding([.leading, .trailing, .top])
                     .background(.white)
@@ -116,7 +119,6 @@ struct MixtapeDetailView: View {
             .edgesIgnoringSafeArea(.all)
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 

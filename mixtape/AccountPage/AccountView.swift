@@ -20,10 +20,10 @@ import Auth0
 
 struct AccountView: View {
     
+    @EnvironmentObject var spotifyController: SpotifyController
+    
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
-    
-    @StateObject var spotifyController: SpotifyController = SpotifyController()
     
     var body: some View {
         NavigationStack {
@@ -64,36 +64,62 @@ struct AccountView: View {
                         .cornerRadius(10)
                     }
 //                    .buttonStyle(.plain)
+                    Button(action:{
+                        print("apple music functionality not implemented yet")
+                    }) {
+                        HStack {
+                            Text("Connect to Apple Music")
+    //                        Image("spotify_icon")
+    //                            .resizable()
+    //                            .scaledToFit()
+                        }
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+                        .background(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
                 } else {
-                    HStack {
-                        Text("Connected to Spotify")
-                        Image("spotify_icon_green")
-                            .resizable()
-                            .scaledToFit()
+                    VStack {
+                        HStack {
+                            Text("Connected to Spotify")
+                            Image("spotify_icon_green")
+                                .resizable()
+                                .scaledToFit()
+                        }
+                        .font(.title2)
+                        .bold()
+                        .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+                        .background(.white)
+                        .foregroundColor(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                        .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)), lineWidth: 2))
+                        
+                        HStack{
+                            VStack{
+                                Divider()
+                                    .background(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    .frame(height:1)
+                                    .overlay(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    .padding([.leading, .trailing], 15)
+                            }
+                            Button(action:{
+                                spotifyController.deauthorize()
+                            }) {
+                                Text("Disconnect?")
+                                    .foregroundColor(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+    //                                .fontWeight(.heavy)
+                            }
+                            VStack{
+                                Divider()
+                                    .background(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    .frame(height:1)
+                                    .overlay(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    .padding([.leading, .trailing], 15)
+                            }
+                        }
+                        .padding(.top, 10)
                     }
-                    .font(.title2)
-                    .bold()
-                    .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
-                    .background(.white)
-                    .foregroundColor(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)), lineWidth: 2))
-                }
-                
-                Button(action:{
-                    
-                }) {
-                    HStack {
-                        Text("Connect to Apple Music")
-//                        Image("spotify_icon")
-//                            .resizable()
-//                            .scaledToFit()
-                    }
-                    .font(.title2)
-                    .bold()
-                    .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
-                    .background(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
                 }
                 
                 Spacer()
@@ -115,7 +141,6 @@ struct AccountView: View {
         .onOpenURL { url in
             spotifyController.setAuthTokens(url)
         }
-        .environmentObject(spotifyController)
     }
 }
 

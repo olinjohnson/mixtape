@@ -7,6 +7,21 @@
 
 import SwiftUI
 
+/*
+ VStack {
+     Spacer()
+     TextField("Untitled Mixtape", text: $inputTitle, axis:.vertical)
+         .foregroundStyle(.white)
+         .font(.largeTitle)
+         .bold()
+         .padding(20)
+         .padding([.leading, .trailing], 6)
+         .multilineTextAlignment(.leading)
+         .shadow(color:.black.opacity(0.2), radius:3, x:0, y:0)
+         .focused($textFieldFocus, equals:.title)
+ }
+ */
+
 struct NewMixtapeView: View {
     enum Fields {
         case title
@@ -22,6 +37,7 @@ struct NewMixtapeView: View {
     @State var inputHeading = ""
     @State var inputBody = ""
     @State var inputDate = Date()
+    @State var inputCover: Data?
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
@@ -34,7 +50,7 @@ struct NewMixtapeView: View {
                 ScrollView {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
-                            /*ImagePickerView(gr:gr)
+                            ImagePickerView(gr:gr, imageData:self.$inputCover)
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -52,14 +68,15 @@ struct NewMixtapeView: View {
                                         Spacer()
                                     }
                                     .offset(y: -gr.frame(in: .global).origin.y)
-                                }*/
+                                }
+                            /*ImagePickerView(gr:gr)*/
                             HStack {
                                 VStack(alignment:.leading){
-                                    Text("New entry")
+                                    Text("New mixtape")
                                         .font(.title2)
                                         .bold()
                                         .padding([.bottom], 2)
-                                    Text("Add an image  |  Add text  | Add music")
+                                    Text("Add cover image  |  Add text  |  Add music")
                                         .font(.caption)
                                         .foregroundStyle(.black.opacity(0.6))
                                 }
@@ -173,7 +190,6 @@ struct NewMixtapeView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 

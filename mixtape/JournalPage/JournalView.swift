@@ -74,9 +74,6 @@ struct JournalView: View {
                 .offset(x: -16, y:-30)
                 
             }
-            .onAppear(perform: {
-                nBar.isShowing = true
-            })
             //.edgesIgnoringSafeArea(.bottom)
             //.background(Theme.secondary_accent_color)
         }

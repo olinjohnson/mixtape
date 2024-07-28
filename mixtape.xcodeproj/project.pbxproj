@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1B30972C544FCA00748E1D /* TracksView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1B30962C544FCA00748E1D /* TracksView.swift */; };
 		0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D74272C27E09E00719187 /* EditEntryView.swift */; };
 		0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406ADC2C2A222000631FEB /* SpotifyiOS */; };
 		0B406ADF2C2A524D00631FEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406ADE2C2A524D00631FEB /* User.swift */; };
@@ -42,6 +43,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B1B30962C544FCA00748E1D /* TracksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksView.swift; sourceTree = "<group>"; };
 		0B1D74272C27E09E00719187 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 		0B406ADE2C2A524D00631FEB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0B406AE32C2A55DA00631FEB /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		0BF405472B89644A00902D59 /* partials */ = {
 			isa = PBXGroup;
 			children = (
+				0B1B30962C544FCA00748E1D /* TracksView.swift */,
 				0BFDD1492B858A2300C5726F /* SongView.swift */,
 				0BFDD13D2B8448C000C5726F /* TapeCardView.swift */,
 			);
@@ -306,6 +309,7 @@
 				0B905C492B9E1A7F00E6178F /* Entry.swift in Sources */,
 				0BF405452B88602000902D59 /* NavBackView.swift in Sources */,
 				0BFDD12B2B81B4D000C5726F /* MixtapesView.swift in Sources */,
+				0B1B30972C544FCA00748E1D /* TracksView.swift in Sources */,
 				0BFDD1292B81B4D000C5726F /* mixtapeApp.swift in Sources */,
 				0BFDD14A2B858A2300C5726F /* SongView.swift in Sources */,
 				0BFDD14C2B87F10000C5726F /* NewMixtapeView.swift in Sources */,

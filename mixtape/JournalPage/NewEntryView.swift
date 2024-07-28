@@ -176,7 +176,6 @@ struct NewEntryView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
-        .onAppear(perform: {nBar.isShowing = false})
     }
 }
 

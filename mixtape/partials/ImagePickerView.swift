@@ -21,14 +21,16 @@ struct ImagePickerView: View {
             if imageData == nil {
                 Image(uiImage: UIImage(named: "no_select")!)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
                     .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
+                    .clipped()
                     .offset(y: -gr.frame(in: .global).origin.y)
             }else{
                 Image(uiImage: UIImage(data: imageData!)!)
                     .resizable()
-                    .aspectRatio(contentMode: .fill)
+                    .scaledToFill()
                     .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
+                    .clipped()
                     .offset(y: -gr.frame(in: .global).origin.y)
             }
             
