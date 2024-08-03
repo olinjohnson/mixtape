@@ -7,17 +7,24 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
-struct Tape {
+@Model
+class Tape {
+    
+    @Attribute(.unique)
     var id: UUID
-    var cover: Image
+    
+    @Attribute(.externalStorage)
+    var cover: Data
+    
     var date: Date
     var title: String
     var heading: String
     var body: String
     var songs: [Song]
     
-    init(id: UUID, cover: Image, date: Date, title: String, heading: String, body: String, songs: [Song]) {
+    init(id: UUID, cover: Data, date: Date, title: String, heading: String, body: String, songs: [Song]) {
         self.id = id
         self.cover = cover
         self.date = date
@@ -28,6 +35,13 @@ struct Tape {
     }
 }
 
+extension Tape {
+    static var empty: Tape {
+        return Tape(id: UUID(), cover: (UIImage(named: "no_select")?.pngData())!, date: Date(), title: "", heading: "", body: "", songs: [])
+    }
+}
+
+/*
 extension Tape {
     static let sample_tapes: [Tape] =
     [
@@ -64,3 +78,4 @@ extension Tape {
         Tape(id:UUID(), cover: Image("mountains"), date: Date(), title: "Ski Trip", heading: "On the line", body: "Songs from our trek out west", songs: [])
     ]
 }
+*/

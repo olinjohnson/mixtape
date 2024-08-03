@@ -10,39 +10,46 @@ import SwiftUI
 struct TapeCardView: View {
     let tape: Tape
     var body: some View {
-        VStack {
+        VStack(alignment:.leading) {
             HStack {
-                Text(tape.title)
-                    .font(.largeTitle.bold())
-                    .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
+                VStack(alignment:.leading) {
+                    Text(tape.date, style:.date)
+                        .font(.caption)//.bold())
+                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
+                    Text(tape.title)
+                        .font(.largeTitle.bold())
+                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
+                        .multilineTextAlignment(.leading)
                     //.shadow(color:.black, radius:1)
-                    .padding(.leading, 28)
-                    .padding(.top, 20)
+                    Spacer()
+                }
+                .foregroundStyle(.white)
                 Spacer()
-            }.foregroundColor(.white)
-            Spacer()
+            }
+            .padding(.leading, 28)
+            .padding(.top, 20)
         }
+        .frame(maxWidth:.infinity, minHeight: 250, maxHeight: 250)
         .background(
-            tape.cover
+            Image(uiImage: UIImage(data: tape.cover)!)
                 .resizable()
-                .aspectRatio(contentMode: /*@START_MENU_TOKEN@*/.fill/*@END_MENU_TOKEN@*/)
+                .aspectRatio(contentMode: .fill)
                 //.saturation(0.5)
         )
         .cornerRadius(20)
-        .frame(height: 250)
         .padding([.leading, .trailing])
         //.shadow(color: .black.opacity(0.3), radius:10, x:3, y:3)
     }
     
 }
 
-struct TapeCardView_Previews: PreviewProvider {
-    
-    static var tape = Tape.sample_tapes[0]
-
-    static var previews: some View {
-        TapeCardView(tape: tape)
-            //.previewLayout(.fixed(width: 400, height: 250))
-    }
-}
+//struct TapeCardView_Previews: PreviewProvider {
+//    
+//    static var tape = Tape.sample_tapes[0]
+//
+//    static var previews: some View {
+//        TapeCardView(tape: tape)
+//            //.previewLayout(.fixed(width: 400, height: 250))
+//    }
+//}
 

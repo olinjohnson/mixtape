@@ -22,6 +22,6 @@ struct mixtapeApp: App {
                 LoginView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
             }
         }
-        .modelContainer(for: Entry.self)
+        .modelContainer(for: [Entry.self, Tape.self])
     }
 }

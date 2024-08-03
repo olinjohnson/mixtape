@@ -6,29 +6,32 @@
 //
 
 import SwiftUI
+import SwiftData
 
 struct MixtapesView: View {
     
     @EnvironmentObject var nBar: NBar
     
-    let mixtapes: [Tape] = Tape.sample_tapes
+    @Query private var mixtapes: [Tape]
+    //let mixtapes: [Tape] = Tape.sample_tapes
     @State private var searchText = ""
     
-    @Binding var userProfile: User
+//    @Binding var userProfile: User
     
     var body: some View {
         NavigationStack {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
-                        ForEach(mixtapes, id: \.id) {tape in
+//                    #TODO: add date on mixtape cards
+                        ForEach(mixtapes.sorted(by: {$0.date < $1.date}).reversed()) {tape in
                             NavigationLink(destination: MixtapeDetailView(mixtape: tape)) {
                                 TapeCardView(tape:tape)
                                     .padding(5)
                             }
                         }
                         .navigationTitle("My Mixtapes")
-                        .searchable(text: $searchText)
+                        //.searchable(text: $searchText)
                         /*(
                             Text("Made with ")
                                 .font(.caption)

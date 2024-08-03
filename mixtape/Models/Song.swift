@@ -7,12 +7,23 @@
 
 import Foundation
 import SwiftUI
+import SwiftData
 
-struct Song: Identifiable {
-    var cover: Image
+@Model
+class Song {
+    
+    @Attribute(.unique)
+    var id = UUID()
+    var cover: Data
     var artist: String
     var name: String
-    let id = UUID()
+    
+    init(id: UUID, cover: Data, artist: String, name: String) {
+        self.id = id
+        self.cover = cover
+        self.artist = artist
+        self.name = name
+    }
 }
 
 struct Album {

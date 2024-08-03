@@ -13,7 +13,7 @@ struct TrackView: View {
     
     var body: some View {
         HStack {
-            track.cover
+            Image(uiImage: UIImage(data: track.cover)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(6)
@@ -46,19 +46,23 @@ struct TracksView: View {
                     Text("No tracks yet")
                         .bold()
                 }
-                .padding([.top, .bottom], 5)
+                //.padding([.top, .bottom], 5)
             }
-            Button(action: {}) {
-                HStack {
-                    Image(systemName: "plus")
-                        .bold()
-                    Text("Add tracks")
-                        .bold()
-                }
-            }
-            .padding(.top, 10)
+//            Button(action: {}) {
+//                HStack {
+//                    Image(systemName: "plus")
+//                        .bold()
+//                    Text("Add tracks")
+//                        .bold()
+//                }
+//            }
+//            .padding(.top, 10)
         }
-        .padding([.leading, .trailing])
+        //.padding([.leading, .trailing])
+        .frame(minWidth: 0, maxWidth: .infinity)
+        .padding()
+        .background(Color(uiColor: UIColor.systemGray6))
+        .cornerRadius(10)
     }
 }
 

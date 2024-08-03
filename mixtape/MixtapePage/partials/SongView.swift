@@ -11,7 +11,7 @@ struct SongView: View {
     let song: Song
     var body: some View {
         HStack{
-            song.cover
+            Image(uiImage: UIImage(data: song.cover)!)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .cornerRadius(6)
@@ -33,6 +33,6 @@ struct SongView: View {
     }
 }
 
-#Preview {
-    SongView(song: Tape.sample_tapes[0].songs[0])
-}
+//#Preview {
+//    SongView(song: Tape.sample_tapes[0].songs[0])
+//}

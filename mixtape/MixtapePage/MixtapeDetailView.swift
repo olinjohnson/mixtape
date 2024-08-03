@@ -12,21 +12,27 @@ import SwiftUI
 struct MixtapeDetailView: View {
     
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.modelContext) private var modelContext
     @EnvironmentObject var nBar: NBar
-    let mixtape: Tape
+    
+    @State var showingDeleteAlert = false
+    @State var editNavigationReady = false
+    
+    @State var mixtape: Tape
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                // header image
-                VStack {
-                    GeometryReader { gr in
-                        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                            mixtape.cover
+            GeometryReader { reader in
+                ScrollView {
+                    // header image
+                    VStack {
+                        GeometryReader { gr in
+                            //                        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
+                            Image(uiImage: UIImage(data: mixtape.cover)!)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y), alignment:.center)
-//                                .clipped()
+                                .clipped()
                                 .overlay {
                                     HStack {
                                         VStack {
@@ -44,79 +50,125 @@ struct MixtapeDetailView: View {
                                     }
                                 }
                                 .offset(y: -gr.frame(in: .global).origin.y)
-
-//                            NavigationLink(destination: MixtapesView().toolbar(.hidden, for: .tabBar)) {
-//                                NavBackView(dismiss:self.dismiss)
-//                            }
-                            NavBackView(dismiss: self.dismiss)
-                            .offset(y: -gr.frame(in: .global).origin.y + 20)
-                        }
-                    }
-                    .frame(height:400)
-                    
-                    // Info stack
-                    VStack {
-                        // date
-                        HStack {
-                            Text(mixtape.date, style:.date)
-                                .font(.footnote)
-                                .padding([.leading, .trailing])
-                            Spacer()
-                        }
-                        
-                        // title
-                        HStack {
-                            Text(mixtape.heading)
-                                .font(.title)
-                                .bold()
-                                .padding([.leading, .trailing, .bottom])
-                            Spacer()
-                        }
-                        
-                        // body text
-                        HStack {
-                            Text(mixtape.body)
-                                .padding([.leading, .trailing])
-                            Spacer()
-                        }
-                        .padding(.bottom)
-                        
-                        Spacer()
-                        //Divider()
-                        Spacer()
-                            .padding(.top, 5)
-                        
-                        // track title
-                        HStack {
-                            Text("Tracks")
-                                .font(.title3)
-                                .bold()
-                                .padding([.leading, .trailing])
-                            Spacer()
-                        }
-                        
-                        // track list
-                        /*
-                        VStack(spacing:0){
-                            SongView(song: mixtape.songs[0])
-                                .padding([.leading, .trailing])
-                            ForEach(mixtape.songs.dropFirst()) { song in
-                                LazyVStack(spacing:0) {
-                                    Divider()
-                                        .padding([.leading, .trailing])
-                                    SongView(song: song)
+                            
+                            //                            NavigationLink(destination: MixtapesView().toolbar(.hidden, for: .tabBar)) {
+                            //                                NavBackView(dismiss:self.dismiss)
+                            //                            }
+                            HStack {
+                                NavigationLink(destination: MixtapesView()) {
+                                    NavBackView(dismiss: self.dismiss)
                                 }
-                                .padding([.leading, .trailing])
+                                Spacer()
+                                Menu {
+                                    Button(action:{editNavigationReady = true}) {
+                                        Label("Edit mixtape", systemImage: "pencil")
+                                    }
+                                    Button(role: .destructive, action:{showingDeleteAlert = true}) {
+                                        Label("Delete mixtape", systemImage: "trash")
+                                    }
+                                } label: {
+                                    Text(Image(systemName: "ellipsis"))
+                                        .font(.system(size: 16))
+                                        .bold()
+                                        .padding(10)
+                                        .foregroundColor(.white)
+                                        .frame(minWidth:40, minHeight:40)
+                                        .background(.gray.opacity(0.5))
+                                        .cornerRadius(14)
+                                        .padding(40)
+                                }
+                                .alert(isPresented:$showingDeleteAlert) {
+                                    Alert(
+                                        title:Text("Are you sure you want to delete this mixtape?"),
+                                        message:Text("This operation cannot be undone."),
+                                        primaryButton: .destructive(Text("I'm sure")) {
+                                            modelContext.delete(mixtape)
+                                            do { try modelContext.save() } catch {}
+                                            dismiss()
+                                        },
+                                        secondaryButton: .cancel(Text("No, go back"))
+                                    )
+                                }
+                                
                             }
-                        }*/
-                        TracksView(tracks: mixtape.songs)
+                            .offset(y: -gr.frame(in: .global).origin.y + 20)
+                            //                        }
+                        }
+                        .frame(height:350)
+                        
+                        // Info stack
+                        VStack {
+                            // date
+                            HStack {
+                                Text(mixtape.date, style:.date)
+                                    .font(.footnote)
+                                    .padding([.leading, .trailing])
+                                Spacer()
+                            }
+                            
+                            // title
+                            HStack {
+                                Text(mixtape.heading)
+                                    .font(.title)
+                                    .bold()
+                                    .padding([.leading, .trailing, .bottom])
+                                Spacer()
+                            }
+                            
+                            // body text
+                            HStack {
+                                Text(mixtape.body)
+                                    .padding([.leading, .trailing])
+                                Spacer()
+                            }
+                            .padding(.bottom, 40)
+                            
+//                            Spacer()
+                            //Divider()
+//                            Spacer()
+//                                .padding(.top, 5)
+                            
+                            // track title
+                            HStack {
+                                Text("Tracks")
+                                    .font(.title3)
+                                    .bold()
+                                    .padding([.leading, .trailing])
+                                Spacer()
+                            }
+                            
+                            // track list
+                            /*
+                             VStack(spacing:0){
+                             SongView(song: mixtape.songs[0])
+                             .padding([.leading, .trailing])
+                             ForEach(mixtape.songs.dropFirst()) { song in
+                             LazyVStack(spacing:0) {
+                             Divider()
+                             .padding([.leading, .trailing])
+                             SongView(song: song)
+                             }
+                             .padding([.leading, .trailing])
+                             }
+                             }*/
+                            TracksView(tracks: mixtape.songs)
+                            
+                            Spacer()
+                        }
+                        .padding()
+//                        .edgesIgnoringSafeArea(.bottom)
+                        .frame(minHeight: reader.size.height - 350 + reader.frame(in: .global).origin.y)
+                        .background(.white)
+//                        .padding([.leading, .trailing, .top])
+//                        .background(.white)
                     }
-                    .padding([.leading, .trailing, .top])
-                    .background(.white)
+                    .padding(.bottom)
+                    .navigationDestination(isPresented: $editNavigationReady, destination: {
+                        EditMixtapeView(mixtape: $mixtape)
+                    })
                 }
-                .padding(.bottom)
+//                .edgesIgnoringSafeArea(.all)
             }
-            .edgesIgnoringSafeArea(.all)
         }
         .navigationBarBackButtonHidden(true)
     }

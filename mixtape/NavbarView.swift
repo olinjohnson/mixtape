@@ -105,7 +105,7 @@ struct NavbarView: View {
                 } else if selection == 1 {
                     JournalView()
                 } else {
-                    MixtapesView(userProfile: $userProfile)
+                    MixtapesView()
                 }
                 if nBar.isShowing {
                     VStack(spacing:0) {

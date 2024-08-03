@@ -1,51 +1,38 @@
 //
-//  NewMixtapeView.swift
+//  EditMixtapeView.swift
 //  mixtape
 //
-//  Created by Olin Johnson on 2/22/24.
+//  Created by Olin Johnson on 8/3/24.
 //
 
 import SwiftUI
-import SwiftData
 
-/*
- VStack {
-     Spacer()
-     TextField("Untitled Mixtape", text: $inputTitle, axis:.vertical)
-         .foregroundStyle(.white)
-         .font(.largeTitle)
-         .bold()
-         .padding(20)
-         .padding([.leading, .trailing], 6)
-         .multilineTextAlignment(.leading)
-         .shadow(color:.black.opacity(0.2), radius:3, x:0, y:0)
-         .focused($textFieldFocus, equals:.title)
- }
- */
-
-struct NewMixtapeView: View {
+struct EditMixtapeView: View {
+    
     enum Fields {
         case title
         case heading
         case body
     }
     
-    @EnvironmentObject var nBar: NBar
     @Environment(\.modelContext) private var modelContext
     @Environment(\.dismiss) private var dismiss
     private let titleCharLimit = 100
     
-    @State var inputID = UUID()
     @State var inputTitle = "Untitled Mixtape"
     @State var inputHeading = ""
     @State var inputBody = ""
     @State var inputDate = Date()
     @State var inputCover: Data?
     
+    @State private var saveNavigationReady = false
+    
     @FocusState private var textFieldFocus: Fields?
 //    @State private var keyboardOffsetAmt = 0
     
     @State var showingCancelAlert = false
+    
+    @Binding var mixtape: Tape
     
     var body: some View {
         NavigationStack {
@@ -75,11 +62,11 @@ struct NewMixtapeView: View {
                             /*ImagePickerView(gr:gr)*/
                             HStack {
                                 VStack(alignment:.leading){
-                                    Text("New mixtape")
+                                    Text("Edit mixtape")
                                         .font(.title2)
                                         .bold()
                                         .padding([.bottom], 2)
-                                    Text("Add cover image  |  Add text  |  Add music")
+                                    Text("Edit cover image  |  Edit text  |  Edit music")
                                         .font(.caption)
                                         .foregroundStyle(.black.opacity(0.6))
                                 }
@@ -122,13 +109,13 @@ struct NewMixtapeView: View {
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
+                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
                                     .padding([.bottom, .top])
                                     .font(.title3)
                                 //.bold()
                                 Divider()
                                     .padding([.top, .bottom])
-                                TextField("Put your heading here...", text: $inputHeading, axis:.vertical)
+                                TextField("", text: $inputHeading, axis:.vertical)
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.heading)
@@ -162,19 +149,23 @@ struct NewMixtapeView: View {
                                     Alert(
                                         title:Text("Are you sure you want to cancel?"),
                                         message:Text("Your changes will not be saved."),
-                                        primaryButton: .destructive(Text("I'm sure")) {dismiss()},
+                                        primaryButton: .destructive(Text("I'm sure")) {
+//                                            dismiss()
+                                            saveNavigationReady = true
+                                        },
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
                                 //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
-                                    let newMixtape = Tape(id: inputID, cover: inputCover!, date: inputDate, title:inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
-                                    modelContext.insert(newMixtape)
+                                    modelContext.delete(mixtape)
+                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
+                                    modelContext.insert(mixtape)
                                     do { try modelContext.save() } catch {}
-                                    self.dismiss()
+                                    saveNavigationReady = true
                                 }) {
                                     //NavigationLink(destination:MixtapesView().toolbar(.visible, for: .tabBar)) {
-                                        Text("Create")
+                                        Text("Save")
                                             .padding()
                                             .frame(maxWidth:.infinity)
                                             .background(.green)
@@ -193,14 +184,24 @@ struct NewMixtapeView: View {
                     }
                     .frame(minHeight: reader.size.height)
 //                    .offset(y:CGFloat(-keyboardOffsetAmt))
+                    .navigationDestination(isPresented: $saveNavigationReady, destination: {
+                        MixtapeDetailView(mixtape: mixtape)
+                    })
                 }
                 //.edgesIgnoringSafeArea(.all)
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
+            inputTitle = mixtape.title
+            inputHeading = mixtape.heading
+            inputBody = mixtape.body
+            inputDate = mixtape.date
+            inputCover = mixtape.cover
+        })
     }
 }
 
 //#Preview {
-//    NewMixtapeView()
+//    EditMixtapeView()
 //}

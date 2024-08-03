@@ -18,7 +18,6 @@ struct EntryDetailView: View {
     
     @State var showingDeleteAlert = false
     @State var editNavigationReady = false
-    @State private var imageHeight: CGFloat = 350
     
     @State var entry: Entry
     
@@ -103,28 +102,21 @@ struct EntryDetailView: View {
                             .padding(.bottom)
                             Spacer()
                         }
-                            .overlay {
-                                GeometryReader { gr2 in
-                                    Color.clear.onAppear() {
-                                        imageHeight = reader.size.height - abs(-gr2.frame(in:.local).origin.y) + 2 * reader.frame(in: .local).origin.y
-                                    }
-                                }
-                            }
-                            .padding()
-                            .edgesIgnoringSafeArea(.bottom)
-                            /*
-                            .frame(minHeight:abs(reader.size.height - 350 + reader.frame(in: .global).origin.y + gr2.frame(in: .global).origin.y))
-                            .frame(minHeight:(reader.size.height - abs(-gr2.frame(in:.global).origin.y) + 2 * reader.frame(in: .global).origin.y))
-                            .frame(minHeight: abs(-gr2.frame(in:.global).origin.y))
-                            https://appbakery.medium.com/passing-geometry-information-to-parent-sibling-views-in-swiftui-c2fff433afc1
-                        
-                            */
-                            .frame(minHeight: reader.size.height - 350 + reader.frame(in: .global).origin.y)
-                            .background(.white)
+                        .padding()
+//                        .edgesIgnoringSafeArea(.bottom)
+                        /*
+                        .frame(minHeight:abs(reader.size.height - 350 + reader.frame(in: .global).origin.y + gr2.frame(in: .global).origin.y))
+                        .frame(minHeight:(reader.size.height - abs(-gr2.frame(in:.global).origin.y) + 2 * reader.frame(in: .global).origin.y))
+                        .frame(minHeight: abs(-gr2.frame(in:.global).origin.y))
+                        https://appbakery.medium.com/passing-geometry-information-to-parent-sibling-views-in-swiftui-c2fff433afc1
+                    
+                        */
+                        .frame(minHeight: reader.size.height - 350 + reader.frame(in: .global).origin.y)
+                        .background(.white)
                     }
                     //.frame(maxHeight:.infinity)
                     .navigationDestination(isPresented: $editNavigationReady, destination: {
-                        EditEntryView(entry: $entry).toolbar(.hidden, for: .tabBar)
+                        EditEntryView(entry: $entry)
                     })
                 }
             }
