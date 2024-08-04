@@ -23,14 +23,28 @@ struct MixtapesView: View {
             ZStack(alignment: Alignment(horizontal: .trailing, vertical: .bottom)) {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
-//                    #TODO: add date on mixtape cards
-                        ForEach(mixtapes.sorted(by: {$0.date < $1.date}).reversed()) {tape in
-                            NavigationLink(destination: MixtapeDetailView(mixtape: tape)) {
-                                TapeCardView(tape:tape)
-                                    .padding(5)
+                        if (mixtapes.count > 0) {
+                            ForEach(mixtapes.sorted(by: {$0.date < $1.date}).reversed()) {tape in
+                                NavigationLink(destination: MixtapeDetailView(mixtape: tape)) {
+                                    TapeCardView(tape:tape)
+                                        .padding(5)
+                                }
                             }
+                            .navigationTitle("My Mixtapes")
+                        } else {
+                            VStack {
+                                Text("No mixtapes yet")
+                                    .navigationTitle("My Mixtapes")
+                                    .font(.title)
+                                    .bold()
+                                NavigationLink(destination: NewMixtapeView()) {
+                                    Text(" Create your first mixtape")
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding([.top], 160)
                         }
-                        .navigationTitle("My Mixtapes")
+                        
                         //.searchable(text: $searchText)
                         /*(
                             Text("Made with ")

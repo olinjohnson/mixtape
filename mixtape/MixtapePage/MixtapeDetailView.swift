@@ -97,31 +97,22 @@ struct MixtapeDetailView: View {
                         .frame(height:350)
                         
                         // Info stack
-                        VStack {
+                        VStack(alignment:.leading) {
                             // date
-                            HStack {
-                                Text(mixtape.date, style:.date)
-                                    .font(.footnote)
-                                    .padding([.leading, .trailing])
-                                Spacer()
-                            }
+                            Text(mixtape.date, style:.date)
+                                .font(.footnote)
+                                .padding([.leading, .trailing])
                             
                             // title
-                            HStack {
-                                Text(mixtape.heading)
-                                    .font(.title)
-                                    .bold()
-                                    .padding([.leading, .trailing, .bottom])
-                                Spacer()
-                            }
-                            
+                            Text(mixtape.heading)
+                                .font(.title)
+                                .bold()
+                                .padding([.leading, .trailing, .bottom])
+
                             // body text
-                            HStack {
-                                Text(mixtape.body)
-                                    .padding([.leading, .trailing])
-                                Spacer()
-                            }
-                            .padding(.bottom, 40)
+                            Text(mixtape.body)
+                                .padding([.leading, .trailing])
+                                .padding(.bottom, 40)
                             
 //                            Spacer()
                             //Divider()
@@ -129,13 +120,10 @@ struct MixtapeDetailView: View {
 //                                .padding(.top, 5)
                             
                             // track title
-                            HStack {
-                                Text("Tracks")
-                                    .font(.title3)
-                                    .bold()
-                                    .padding([.leading, .trailing])
-                                Spacer()
-                            }
+                            Text("Tracks")
+                                .font(.title3)
+                                .bold()
+                                .padding([.leading, .trailing])
                             
                             // track list
                             /*
@@ -152,7 +140,6 @@ struct MixtapeDetailView: View {
                              }
                              }*/
                             TracksView(tracks: mixtape.songs)
-                            
                             Spacer()
                         }
                         .padding()

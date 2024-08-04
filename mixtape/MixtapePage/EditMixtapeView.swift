@@ -24,6 +24,7 @@ struct EditMixtapeView: View {
     @State var inputBody = ""
     @State var inputDate = Date()
     @State var inputCover: Data?
+    @State var inputTracks: [Song] = []
     
     @State private var saveNavigationReady = false
     
@@ -128,6 +129,7 @@ struct EditMixtapeView: View {
                             }
                             .padding([.leading, .trailing, .bottom])
                             
+                            TracksSelectorView(tracks: self.$inputTracks)
                             // ADD TRACKS BUTTON
                             
                             Spacer()
@@ -159,7 +161,7 @@ struct EditMixtapeView: View {
                                 //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
                                     modelContext.delete(mixtape)
-                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
+                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: inputTracks)
                                     modelContext.insert(mixtape)
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true
@@ -198,6 +200,7 @@ struct EditMixtapeView: View {
             inputBody = mixtape.body
             inputDate = mixtape.date
             inputCover = mixtape.cover
+            inputTracks = mixtape.songs
         })
     }
 }

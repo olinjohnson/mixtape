@@ -109,8 +109,8 @@ struct NavbarView: View {
                 }
                 if nBar.isShowing {
                     VStack(spacing:0) {
-                        PlayerView()
-                            .padding([.leading, .trailing], 5)
+//                        PlayerView()
+//                            .padding([.leading, .trailing], 5)
                         HStack(alignment:.bottom) {
                             
                             VStack(alignment:.center) {

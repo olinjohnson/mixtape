@@ -41,6 +41,7 @@ struct NewMixtapeView: View {
     @State var inputBody = ""
     @State var inputDate = Date()
     @State var inputCover: Data?
+    @State var inputTracks: [Song] = []
     
     @FocusState private var textFieldFocus: Fields?
 //    @State private var keyboardOffsetAmt = 0
@@ -134,13 +135,14 @@ struct NewMixtapeView: View {
                                     .focused($textFieldFocus, equals:.heading)
                                 TextField("Write about your mixtape here...", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
+                                    .padding(.bottom, 40)
                                 Text("Tracks")
                                     .font(.title3)
                                     .bold()
-                                    .padding(.top, 26)
                             }
-                            .padding([.leading, .trailing, .bottom])
+                            .padding([.leading, .trailing])
                             
+                            TracksSelectorView(tracks: self.$inputTracks)
                             // ADD TRACKS BUTTON
                             
                             Spacer()
@@ -168,7 +170,7 @@ struct NewMixtapeView: View {
                                 }
                                 //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
-                                    let newMixtape = Tape(id: inputID, cover: inputCover!, date: inputDate, title:inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
+                                    let newMixtape = Tape(id: inputID, cover: inputCover!, date: inputDate, title:inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: inputTracks)
                                     modelContext.insert(newMixtape)
                                     do { try modelContext.save() } catch {}
                                     self.dismiss()

@@ -15,10 +15,10 @@ struct TapeCardView: View {
                 VStack(alignment:.leading) {
                     Text(tape.date, style:.date)
                         .font(.caption)//.bold())
-                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
+//                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
                     Text(tape.title)
                         .font(.largeTitle.bold())
-                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
+//                        .shadow(color: .black.opacity(0.3), radius: 3, x:0, y:0)
                         .multilineTextAlignment(.leading)
                     //.shadow(color:.black, radius:1)
                     Spacer()
@@ -34,6 +34,11 @@ struct TapeCardView: View {
             Image(uiImage: UIImage(data: tape.cover)!)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
+                .overlay {
+                    VStack {}
+                        .frame(maxWidth:.infinity, minHeight: 250, maxHeight: 250)
+                        .background(.black.opacity(0.3))
+                }
                 //.saturation(0.5)
         )
         .cornerRadius(20)

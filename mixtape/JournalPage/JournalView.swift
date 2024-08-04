@@ -39,11 +39,12 @@ struct JournalView: View {
                                     .navigationTitle("Journal")
                                     .font(.title)
                                     .bold()
-                                NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
+                                NavigationLink(destination: NewEntryView()) {
                                     Text(" Write your first entry")
                                 }
                             }
-                            .padding([.top], 40)
+                            .frame(maxWidth:.infinity)
+                            .padding([.top], 160)
                         }
                         
                     }
