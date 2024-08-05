@@ -12,13 +12,12 @@ import SwiftData
 @Model
 class Song {
     
-    @Attribute(.unique)
-    var id = UUID()
-    var cover: Data
+    var id: String
+    var cover: String
     var artist: String
     var name: String
     
-    init(id: UUID, cover: Data, artist: String, name: String) {
+    init(id: String, cover: String, artist: String, name: String) {
         self.id = id
         self.cover = cover
         self.artist = artist

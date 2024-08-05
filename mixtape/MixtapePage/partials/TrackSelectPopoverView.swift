@@ -18,13 +18,15 @@ struct TrackSelectPopoverView: View {
     
     @State private var searchCancellable: AnyCancellable? = nil
     
+    @Binding var selectedTracks: [Song]
+    
     var body: some View {
         
         NavigationStack {
             if searchText != "" {
                 ScrollView {
                     ForEach(searchResults, id: \.id) { track in
-                        SearchableSongView(track:track)
+                        SearchableSongView(track:track, selectedTracks: $selectedTracks)
                     }
                     .padding(.top, 5)
                 }
@@ -64,6 +66,7 @@ struct TrackSelectPopoverView: View {
 struct SearchableSongView: View {
     
     var track: Track
+    @Binding var selectedTracks: [Song]
     
     var body: some View {
         HStack {
@@ -88,10 +91,18 @@ struct SearchableSongView: View {
                 Spacer()
             }
             Spacer()
-            Button(action: {
-                
+            
+            if selectedTracks.contains(where: {selectedTrack in
+                return selectedTrack.id == track.id
             }) {
-                Image(systemName: "plus.circle")
+                Image(systemName: "checkmark.circle.fill")
+            } else {
+                Button(action: {
+                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name)
+                    selectedTracks.append(select)
+                }) {
+                    Image(systemName: "plus.circle")
+                }
             }
         }
         .frame(height:50)

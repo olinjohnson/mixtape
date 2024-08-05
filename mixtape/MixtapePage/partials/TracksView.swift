@@ -13,18 +13,22 @@ struct TrackView: View {
     
     var body: some View {
         HStack {
-            Image(uiImage: UIImage(data: track.cover)!)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .cornerRadius(6)
-                .frame(maxHeight:50)
-                .padding(.trailing, 5)
+            AsyncImage(url: URL(string: track.cover)) { image in
+                image.resizable()
+            } placeholder: {
+                ProgressView()
+            }
+            .aspectRatio(contentMode: .fit)
+            .cornerRadius(6)
+            .frame(maxHeight:50)
+            .padding(.trailing, 5)
             VStack(alignment:.leading) {
                 Text(track.name)
                     .bold()
                 Text(track.artist)
                     .font(.caption)
             }
+            Spacer()
         }
     }
 }
@@ -48,15 +52,6 @@ struct TracksView: View {
                 }
                 //.padding([.top, .bottom], 5)
             }
-//            Button(action: {}) {
-//                HStack {
-//                    Image(systemName: "plus")
-//                        .bold()
-//                    Text("Add tracks")
-//                        .bold()
-//                }
-//            }
-//            .padding(.top, 10)
         }
         //.padding([.leading, .trailing])
         .frame(minWidth: 0, maxWidth: .infinity)

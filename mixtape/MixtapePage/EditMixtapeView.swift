@@ -161,7 +161,8 @@ struct EditMixtapeView: View {
                                 //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
                                     modelContext.delete(mixtape)
-                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: inputTracks)
+                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
+                                    mixtape.songs = inputTracks
                                     modelContext.insert(mixtape)
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true

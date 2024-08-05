@@ -56,7 +56,7 @@ struct TracksSelectorView: View {
                 )
             }
             .sheet(isPresented: $showingSearchTrackPopover) {
-                TrackSelectPopoverView()
+                TrackSelectPopoverView(selectedTracks: $tracks)
             }
             .padding(.top, 10)
             
