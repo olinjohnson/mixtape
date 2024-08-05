@@ -122,12 +122,12 @@ struct EditMixtapeView: View {
                                     .focused($textFieldFocus, equals:.heading)
                                 TextField("Write about your mixtape here...", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
+                                    .padding(.bottom, 40)
                                 Text("Tracks")
                                     .font(.title3)
                                     .bold()
-                                    .padding(.top, 26)
                             }
-                            .padding([.leading, .trailing, .bottom])
+                            .padding([.leading, .trailing])
                             
                             TracksSelectorView(tracks: self.$inputTracks)
                             // ADD TRACKS BUTTON
