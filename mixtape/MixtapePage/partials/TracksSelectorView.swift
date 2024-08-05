@@ -26,10 +26,12 @@ struct TracksSelectorView: View {
                 .padding(.bottom, 7)
                 .padding(.top, 2)
             } else {
-                TrackView(track: tracks[0])
-                ForEach(tracks.dropFirst()) { track in
-                    Divider()
+                ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
                     TrackView(track: track)
+                    if track.order < tracks.count - 1 {
+                        Divider()
+                            .padding(.leading, 60)
+                    }
                 }
             }
             
@@ -47,6 +49,7 @@ struct TracksSelectorView: View {
                         .bold()
                     Text("Add tracks")
                         .bold()
+                    Spacer()
                 }
             }
             .alert(isPresented:$showingConnectAlert) {

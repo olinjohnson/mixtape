@@ -17,11 +17,14 @@ class Song {
     var artist: String
     var name: String
     
-    init(id: String, cover: String, artist: String, name: String) {
+    var order: Int
+    
+    init(id: String, cover: String, artist: String, name: String, order: Int = 0) {
         self.id = id
         self.cover = cover
         self.artist = artist
         self.name = name
+        self.order = order
     }
 }
 

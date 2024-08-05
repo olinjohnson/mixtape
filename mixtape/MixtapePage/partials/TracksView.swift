@@ -12,11 +12,13 @@ struct TrackView: View {
     let track: Song
     
     var body: some View {
-        HStack {
+        HStack(alignment:.center) {
             AsyncImage(url: URL(string: track.cover)) { image in
                 image.resizable()
             } placeholder: {
-                ProgressView()
+                VStack(alignment:.center) {
+                    ProgressView()
+                }
             }
             .aspectRatio(contentMode: .fit)
             .cornerRadius(6)
@@ -30,6 +32,7 @@ struct TrackView: View {
             }
             Spacer()
         }
+        .frame(maxHeight:50)
     }
 }
 
@@ -40,10 +43,12 @@ struct TracksView: View {
     var body: some View {
         VStack(alignment:.leading) {
             if (tracks.count) > 0 {
-                TrackView(track: tracks[0])
-                ForEach(tracks.dropFirst()) { track in
-                    Divider()
+                ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
                     TrackView(track: track)
+                    if track.order < tracks.count - 1 {
+                        Divider()
+                            .padding(.leading, 60)
+                    }
                 }
             } else {
                 VStack(alignment:.leading) {

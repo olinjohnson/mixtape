@@ -73,8 +73,10 @@ struct SearchableSongView: View {
             AsyncImage(url: track.album!.images![0].url) { image in
                 image.resizable()
             } placeholder: {
-                ProgressView()
-                    .padding(.trailing)
+                VStack(alignment:.center) {
+                    ProgressView()
+                }
+                .padding(.trailing)
             }
             .aspectRatio(contentMode: .fit)
             .cornerRadius(6)
@@ -96,9 +98,10 @@ struct SearchableSongView: View {
                 return selectedTrack.id == track.id
             }) {
                 Image(systemName: "checkmark.circle.fill")
+                    .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name)
+                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name, order: selectedTracks.count)
                     selectedTracks.append(select)
                 }) {
                     Image(systemName: "plus.circle")

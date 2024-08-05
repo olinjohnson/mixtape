@@ -26,7 +26,7 @@ struct TapeCardView: View {
                 .foregroundStyle(.white)
                 Spacer()
             }
-            .padding(.leading, 28)
+            .padding([.leading, .trailing], 28)
             .padding(.top, 20)
         }
         .frame(maxWidth:.infinity, minHeight: 250, maxHeight: 250)
