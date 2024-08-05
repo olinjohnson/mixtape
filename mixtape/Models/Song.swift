@@ -26,9 +26,9 @@ class Song {
     }
 }
 
-struct Album {
-    var cover: Image
-    var artist: String
-    var name: String
-    var songs: [Song]
-}
+//struct Album {
+//    var cover: Image
+//    var artist: String
+//    var name: String
+//    var songs: [Song]
+//}
