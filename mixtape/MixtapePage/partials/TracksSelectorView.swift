@@ -17,18 +17,39 @@ struct TracksSelectorView: View {
     
     var body: some View {
         VStack(alignment:.leading, spacing:5) {
-            
-            if(tracks.count == 0) {
-                VStack(alignment:.leading) {
-                    Text("No tracks yet")
-                        .bold()
-                }
-                .padding(.bottom, 7)
-                .padding(.top, 2)
-            } else {
+//            if(tracks.count == 0) {
+//                VStack(alignment:.leading) {
+//                    Text("No tracks yet")
+//                        .bold()
+//                }
+//                .padding(.bottom, 7)
+//                .padding(.top, 2)
+            if (tracks.count != 0) {
                 ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
                     HStack(alignment:.center) {
                         TrackView(track: track)
+                        
+                        Button(action: {
+                            withAnimation {
+                                track.order += 1.5
+                            }
+                            self.resetTrackOrder()
+                        }) {
+                            Image(systemName: "arrow.down.circle.fill")
+                                .foregroundStyle(Color(uiColor: UIColor.systemGray3))
+                        }
+                        
+                        Button(action: {
+                            withAnimation {
+                                track.order -= 1.5
+                            }
+                            self.resetTrackOrder()
+                        }) {
+                            Image(systemName: "arrow.up.circle.fill")
+                                .foregroundStyle(Color(uiColor: UIColor.systemGray3))
+                        }
+                        .padding([.leading, .trailing], 5)
+                        
                         Button(action: {
                             withAnimation {
                                 tracks.removeAll(where: { tr in
@@ -40,16 +61,18 @@ struct TracksSelectorView: View {
                             Image(systemName: "minus.circle.fill")
                                 .foregroundStyle(.red)
                         }
+                        
                     }
 
-                    if track.order < tracks.count - 1 {
+                    if (track.order < Double(tracks.count) - 1) {
                         Divider()
                             .padding(.leading, 60)
                     }
                 }
+                Divider()
+                    .padding(.leading, 60)
+                    .padding(.bottom, 10)
             }
-            
-            Divider()
                 //.padding([.top, .bottom], 5)
             Button(action: {
                 if spotifyController.isAuthorized {
@@ -75,7 +98,6 @@ struct TracksSelectorView: View {
             .sheet(isPresented: $showingSearchTrackPopover) {
                 TrackSelectPopoverView(selectedTracks: $tracks)
             }
-            .padding(.top, 10)
             
         }
         //.padding([.leading, .trailing])
@@ -89,7 +111,7 @@ struct TracksSelectorView: View {
         self.tracks = self.tracks.sorted(by: {$0.order < $1.order})
         var counter = 0
         for track in self.tracks {
-            track.order = counter
+            track.order = Double(counter)
             counter += 1
         }
     }

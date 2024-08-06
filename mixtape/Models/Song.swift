@@ -17,9 +17,9 @@ class Song {
     var artist: String
     var name: String
     
-    var order: Int
+    var order: Double
     
-    init(id: String, cover: String, artist: String, name: String, order: Int = 0) {
+    init(id: String, cover: String, artist: String, name: String, order: Double = 0.0) {
         self.id = id
         self.cover = cover
         self.artist = artist

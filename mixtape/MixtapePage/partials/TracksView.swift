@@ -45,7 +45,7 @@ struct TracksView: View {
             if (tracks.count) > 0 {
                 ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
                     TrackView(track: track)
-                    if track.order < tracks.count - 1 {
+                    if (track.order < Double(tracks.count) - 1) {
                         Divider()
                             .padding(.leading, 60)
                     }

@@ -167,16 +167,14 @@ struct EditMixtapeView: View {
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true
                                 }) {
-                                    //NavigationLink(destination:MixtapesView().toolbar(.visible, for: .tabBar)) {
-                                        Text("Save")
-                                            .padding()
-                                            .frame(maxWidth:.infinity)
-                                            .background(.green)
-                                            .cornerRadius(10)
-                                            .foregroundColor(.white)
-                                            .font(.title3)
-                                            .bold()
-                                    //}
+                                    Text("Save")
+                                        .padding()
+                                        .frame(maxWidth:.infinity)
+                                        .background(.green)
+                                        .cornerRadius(10)
+                                        .foregroundColor(.white)
+                                        .font(.title3)
+                                        .bold()
                                 }
                                 .shadow(color: .black.opacity(0.2), radius: 8, x: 1, y: 1)
                             }

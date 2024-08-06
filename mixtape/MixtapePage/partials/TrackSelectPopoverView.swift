@@ -101,7 +101,7 @@ struct SearchableSongView: View {
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name, order: selectedTracks.count)
+                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count))
                     selectedTracks.append(select)
                 }) {
                     Image(systemName: "plus.circle")
