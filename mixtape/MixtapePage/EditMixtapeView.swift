@@ -162,9 +162,7 @@ struct EditMixtapeView: View {
                                 Button(action:{
                                     modelContext.delete(mixtape)
                                     mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
-                                    for song in inputTracks {
-                                        mixtape.songs.append(song)
-                                    }
+                                    mixtape.songs = inputTracks
                                     modelContext.insert(mixtape)
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true
@@ -203,7 +201,10 @@ struct EditMixtapeView: View {
             inputBody = mixtape.body
             inputDate = mixtape.date
             inputCover = mixtape.cover
-            inputTracks = mixtape.songs
+//            inputTracks = mixtape.songs
+            for song in mixtape.songs {
+                inputTracks.append(Song(id: song.id, cover: song.cover, artist: song.artist, name: song.name, order: song.order))
+            }
         })
     }
 }

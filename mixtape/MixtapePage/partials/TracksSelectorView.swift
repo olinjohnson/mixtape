@@ -16,7 +16,7 @@ struct TracksSelectorView: View {
     @State private var showingSearchTrackPopover = false
     
     var body: some View {
-        VStack(alignment:.leading) {
+        VStack(alignment:.leading, spacing:5) {
             
             if(tracks.count == 0) {
                 VStack(alignment:.leading) {
@@ -27,7 +27,21 @@ struct TracksSelectorView: View {
                 .padding(.top, 2)
             } else {
                 ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
-                    TrackView(track: track)
+                    HStack(alignment:.center) {
+                        TrackView(track: track)
+                        Button(action: {
+                            withAnimation {
+                                tracks.removeAll(where: { tr in
+                                    track.order == tr.order
+                                })
+                            }
+                            self.resetTrackOrder()
+                        }) {
+                            Image(systemName: "minus.circle.fill")
+                                .foregroundStyle(.red)
+                        }
+                    }
+
                     if track.order < tracks.count - 1 {
                         Divider()
                             .padding(.leading, 60)
@@ -70,7 +84,22 @@ struct TracksSelectorView: View {
         .background(Color(uiColor: UIColor.systemGray6))
         .cornerRadius(10)
     }
+    
+    func resetTrackOrder() {
+        self.tracks = self.tracks.sorted(by: {$0.order < $1.order})
+        var counter = 0
+        for track in self.tracks {
+            track.order = counter
+            counter += 1
+        }
+    }
 }
+
+//struct EditTrackView: View {
+//    var body: some View {
+//        
+//    }
+//}
 
 //#Preview {
 //    TracksSelectorView()

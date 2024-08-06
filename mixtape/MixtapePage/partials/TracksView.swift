@@ -41,7 +41,7 @@ struct TracksView: View {
     let tracks: [Song]
     
     var body: some View {
-        VStack(alignment:.leading) {
+        VStack(alignment:.leading, spacing:5) {
             if (tracks.count) > 0 {
                 ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
                     TrackView(track: track)
