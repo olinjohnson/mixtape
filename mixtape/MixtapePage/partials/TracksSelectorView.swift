@@ -17,58 +17,59 @@ struct TracksSelectorView: View {
     
     var body: some View {
         VStack(alignment:.leading, spacing:5) {
-//            if(tracks.count == 0) {
-//                VStack(alignment:.leading) {
-//                    Text("No tracks yet")
-//                        .bold()
-//                }
-//                .padding(.bottom, 7)
-//                .padding(.top, 2)
-            if (tracks.count != 0) {
-                ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
-                    HStack(alignment:.center) {
-                        TrackView(track: track)
-                        
-                        Button(action: {
-                            withAnimation {
-                                track.order += 1.5
-                            }
+            ForEach($tracks) { $track in
+                HStack(alignment:.center) {
+                    SongView(track: track)
+                    
+                    Button(action: {
+                        withAnimation {
+                            track.order += 1.5
                             self.resetTrackOrder()
-                        }) {
-                            Image(systemName: "arrow.down.circle.fill")
-                                .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                         }
-                        
-                        Button(action: {
-                            withAnimation {
-                                track.order -= 1.5
-                            }
-                            self.resetTrackOrder()
-                        }) {
-                            Image(systemName: "arrow.up.circle.fill")
-                                .foregroundStyle(Color(uiColor: UIColor.systemGray3))
-                        }
-                        .padding([.leading, .trailing], 5)
-                        
-                        Button(action: {
-                            withAnimation {
-                                tracks.removeAll(where: { tr in
-                                    track.order == tr.order
-                                })
-                            }
-                            self.resetTrackOrder()
-                        }) {
-                            Image(systemName: "minus.circle.fill")
-                                .foregroundStyle(.red)
-                        }
-                        
+                    }) {
+                        Image(systemName: "arrow.down.circle.fill")
+                            .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                     }
-
-                    if (track.order < Double(tracks.count) - 1) {
-                        Divider()
-                            .padding(.leading, 60)
+                    
+                    Button(action: {
+                        withAnimation {
+                            track.order -= 1.5
+                            self.resetTrackOrder()
+                        }
+                    }) {
+                        Image(systemName: "arrow.up.circle.fill")
+                            .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                     }
+                    .padding([.leading, .trailing], 5)
+                    
+                    Button(action: {
+                        withAnimation {
+                            tracks.removeAll(where: { tr in
+                                track.order == tr.order
+                            })
+                            self.resetTrackOrder()
+                        }
+                    }) {
+                        Image(systemName: "minus.circle.fill")
+                            .foregroundStyle(.red)
+                    }
+                    
                 }
+                TextField("Add a track caption...", text: $track.caption, axis:.vertical)
+                    .padding(.leading, 65)
+                    .padding(.bottom, 8)
+                    .multilineTextAlignment(.leading)
+                    .onAppear(perform: {
+                        track.caption = track.caption.trimmingCharacters(in: .whitespacesAndNewlines)
+                    })
+                
+                if (track.order < Double(tracks.count) - 1) {
+                    Divider()
+                        .padding(.leading, 60)
+                }
+            }
+            
+            if tracks.count != 0 {
                 Divider()
                     .padding(.leading, 60)
                     .padding(.bottom, 10)
@@ -98,13 +99,16 @@ struct TracksSelectorView: View {
             .sheet(isPresented: $showingSearchTrackPopover) {
                 TrackSelectPopoverView(selectedTracks: $tracks)
             }
-            
         }
         //.padding([.leading, .trailing])
         .frame(minWidth: 0, maxWidth: .infinity)
         .padding()
         .background(Color(uiColor: UIColor.systemGray6))
         .cornerRadius(10)
+        .onAppear(perform: {
+            tracks = tracks.sorted(by: {$0.order < $1.order})
+        })
+        
     }
     
     func resetTrackOrder() {
@@ -116,12 +120,6 @@ struct TracksSelectorView: View {
         }
     }
 }
-
-//struct EditTrackView: View {
-//    var body: some View {
-//        
-//    }
-//}
 
 //#Preview {
 //    TracksSelectorView()

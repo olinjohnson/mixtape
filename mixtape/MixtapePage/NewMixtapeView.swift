@@ -170,7 +170,7 @@ struct NewMixtapeView: View {
                                 }
                                 //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
-                                    let newMixtape = Tape(id: inputID, cover: inputCover!, date: inputDate, title:inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: inputTracks)
+                                    let newMixtape = Tape(id: inputID, cover: inputCover!, date: inputDate, title:inputTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled Mixtape" : inputHeading, body: inputBody.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "There's nothing here yet" : inputBody, songs: inputTracks)
                                     modelContext.insert(newMixtape)
                                     do { try modelContext.save() } catch {}
                                     self.dismiss()
@@ -200,6 +200,16 @@ struct NewMixtapeView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack{
+                    Spacer()
+                    Button("Done") {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+            }
+        }
     }
 }
 

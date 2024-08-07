@@ -158,10 +158,9 @@ struct EditMixtapeView: View {
                                         secondaryButton: .cancel(Text("No, go back"))
                                     )
                                 }
-                                //TODO: UPDATE THIS BUTTON FUNCTIONALITY (MAKE SURE IT SWIPES THE RIGHT DIRECTION) WHEN MIXTAPE SAVING IS IMPLEMENTED
                                 Button(action:{
                                     modelContext.delete(mixtape)
-                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading == "" ? "Untitled Mixtape" : inputHeading, body: inputBody == "" ? "There's nothing here yet" : inputBody, songs: [])
+                                    mixtape = Tape(id: mixtape.id, cover: inputCover!, date: inputDate, title: inputTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled Mixtape" : inputTitle, heading: inputHeading.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled Mixtape" : inputHeading, body: inputBody.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "There's nothing here yet" : inputBody, songs: [])
                                     mixtape.songs = inputTracks
                                     modelContext.insert(mixtape)
                                     do { try modelContext.save() } catch {}
@@ -201,9 +200,19 @@ struct EditMixtapeView: View {
             inputCover = mixtape.cover
 //            inputTracks = mixtape.songs
             for song in mixtape.songs {
-                inputTracks.append(Song(id: song.id, cover: song.cover, artist: song.artist, name: song.name, order: song.order))
+                inputTracks.append(Song(id: song.id, cover: song.cover, artist: song.artist, name: song.name, order: song.order, caption: song.caption))
             }
         })
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack{
+                    Spacer()
+                    Button("Done") {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+            }
+        }
     }
 }
 

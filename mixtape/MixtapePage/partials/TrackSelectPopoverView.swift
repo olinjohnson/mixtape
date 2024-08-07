@@ -39,12 +39,19 @@ struct TrackSelectPopoverView: View {
         }
         .searchable(text: $searchText)
         .onChange(of:searchText) {
-            retrieveSearchResults()
+            _retrieveSearchResults()
         }
         
     }
     
-    func retrieveSearchResults() {
+    /**
+    Fetch the results of a SpotifyAPI search query
+     
+    This method does not accept any arguments - the value of `self.searchText` is used as the search query
+     
+    - Returns: No return value; this method populates `self.searchResults` with a list of SpotifyAPI `Track` objects
+    */
+    func _retrieveSearchResults() {
         
         self.searchCancellable = spotifyController.spotify.search(query: self.searchText, categories: [.track])
             .receive(on: RunLoop.main)
@@ -56,7 +63,6 @@ struct TrackSelectPopoverView: View {
                 },
                 receiveValue: { results in
                     self.searchResults = results.tracks?.items ?? []
-//                let song = Song(id: UUID(), cover: track., artist: track.artists., name: track.tracks)
                 }
             )
 
@@ -86,7 +92,7 @@ struct SearchableSongView: View {
                 Text(track.name)
                     .font(.headline)
                     .multilineTextAlignment(.leading)
-                Text(artistsToString(track.artists!))
+                Text(SearchableSongView.artistsToString(track.artists!))
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
 //                Text(track.album!.images![0].url.absoluteString)
@@ -101,7 +107,7 @@ struct SearchableSongView: View {
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count))
+                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: SearchableSongView.artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count), caption: "")
                     selectedTracks.append(select)
                 }) {
                     Image(systemName: "plus.circle")
@@ -112,7 +118,12 @@ struct SearchableSongView: View {
         .padding([.leading, .trailing])
     }
     
-    func artistsToString(_ artists: [Artist]) -> String {
+    /**
+    Represent a list of SpotifyAPI `Artist` objects as a String of names
+    - Parameter artists: The list of `Artist`s
+    - Returns: A String of comma-separated names
+    */
+    static func artistsToString(_ artists: [Artist]) -> String {
         var str = artists[0].name
         for art in artists.dropFirst() {
             str.append(", \(art.name)")

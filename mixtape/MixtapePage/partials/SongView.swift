@@ -2,40 +2,40 @@
 //  SongView.swift
 //  mixtape
 //
-//  Created by Olin Johnson on 2/20/24.
+//  Created by Olin Johnson on 8/6/24.
 //
 
 import SwiftUI
 
 struct SongView: View {
-    let song: Song
+    
+    let track: Song
+    
     var body: some View {
-        HStack{
-            AsyncImage(url: URL(string: song.cover)) { image in
+        HStack(alignment:.center) {
+            AsyncImage(url: URL(string: track.cover)) { image in
                 image.resizable()
             } placeholder: {
-                ProgressView()
+                VStack(alignment:.center) {
+                    ProgressView()
+                }
             }
             .aspectRatio(contentMode: .fit)
             .cornerRadius(6)
+            .frame(maxHeight:50)
+            .padding(.trailing, 5)
             VStack(alignment:.leading) {
-                Spacer()
-                Text(song.name)
-                    .font(.headline)
-                    .multilineTextAlignment(.leading)
-                Text(song.artist)
-                    .font(.subheadline)
-                    .multilineTextAlignment(.leading)
-                Spacer()
+                Text(track.name)
+                    .bold()
+                Text(track.artist)
+                    .font(.caption)
             }
-            .padding()
             Spacer()
         }
-        .frame(height:50)
-        .padding(5)
+        .frame(maxHeight:50)
     }
 }
 
 //#Preview {
-//    SongView(song: Tape.sample_tapes[0].songs[0])
+//    SongView()
 //}

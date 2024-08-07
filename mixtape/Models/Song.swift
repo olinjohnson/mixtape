@@ -16,15 +16,16 @@ class Song {
     var cover: String
     var artist: String
     var name: String
-    
     var order: Double
+    var caption: String
     
-    init(id: String, cover: String, artist: String, name: String, order: Double = 0.0) {
+    init(id: String, cover: String, artist: String, name: String, order: Double = 0.0, caption: String) {
         self.id = id
         self.cover = cover
         self.artist = artist
         self.name = name
         self.order = order
+        self.caption = caption
     }
 }
 
