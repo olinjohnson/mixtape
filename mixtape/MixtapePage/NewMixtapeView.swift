@@ -74,6 +74,7 @@ struct NewMixtapeView: View {
                                     .offset(y: -gr.frame(in: .global).origin.y)
                                 }
                             /*ImagePickerView(gr:gr)*/
+                            /*
                             HStack {
                                 VStack(alignment:.leading){
                                     Text("New mixtape")
@@ -117,28 +118,32 @@ struct NewMixtapeView: View {
                             .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                             .offset(y: -gr.frame(in: .global).origin.y + 60)
                             .padding([.leading, .trailing])
+                             */
                         }
                         .frame(height:350)
                             
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
-                                    .padding([.bottom, .top])
+                                DatePicker("What date?       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)
+                                    .labelsHidden()
+//                                    .padding([.bottom, .top], 5)
                                     .font(.title3)
+                                    .padding(.bottom, 5)
                                 //.bold()
-                                Divider()
-                                    .padding([.top, .bottom])
+//                                Divider()
+//                                    .padding([.top, .bottom])
                                 TextField("Put your heading here...", text: $inputHeading, axis:.vertical)
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.heading)
                                 TextField("Write about your mixtape here...", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
-                                    .padding(.bottom, 40)
+//                                    .padding(.bottom, 40)
                                 Text("Tracks")
                                     .font(.title3)
                                     .bold()
+                                    .padding(.top, 40)
                             }
                             .padding([.leading, .trailing])
                             

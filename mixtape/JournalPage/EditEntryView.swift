@@ -40,7 +40,7 @@ struct EditEntryView: View {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
                             ImagePickerView(gr:gr, imageData:$inputCover)
-                            HStack {
+                            /*HStack {
                                 VStack(alignment:.leading){
                                     Text("Edit entry")
                                         .font(.title2)
@@ -82,18 +82,20 @@ struct EditEntryView: View {
                             .cornerRadius(12)
                             .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                             .offset(y: -gr.frame(in: .global).origin.y + 60)
-                            .padding([.leading, .trailing])
+                            .padding([.leading, .trailing])*/
                         }
                         .frame(height:350)
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
-                                    .padding([.bottom, .top])
+                                DatePicker("Date       \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)
+                                    .labelsHidden()
+//                                    .padding([.bottom, .top])
                                     .font(.title3)
+                                    .padding(.bottom, 5)
                                 //.bold()
-                                Divider()
-                                    .padding([.top, .bottom])
+//                                Divider()
+//                                    .padding([.top, .bottom])
                                 TextField("", text: $inputTitle, axis:.vertical)
                                     .font(.title)
                                     .bold()
@@ -178,6 +180,16 @@ struct EditEntryView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack{
+                    Spacer()
+                    Button("Done") {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+            }
+        }
         .onAppear(perform: {
             inputCover = entry.cover
             inputTitle = entry.title

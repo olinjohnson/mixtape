@@ -41,7 +41,7 @@ struct NewEntryView: View {
                     VStack(alignment: .leading) {
                         GeometryReader { gr in
                             ImagePickerView(gr:gr, imageData:self.$inputCover)
-                            HStack {
+                            /*HStack {
                                 VStack(alignment:.leading){
                                     Text("New entry")
                                         .font(.title2)
@@ -83,18 +83,20 @@ struct NewEntryView: View {
                             .cornerRadius(12)
                             .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                             .offset(y: -gr.frame(in: .global).origin.y + 60)
-                            .padding([.leading, .trailing])
+                            .padding([.leading, .trailing])*/
                         }
                         .frame(height:350)
                         
                         VStack {
                             VStack(alignment:.leading) {
-                                DatePicker("What date?            \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)//.labelsHidden()
-                                    .padding([.bottom, .top])
+                                DatePicker("What date?            \(Image(systemName: "arrow.right"))", selection: $inputDate, displayedComponents: .date)
+                                    .labelsHidden()
+//                                    .padding([.bottom, .top])
                                     .font(.title3)
+                                    .padding(.bottom, 5)
                                 //.bold()
-                                Divider()
-                                    .padding([.top, .bottom])
+//                                Divider()
+//                                    .padding([.top, .bottom])
                                 TextField("Put your title here...", text: $inputTitle, axis:.vertical)
                                     .font(.title)
                                     .bold()
@@ -176,6 +178,16 @@ struct NewEntryView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .keyboard) {
+                HStack{
+                    Spacer()
+                    Button("Done") {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
+                }
+            }
+        }
     }
 }
 

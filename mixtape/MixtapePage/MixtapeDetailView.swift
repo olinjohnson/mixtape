@@ -8,6 +8,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct MixtapeDetailView: View {
     
@@ -19,6 +20,8 @@ struct MixtapeDetailView: View {
     @State var editNavigationReady = false
     
     @State var mixtape: Tape
+    @State var uiCover: UIImage = UIImage(named: "no_select")!
+    var emitter = PassthroughSubject<ExpandCollapseState, Never>()
     
     var body: some View {
         NavigationStack {
@@ -28,7 +31,7 @@ struct MixtapeDetailView: View {
                     VStack {
                         GeometryReader { gr in
                             //                        ZStack(alignment: Alignment(horizontal: .leading, vertical: .top)) {
-                            Image(uiImage: UIImage(data: mixtape.cover)!)
+                            Image(uiImage: uiCover)
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y), alignment:.center)
@@ -120,10 +123,44 @@ struct MixtapeDetailView: View {
 //                                .padding(.top, 5)
                             
                             // track title
-                            Text("Tracks")
-                                .font(.title3)
-                                .bold()
-                                .padding([.leading, .trailing])
+                            HStack {
+                                Text("Tracks")
+                                    .font(.title3)
+                                    .bold()
+                                Spacer()
+                                Button(action: {
+                                    emitter.send(ExpandCollapseState(true))
+                                }) {
+                                    Image(systemName: "rectangle.expand.vertical")
+                                        .font(.title3)
+                                        .foregroundStyle(.black)
+                                }
+                                .padding(.trailing, 5)
+                                Button(action: {
+                                    emitter.send(ExpandCollapseState(false))
+                                }) {
+                                    Image(systemName: "rectangle.compress.vertical")
+                                        .font(.title3)
+                                        .foregroundStyle(.black)
+                                }
+//                                Menu {
+//                                    Button(action: {
+//                                        emitter.send(ExpandCollapseState(true))
+//                                    }) {
+//                                        Label("Expand all", systemImage: "rectangle.expand.vertical")
+//                                    }
+//                                    Button(action: {
+//                                        emitter.send(ExpandCollapseState(false))
+//                                    }) {
+//                                        Label("Collapse all", systemImage: "rectangle.compress.vertical")
+//                                    }
+//                                } label: {
+//                                    Image(systemName: "ellipsis")
+//                                        .font(.title)
+//                                        .foregroundStyle(.black)
+//                                }
+                            }
+                            .padding([.leading, .trailing])
                             
                             // track list
                             /*
@@ -139,7 +176,7 @@ struct MixtapeDetailView: View {
                              .padding([.leading, .trailing])
                              }
                              }*/
-                            TracksView(tracks: mixtape.songs)
+                            TracksView(tracks: $mixtape.songs, event: emitter.eraseToAnyPublisher())
                             Spacer()
                         }
                         .padding()
@@ -158,6 +195,25 @@ struct MixtapeDetailView: View {
             }
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear(perform: {
+            self.uiCover = UIImage(data: mixtape.cover)!
+        })
+    }
+}
+
+/**
+ A class to represent when the user executes an 'expand all' or 'collapse all' action.
+ 
+ # Properties: #
+ `state`\
+ &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; - `true` represents an 'expand all' action, `false` represents a 'collapse all' action.
+ */
+class ExpandCollapseState {
+    
+    var state: Bool
+    
+    init(_ state: Bool) {
+        self.state = state
     }
 }
 

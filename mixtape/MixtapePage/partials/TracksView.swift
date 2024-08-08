@@ -6,16 +6,18 @@
 //
 
 import SwiftUI
+import Combine
 
 struct TracksView: View {
     
-    let tracks: [Song]
+    @Binding var tracks: [Song]
+    var event: AnyPublisher<ExpandCollapseState, Never>
     
     var body: some View {
         VStack(alignment:.leading, spacing:5) {
             if (tracks.count) > 0 {
                 ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
-                    _FoldableCaptionView(track: track)
+                    _FoldableCaptionView(track: track, event: event)
                     if (track.order < Double(tracks.count) - 1) {
                         Divider()
                             .padding(.leading, 60)
@@ -41,6 +43,7 @@ struct _FoldableCaptionView: View {
     
     var track: Song
     @State var showingCaption = false
+    var event: AnyPublisher<ExpandCollapseState, Never>
     
     var body: some View {
         HStack {
@@ -62,10 +65,18 @@ struct _FoldableCaptionView: View {
             }
         }
         .onAppear(perform: {
-            if track.caption.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 {
-                self.showingCaption = true
+            self.showingCaption = track.caption.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 ? true : false
+        })
+        .onReceive(event, perform: { e in
+            withAnimation {
+                if e.state {
+                    self.showingCaption = track.caption.trimmingCharacters(in: .whitespacesAndNewlines).count > 0 ? true : false
+                } else {
+                    self.showingCaption = false
+                }
             }
         })
+        
         if self.showingCaption {
             if track.caption.trimmingCharacters(in: .whitespacesAndNewlines).count == 0 {
                 Text("This track hasn't been captioned yet.")

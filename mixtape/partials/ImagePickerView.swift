@@ -15,24 +15,16 @@ struct ImagePickerView: View {
     
     @State var selectedPhoto: PhotosPickerItem?
     @Binding var imageData: Data?
+    @State var uiCover = UIImage(named: "no_select")!
     
     var body: some View {
         ZStack(alignment:.center){
-            if imageData == nil {
-                Image(uiImage: UIImage(named: "no_select")!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
-                    .clipped()
-                    .offset(y: -gr.frame(in: .global).origin.y)
-            }else{
-                Image(uiImage: UIImage(data: imageData!)!)
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
-                    .clipped()
-                    .offset(y: -gr.frame(in: .global).origin.y)
-            }
+            Image(uiImage: uiCover)
+                .resizable()
+                .scaledToFill()
+                .frame(width: gr.size.width, height: gr.size.height + max(0, gr.frame(in: .global).origin.y))//, alignment:.bottom)
+                .clipped()
+                .offset(y: -gr.frame(in: .global).origin.y)
             
             PhotosPicker(selection:$selectedPhoto, matching:.images) {
                 VStack(alignment: .center) {
@@ -50,6 +42,7 @@ struct ImagePickerView: View {
         }
         .task(id: selectedPhoto) {
             imageData = try? await selectedPhoto?.loadTransferable(type: Data.self) ?? (imageData ?? UIImage(named: "no_select")?.pngData())
+            uiCover = UIImage(data: imageData!)!
         }
     }
 }
