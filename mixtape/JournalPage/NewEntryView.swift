@@ -25,6 +25,7 @@ struct NewEntryView: View {
     @State var inputBody = ""
     @State var inputDate = Date()
     @State var inputCover: Data?
+    @State private var inputMedia: [Media] = []
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0
@@ -104,7 +105,11 @@ struct NewEntryView: View {
                                 TextField("What would you like to write about today?", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
                             }
-                            .padding([.leading, .trailing, .bottom])
+                            .padding([.leading, .trailing])
+                            
+                            MediaSelectorView(media: $inputMedia)
+                                .padding(.top, 35)
+                                .padding(.bottom, 10)
                             
                             Spacer()
                             
@@ -131,7 +136,7 @@ struct NewEntryView: View {
                                 }
                                 
                                 Button(action:{
-                                    let newEntry = Entry(id: inputID, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    let newEntry = Entry(id: inputID, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate, media:inputMedia)
                                     modelContext.insert(newEntry)
                                     do { try modelContext.save() } catch {}
                                     dismiss()

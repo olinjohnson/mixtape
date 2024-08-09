@@ -1,5 +1,5 @@
 {
-  "originHash" : "8142249aa8734e017fca72ff1b9f76f93b66269762db25f8e636716e46aa0560",
+  "originHash" : "439e78d8ba2da98d0a196f4685958e4ebcbcfa41735479e539b6697a3800b67f",
   "pins" : [
     {
       "identity" : "auth0.swift",
@@ -35,6 +35,15 @@
       "state" : {
         "branch" : "master",
         "revision" : "e0c7eebc5a4465a3c4680764f26b7a61f567cdaf"
+      }
+    },
+    {
+      "identity" : "masonrystack",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/lukepistrol/MasonryStack",
+      "state" : {
+        "revision" : "d0901713a72febe9bee7b8db5af6fb5d63362ab8",
+        "version" : "0.1.0"
       }
     },
     {

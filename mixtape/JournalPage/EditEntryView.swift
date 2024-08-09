@@ -23,6 +23,7 @@ struct EditEntryView: View {
     @State private var inputBody = ""
     @State private var inputDate = Date()
     @State private var inputCover: Data?
+    @State private var inputMedia: [Media] = []
     
     @State private var saveNavigationReady = false
     
@@ -100,10 +101,14 @@ struct EditEntryView: View {
                                     .font(.title)
                                     .bold()
                                     .focused($textFieldFocus, equals:.title)
-                                TextField(inputBody.count > 0 ? inputBody : "There's nothing here yet", text: $inputBody, axis:.vertical)
+                                TextField(inputBody.count > 0 ? inputBody : "There's nothing here yet.", text: $inputBody, axis:.vertical)
                                     .focused($textFieldFocus, equals:.body)
                             }
-                            .padding([.leading, .trailing, .bottom])
+                            .padding([.leading, .trailing])
+                            
+                            MediaSelectorView(media: $inputMedia)
+                                .padding(.top, 35)
+                                .padding(.bottom, 10)
                             
                             Spacer()
                             
@@ -131,7 +136,7 @@ struct EditEntryView: View {
                                 
                                 Button(action:{
                                     modelContext.delete(entry)
-                                    entry = Entry(id: entry.id, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate)
+                                    entry = Entry(id: entry.id, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate, media: inputMedia)
                                     modelContext.insert(entry)
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true
@@ -195,6 +200,16 @@ struct EditEntryView: View {
             inputTitle = entry.title
             inputBody = entry.body
             inputDate = entry.date
+            
+            // creates a deep copy of entry.media
+            for snippet in entry.media {
+                if snippet.song != nil {
+                    inputMedia.append(Media(song: snippet.song))
+                } else if snippet.image != nil {
+                    inputMedia.append(Media(image: snippet.image))
+                }
+
+            }
         })
     }
 }

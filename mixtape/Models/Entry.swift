@@ -23,18 +23,41 @@ class Entry {
     var body: String
     var date: Date
     
-    init(id: UUID, cover: Data, title: String, body: String, date: Date) {
+    var media: [Media]
+    
+    init(id: UUID, cover: Data, title: String, body: String, date: Date, media: [Media]) {
         self.id = id
         self.cover = cover
         self.title = title
         self.body = body
         self.date = date
+        self.media = media
     }
+}
+
+@Model
+class Media {
+
+    @Attribute(.externalStorage)
+    var image: Data?
+    
+    var song: String?
+    
+    init(image: Data?) {
+        self.image = image
+        self.song = nil
+    }
+    
+    init(song: String?) {
+        self.image = nil
+        self.song = song
+    }
+    
 }
 
 extension Entry {
     static var empty: Entry {
-        return Entry(id: UUID(), cover: (UIImage(named: "no_select")?.pngData())!, title: "", body: "", date: Date())
+        return Entry(id: UUID(), cover: (UIImage(named: "no_select")?.pngData())!, title: "", body: "", date: Date(), media: [])
     }
 }
 
