@@ -12,7 +12,6 @@ import Combine
 
 /*
  TODO: bugs
- - Last track is duplicated ecah time edit entry
  - cant handle videos
  - progress views not formatted
  - redesign cards
@@ -26,6 +25,7 @@ struct MediaSelectorView: View {
     @Binding var media: [Media]
     @State var selectedPhotos: [PhotosPickerItem] = []
     @State var selectedTracks: [String] = []
+    @State var alreadyAddedTracks: [String] = []
     
     @State var trackSelectPopover = false
     @State var showingConnectAlert = false
@@ -63,7 +63,7 @@ struct MediaSelectorView: View {
                             .foregroundStyle(.black)
                     }
                     .sheet(isPresented: $trackSelectPopover) {
-                        MusicSelectPopoverView(selectedTracks:$selectedTracks)
+                        MusicSelectPopoverView(selectedTracks:$selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
                     }
                     .alert(isPresented:$showingConnectAlert) {
                         Alert(
@@ -92,8 +92,11 @@ struct MediaSelectorView: View {
                 }
             }
             //Saving URI for track
-            .onChange(of: selectedTracks) {
-                media.append(Media(song: selectedTracks.last!))
+            .onChange(of: trackSelectPopover) {
+                for track in selectedTracks {
+                    media.append(Media(song: track))
+                }
+                selectedTracks = []
             }
             MediaMasonryView(media:media)
                 .padding(.top)
@@ -101,11 +104,13 @@ struct MediaSelectorView: View {
         .onAppear(perform: {
             for snippet in media {
                 if snippet.song != nil {
-                    selectedTracks.append(snippet.song!)
+                    alreadyAddedTracks.append(snippet.song!)
                 }
             }
         })
+
     }
+    
 }
 
 //#Preview {

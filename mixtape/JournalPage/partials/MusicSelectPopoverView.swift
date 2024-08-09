@@ -19,6 +19,7 @@ struct MusicSelectPopoverView: View {
     @State private var searchCancellable: AnyCancellable? = nil
     
     @Binding var selectedTracks: [String]
+    @Binding var alreadyAddedTracks: [String]
     
     var body: some View {
         
@@ -26,7 +27,7 @@ struct MusicSelectPopoverView: View {
             if searchText != "" {
                 ScrollView {
                     ForEach(searchResults, id: \.id) { track in
-                        AlternateSearchableSongView(track:track, selectedTracks: $selectedTracks)
+                        AlternateSearchableSongView(track:track, selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
                     }
                     .padding(.top, 5)
                 }
@@ -78,6 +79,7 @@ struct AlternateSearchableSongView: View {
     
     var track: Track
     @Binding var selectedTracks: [String]
+    @Binding var alreadyAddedTracks: [String]
     
     var body: some View {
         HStack {
@@ -105,13 +107,14 @@ struct AlternateSearchableSongView: View {
             }
             Spacer()
             
-            if selectedTracks.contains(track.uri!) {
+            if alreadyAddedTracks.contains(track.uri!) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
                     let select = track.uri
                     selectedTracks.append(select!)
+                    alreadyAddedTracks.append(select!)
                 }) {
                     Image(systemName: "plus.circle")
                 }

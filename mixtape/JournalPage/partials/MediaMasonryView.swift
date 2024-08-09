@@ -44,9 +44,7 @@ struct SongCardView: View {
             AsyncImage(url: url) { image in
                 image.resizable()
             } placeholder: {
-                VStack(alignment:.center) {
-                    ProgressView()
-                }
+                ProgressView()
             }
             .aspectRatio(contentMode: .fit)
             .cornerRadius(6)
