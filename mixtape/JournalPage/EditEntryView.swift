@@ -136,7 +136,7 @@ struct EditEntryView: View {
                                 
                                 Button(action:{
                                     modelContext.delete(entry)
-                                    entry = Entry(id: entry.id, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate, media: inputMedia)
+                                    entry = Entry(id: entry.id, cover: inputCover!, title: inputTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled entry" : inputTitle, body: inputBody.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "There's nothing here yet." : inputBody, date: inputDate, media: inputMedia)
                                     modelContext.insert(entry)
                                     do { try modelContext.save() } catch {}
                                     saveNavigationReady = true

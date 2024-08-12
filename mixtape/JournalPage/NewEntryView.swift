@@ -136,7 +136,7 @@ struct NewEntryView: View {
                                 }
                                 
                                 Button(action:{
-                                    let newEntry = Entry(id: inputID, cover: inputCover!, title: inputTitle == "" ? "Untitled entry" : inputTitle, body: inputBody, date: inputDate, media:inputMedia)
+                                    let newEntry = Entry(id: inputID, cover: inputCover!, title: inputTitle.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "Untitled entry" : inputTitle, body: inputBody.trimmingCharacters(in: .whitespacesAndNewlines) == "" ? "There's nothing here yet." : inputBody, date: inputDate, media:inputMedia)
                                     modelContext.insert(newEntry)
                                     do { try modelContext.save() } catch {}
                                     dismiss()

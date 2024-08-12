@@ -124,6 +124,8 @@ struct SearchableSongView: View {
     - Returns: A String of comma-separated names
     */
     static func artistsToString(_ artists: [Artist]) -> String {
+        if artists.count == 0 {return ""}
+        
         var str = artists[0].name
         for art in artists.dropFirst() {
             str.append(", \(art.name)")

@@ -39,11 +39,11 @@ class Entry {
 class Media {
 
     @Attribute(.externalStorage)
-    var image: String?
+    var image: Data?
     
     var song: String?
     
-    init(image: String?) {
+    init(image: Data?) {
         self.image = image
         self.song = nil
     }
