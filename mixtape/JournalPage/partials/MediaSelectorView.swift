@@ -8,12 +8,12 @@
 import SwiftUI
 import SwiftData
 import PhotosUI
-import Combine
+import AVKit
+import MediaPicker
 
 /*
  TODO: bugs
  - cant handle videos
- - progress views not formatted
  - redesign cards
  */
 
@@ -23,12 +23,13 @@ struct MediaSelectorView: View {
     @Environment(\.modelContext) private var modelContext
     
     @Binding var media: [Media]
-    @State var selectedPhotos: [PhotosPickerItem] = []
+    @State var selectedPhotos: [String] = []
     @State var selectedTracks: [String] = []
     @State var alreadyAddedTracks: [String] = []
     
     @State var trackSelectPopover = false
     @State var showingConnectAlert = false
+    @State var showingPVPicker = false
     
     var body: some View {
         VStack(spacing: 0) {
@@ -73,24 +74,36 @@ struct MediaSelectorView: View {
                     }
                     .padding([.leading, .trailing], 5)
                     
-                    PhotosPicker(selection:$selectedPhotos) {
+                    Button(action: {
+                        showingPVPicker = true
+                    }) {
                         Image(systemName: "camera.viewfinder")
                             .font(.title3)
                             .foregroundStyle(.black)
                     }
+                    .mediaImporter(isPresented: $showingPVPicker, allowedMediaTypes: .all, allowsMultipleSelection: true) { result in
+                        switch result {
+                        case .success(let urls):
+                            for url in urls {
+                                media.append(Media(image:url.absoluteString))
+                            }
+                        case .failure(let error):
+                            print(error)
+                        }
+                    }
                 }
                 .padding(.trailing)
             }
-            .onChange(of: selectedPhotos) {
-                Task {
-                    for image in selectedPhotos {
-                        if let imageData = try? await image.loadTransferable(type: Data.self) {
-                            media.append(Media(image:imageData))
-                        }
-                    }
-                    selectedPhotos = []
-                }
-            }
+//            .onChange(of: selectedPhotos) {
+//                Task {
+//                    for image in selectedPhotos {
+//                        if let imageData = try? await image.loadTransferable(type: Data.self) {
+//                            media.append(Media(image:imageData))
+//                        }
+//                    }
+//                    selectedPhotos = []
+//                }
+//            }
             //Saving URI for track
             .onChange(of: trackSelectPopover) {
                 for track in selectedTracks {
