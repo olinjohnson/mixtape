@@ -27,15 +27,119 @@ struct AccountView: View {
     
     var body: some View {
         NavigationStack {
+            List {
+                HStack {
+                    iconView(systemName: "person.fill", color:.blue)
+                        .padding(.trailing, 5)
+                    Text("Profile")
+                }
+                .padding(.top, 5)
+                HStack {
+                    iconView(systemName: "bell.fill", color:.red)
+                        .padding(.trailing, 5)
+                    Text("Notifications")
+                }
+                HStack {
+                    iconView(systemName: "bubble.left.and.bubble.right.fill", color:.yellow)
+                        .padding(.trailing, 5)
+                    Text("Frequently Asked Questions")
+                }
+                .padding(.bottom, 5)
+                
+                Section {
+                    HStack {
+                        Image("spotify_icon_green")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height:30)
+                            .padding(.trailing, 5)
+                        Text("Connect to Spotify")
+//                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                    }
+                    .padding(.top, 5)
+                    HStack {
+                        Image("apple_music_icon")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height:30)
+                            .padding(.trailing, 5)
+                        Text("Connect to Apple Music")
+//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                    }
+                    .padding(.bottom, 5)
+                } header: {
+                    Text("Integrations")
+                } footer: {
+                }
+                
+                Section {
+                    HStack {
+                        iconView(systemName: "text.bubble.fill", color:.green)
+                            .padding(.trailing, 5)
+                        Text("Provide Feedback")
+                    }
+                    .padding(.top, 5)
+                    HStack {
+                        iconView(systemName: "ant.fill", color:.gray)
+                            .padding(.trailing, 5)
+                        Text("Report a Bug")
+                    }
+                    .padding(.bottom, 5)
+                } header: {
+                    Text("Support Mixtape")
+                } footer: {
+                    HStack{
+                        Spacer()
+                        VStack {
+                            Image("maine")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width:100)
+                            (
+                            Text("Made with ")
+                                .font(.caption)
+                                .foregroundStyle(.black)
+                            + Text(Image(systemName: "heart.fill"))
+                                .font(.caption)
+                                .foregroundStyle(.red)
+                            + Text(" from Maine")
+                                .font(.caption)
+                                .foregroundStyle(.black)
+                            )
+                        }
+                        Spacer()
+                    }
+                    .padding(.top)
+                }
+            }
+            .navigationTitle("Account")
+            /*
+             HStack {
+                 Text("Made with ")
+                     .font(.caption)
+                 +
+                 Text(Image(systemName: "heart.fill"))
+                     .font(.caption)
+                     .foregroundStyle(.red)
+                 +
+                 Text(" from Maine")
+                     .font(.caption)
+                 Image("maine")
+                     .resizable()
+                     .aspectRatio(contentMode: .fit)
+                     .frame(height:15)
+             }
+             */
+/*
             VStack(alignment:.leading) {
-//                AsyncImage(url: URL(string: userProfile.picture)) {image in
-//                    image.frame(maxWidth:160)
-//                } placeholder: {
-//                    Image(systemName: "person.crop.circle")
-//                        .resizable()
-//                        .scaledToFit()
-//                        .frame(width:160)
-//                }
+                //                AsyncImage(url: URL(string: userProfile.picture)) {image in
+                //                    image.frame(maxWidth:160)
+                //                } placeholder: {
+                //                    Image(systemName: "person.crop.circle")
+                //                        .resizable()
+                //                        .scaledToFit()
+                //                        .frame(width:160)
+                //                }
                 Text(userProfile.name)
                     .font(.title)
                 
@@ -64,22 +168,22 @@ struct AccountView: View {
                         .cornerRadius(10)
                     }
 //                    .buttonStyle(.plain)
-                    Button(action:{
-                        print("apple music functionality not implemented yet")
-                    }) {
-                        HStack {
-                            Text("Connect to Apple Music")
-    //                        Image("spotify_icon")
-    //                            .resizable()
-    //                            .scaledToFit()
-                        }
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
-                        .background(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
-                    }
+//                    Button(action:{
+//                        print("apple music functionality not implemented yet")
+//                    }) {
+//                        HStack {
+//                            Text("Connect to Apple Music")
+//    //                        Image("spotify_icon")
+//    //                            .resizable()
+//    //                            .scaledToFit()
+//                        }
+//                        .font(.title2)
+//                        .bold()
+//                        .frame(maxWidth:.infinity, minHeight: 50, maxHeight: 50)
+//                        .background(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+//                        .foregroundColor(.white)
+//                        .cornerRadius(10)
+//                    }
                 } else {
                     VStack {
                         HStack {
@@ -137,10 +241,29 @@ struct AccountView: View {
             }
             .padding()
             .navigationTitle("Account")
+ */
         }
         .onOpenURL { url in
             spotifyController.setAuthTokens(url)
         }
+    }
+}
+
+struct iconView: View {
+    var systemName: String
+    var color: Color
+    
+    var body: some View {
+        VStack {
+            Image(systemName: systemName)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundStyle(.white)
+                .padding(5)
+        }
+        .frame(width:30, height:30)
+        .background(color)
+        .cornerRadius(5)
     }
 }
 

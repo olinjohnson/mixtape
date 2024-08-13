@@ -158,7 +158,7 @@ struct NavbarView: View {
                         .padding([.leading, .trailing], 40)
                     }
                     .padding(0)
-                    .background(.white)
+                    .background(Color(UIColor.systemGray6))
                 }
             }
             .edgesIgnoringSafeArea(.bottom)

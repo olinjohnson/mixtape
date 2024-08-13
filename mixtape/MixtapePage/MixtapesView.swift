@@ -46,17 +46,7 @@ struct MixtapesView: View {
                         }
                         
                         //.searchable(text: $searchText)
-                        /*(
-                            Text("Made with ")
-                                .font(.caption)
-                            +
-                            Text(Image(systemName: "heart.fill"))
-                                .font(.caption)
-                                .foregroundStyle(Theme.accent_color)
-                            +
-                            Text(" from Maine \(Image(systemName: "mappin.and.ellipse"))")
-                                .font(.caption)
-                        )*/
+                        
 //                        Spacer()
 //                        Spacer()
                     }
@@ -81,6 +71,7 @@ struct MixtapesView: View {
                 .offset(x: -16, y:-30)
                 
             }
+            .background(Color(UIColor.systemGray6))
             .onAppear(perform: {nBar.isShowing = true})
             //.edgesIgnoringSafeArea(.bottom)
             //.background(Theme.secondary_accent_color)
