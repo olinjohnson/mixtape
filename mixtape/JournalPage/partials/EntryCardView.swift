@@ -46,7 +46,7 @@ struct EntryCardView: View {
         .background(.white)
         .cornerRadius(10)
         .padding([.leading, .trailing])
-        .shadow(color: .black.opacity(0.01), radius:2, x:2, y:2)
+//        .shadow(color: .black.opacity(0.01), radius:2, x:2, y:2)
     }
 }
 

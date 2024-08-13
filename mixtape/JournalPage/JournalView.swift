@@ -52,6 +52,7 @@ struct JournalView: View {
                 }
 
                 // "New" button
+                /*
                 NavigationLink(destination: NewEntryView()) {
                     VStack {
                         Text("+")
@@ -69,6 +70,7 @@ struct JournalView: View {
                 }
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                 .offset(x: -16, y:-30)
+                 */
                 
             }
             .background(Color(UIColor.systemGray6))
@@ -76,6 +78,13 @@ struct JournalView: View {
             //.background(Theme.secondary_accent_color)
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(destination: NewMixtapeView()) {
+                    Image(systemName: "plus.circle")
+                }
+            }
+        }
     }
 }
 

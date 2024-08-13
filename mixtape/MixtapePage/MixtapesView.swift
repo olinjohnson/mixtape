@@ -52,6 +52,7 @@ struct MixtapesView: View {
                     }
                     //NavbarView()
                 }
+                /*
                 NavigationLink(destination: NewMixtapeView()) {
                     VStack {
                         Text("+")
@@ -69,6 +70,7 @@ struct MixtapesView: View {
                 }
                 .shadow(color: .black.opacity(0.2), radius: 10, x: 2, y: 2)
                 .offset(x: -16, y:-30)
+                */
                 
             }
             .background(Color(UIColor.systemGray6))
@@ -77,6 +79,13 @@ struct MixtapesView: View {
             //.background(Theme.secondary_accent_color)
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink(destination: NewMixtapeView()) {
+                    Image(systemName: "plus.circle")
+                }
+            }
+        }
     }
 }
 
