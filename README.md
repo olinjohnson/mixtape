@@ -1,5 +1,4 @@
 # Mixtape
-![title image](splash.png)
 ### A music-based journaling app 🎸
 
 Mixtape is a music-based journaling app for journalists, music-junkies, and musicians alike that allows users to create "mixtapes" - specialized playlists where users can find space to reflect on their own lived experiences.
@@ -15,3 +14,5 @@ I am wrapping up the initial development of this app! Beta testing will begin so
 # Contributing
 
 If you're a designer or developer wanting to lend a hand, I'd love to see contributions. Open an issue or PR, or reach out to me at olinlj@icloud.com.
+
+![title image](splash.png)
