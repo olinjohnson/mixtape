@@ -32,7 +32,7 @@ struct JournalView: View {
 //                                .padding([.bottom], 2)
                             }
                             .navigationTitle("Journal")
-                            .searchable(text: $searchText)
+//                            .searchable(text: $searchText)
                             
                             if (getEntries().count == 0) {
                                 VStack {

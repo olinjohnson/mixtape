@@ -30,7 +30,7 @@ struct MixtapesView: View {
                                 })
                             }
                             .navigationTitle("My Mixtapes")
-                            .searchable(text: $searchText)
+//                            .searchable(text: $searchText)
                             
                             if (getMixtapes().count == 0) {
                                 VStack {
@@ -60,8 +60,6 @@ struct MixtapesView: View {
                         }
 //                        Spacer()
 //                            .padding(.bottom, 80)
-                        
-                        //.searchable(text: $searchText)
                         
 //                        Spacer()
 //                        Spacer()
