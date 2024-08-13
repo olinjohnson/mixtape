@@ -190,7 +190,7 @@ struct EditMixtapeView: View {
                     .frame(minHeight: reader.size.height)
 //                    .offset(y:CGFloat(-keyboardOffsetAmt))
                     .navigationDestination(isPresented: $saveNavigationReady, destination: {
-                        MixtapeDetailView(mixtape: mixtape)
+                        MixtapeDetailView(mixtape: mixtape).toolbar(.hidden, for: .tabBar)
                     })
                 }
                 //.edgesIgnoringSafeArea(.all)

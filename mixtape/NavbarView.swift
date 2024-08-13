@@ -52,7 +52,7 @@ import SwiftUI
 
 struct NavbarView: View {
     
-    @State private var selection = 0
+    @State private var selection = 1
     
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
@@ -61,7 +61,7 @@ struct NavbarView: View {
     
     @StateObject var spotifyController: SpotifyController = SpotifyController()
     
-    /*var body: some View {
+    var body: some View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 .tabItem {
@@ -73,13 +73,14 @@ struct NavbarView: View {
                     Label("Journal", systemImage: "book.closed")
                 }
                 .tag(1)
-            MixtapesView(userProfile: $userProfile)
+            MixtapesView()
                 .tabItem {
                     Label("Mixtapes", systemImage: "recordingtape")
                 }
                 .tag(2)
         }
         .edgesIgnoringSafeArea(.bottom)
+        .environmentObject(spotifyController)
 //        .overlay(
 //            VStack {
 //                Spacer()
@@ -95,11 +96,12 @@ struct NavbarView: View {
 //                PlayerView()
 //                    .padding([.leading, .trailing], 5)
 //            }
-    }*/
+    }
     
+    /*
     var body: some View {
         NavigationStack {
-            VStack(spacing:0) {
+            ZStack {//(spacing:0) {
                 if selection == 0 {
                     AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 } else if selection == 1 {
@@ -109,6 +111,7 @@ struct NavbarView: View {
                 }
                 if nBar.isShowing {
                     VStack(spacing:0) {
+                        Spacer()
 //                        PlayerView()
 //                            .padding([.leading, .trailing], 5)
                         HStack(alignment:.bottom) {
@@ -156,9 +159,9 @@ struct NavbarView: View {
                         .padding(.top, 5)
                         .padding(.bottom, 30)
                         .padding([.leading, .trailing], 40)
+                        .background(Color(UIColor.systemGray6).opacity(0.99))
                     }
                     .padding(0)
-                    .background(Color(UIColor.systemGray6))
                 }
             }
             .edgesIgnoringSafeArea(.bottom)
@@ -175,6 +178,7 @@ struct NavbarView: View {
         }
         .environmentObject(spotifyController)
     }
+     */
 }
 
 class NBar: ObservableObject {

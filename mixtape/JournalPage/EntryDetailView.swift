@@ -127,7 +127,7 @@ struct EntryDetailView: View {
                     }
                     //.frame(maxHeight:.infinity)
                     .navigationDestination(isPresented: $editNavigationReady, destination: {
-                        EditEntryView(entry: $entry)
+                        EditEntryView(entry: $entry).toolbar(.hidden, for: .tabBar)
                     })
                 }
             }

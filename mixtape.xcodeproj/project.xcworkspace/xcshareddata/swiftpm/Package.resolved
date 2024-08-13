@@ -1,5 +1,5 @@
 {
-  "originHash" : "d72f361b5f998055a4b2f8f82f2309e398eca881de3adc2fa2b79d2c46e27795",
+  "originHash" : "439e78d8ba2da98d0a196f4685958e4ebcbcfa41735479e539b6697a3800b67f",
   "pins" : [
     {
       "identity" : "auth0.swift",
@@ -98,15 +98,6 @@
       "state" : {
         "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
         "version" : "1.6.1"
-      }
-    },
-    {
-      "identity" : "swiftui-mediapicker",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/UWAppDev/SwiftUI-MediaPicker",
-      "state" : {
-        "revision" : "96f18b1350873dec0a76355c7060cd0a06100901",
-        "version" : "0.2.0"
       }
     }
   ],

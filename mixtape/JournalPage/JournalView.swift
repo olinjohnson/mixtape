@@ -24,22 +24,36 @@ struct JournalView: View {
                 VStack(spacing:0) {
                     ScrollView(showsIndicators: false) {
                         if (entries.count > 0) {
-                            ForEach(entries.sorted(by: {$0.date < $1.date}).reversed()) {entry in
-                                NavigationLink(destination:EntryDetailView(entry: entry)) {
+                            ForEach(getEntries()) {entry in
+                                NavigationLink(destination:EntryDetailView(entry: entry).toolbar(.hidden, for: .tabBar)) {
                                     EntryCardView(entry:entry)
                                 }
                                 .buttonStyle(PlainButtonStyle())
-                                .padding([.bottom], 5)
+//                                .padding([.bottom], 2)
                             }
                             .navigationTitle("Journal")
-                            //.searchable(text: $searchText)
+                            .searchable(text: $searchText)
+                            
+                            if (getEntries().count == 0) {
+                                VStack {
+                                    Text("You may need to re-tune your radio 📻.")
+                                        .foregroundStyle(Color(UIColor.systemGray2))
+                                        .multilineTextAlignment(.center)
+                                        .padding(.bottom)
+                                    Text("We couldn't find any entries matching your search.")
+                                        .foregroundStyle(Color(UIColor.systemGray2))
+                                        .multilineTextAlignment(.center)
+                                }
+                                .padding(.top, 50)
+                                .padding([.leading, .trailing], 40)
+                            }
                         } else {
                             VStack {
                                 Text("No entries yet")
                                     .navigationTitle("Journal")
                                     .font(.title)
                                     .bold()
-                                NavigationLink(destination: NewEntryView()) {
+                                NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
                                     Text(" Write your first entry")
                                 }
                             }
@@ -76,16 +90,24 @@ struct JournalView: View {
             .background(Color(UIColor.systemGray6))
             //.edgesIgnoringSafeArea(.bottom)
             //.background(Theme.secondary_accent_color)
-        }
-        .navigationBarBackButtonHidden(true)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                NavigationLink(destination: NewMixtapeView()) {
-                    Image(systemName: "plus.circle")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    NavigationLink(destination: NewEntryView().toolbar(.hidden, for: .tabBar)) {
+                        Image(systemName: "plus.circle")
+                    }
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
     }
+    
+    func getEntries() -> [Entry] {
+        if searchText == "" {
+            return entries.sorted(by: {$0.date > $1.date})
+        } else {
+            return entries.sorted(by: {$0.date > $1.date}).filter{$0.title.lowercased().contains(searchText.lowercased()) || $0.date.formatted(date:.long, time:.omitted).lowercased().contains(searchText.lowercased()) || $0.body.lowercased().contains(searchText.lowercased())}
+        }
+}
 }
 
 //#Preview {

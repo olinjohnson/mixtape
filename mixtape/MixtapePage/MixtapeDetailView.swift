@@ -188,11 +188,13 @@ struct MixtapeDetailView: View {
                     }
                     .padding(.bottom)
                     .navigationDestination(isPresented: $editNavigationReady, destination: {
-                        EditMixtapeView(mixtape: $mixtape)
+                        EditMixtapeView(mixtape: $mixtape).toolbar(.hidden, for: .tabBar)
                     })
                 }
+//                .scrollClipDisabled()
 //                .edgesIgnoringSafeArea(.all)
             }
+           
         }
         .navigationBarBackButtonHidden(true)
         .onAppear(perform: {

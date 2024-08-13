@@ -11,12 +11,6 @@ import PhotosUI
 import AVKit
 import MediaPicker
 
-/*
- TODO: bugs
- - cant handle videos
- - redesign cards
- */
-
 struct MediaSelectorView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
