@@ -1,5 +1,5 @@
 {
-  "originHash" : "439e78d8ba2da98d0a196f4685958e4ebcbcfa41735479e539b6697a3800b67f",
+  "originHash" : "93c701b852b0f56cc216bb9d2941c3a2234e6f3e71d72b4bab73ac1f4d497bf8",
   "pins" : [
     {
       "identity" : "auth0.swift",
@@ -8,15 +8,6 @@
       "state" : {
         "revision" : "024503207ea5e8b4a0edb38125723f4a1c386139",
         "version" : "2.8.0"
-      }
-    },
-    {
-      "identity" : "ios-sdk",
-      "kind" : "remoteSourceControl",
-      "location" : "https://github.com/spotify/ios-sdk",
-      "state" : {
-        "branch" : "master",
-        "revision" : "55fd4a65b1b7fb483b583e6032168e1dc85ed178"
       }
     },
     {

@@ -13,7 +13,6 @@
 		0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D74272C27E09E00719187 /* EditEntryView.swift */; };
 		0B2348B42C6671B9005DA328 /* MediaMasonryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2348B32C6671B9005DA328 /* MediaMasonryView.swift */; };
 		0B2348B72C66796B005DA328 /* MasonryStack in Frameworks */ = {isa = PBXBuildFile; productRef = 0B2348B62C66796B005DA328 /* MasonryStack */; };
-		0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406ADC2C2A222000631FEB /* SpotifyiOS */; };
 		0B406ADF2C2A524D00631FEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406ADE2C2A524D00631FEB /* User.swift */; };
 		0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406AE12C2A53C300631FEB /* Auth0 */; };
 		0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B406AE32C2A55DA00631FEB /* Auth0.plist */; };
@@ -93,7 +92,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BC396322C4F30A3002D2419 /* KeychainAccess in Frameworks */,
-				0B406ADD2C2A222000631FEB /* SpotifyiOS in Frameworks */,
 				0B59BE4C2C4EB42600BA2FF4 /* SpotifyAPI in Frameworks */,
 				0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */,
 				0B2348B72C66796B005DA328 /* MasonryStack in Frameworks */,
@@ -242,7 +240,6 @@
 			);
 			name = mixtape;
 			packageProductDependencies = (
-				0B406ADC2C2A222000631FEB /* SpotifyiOS */,
 				0B406AE12C2A53C300631FEB /* Auth0 */,
 				0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */,
 				0BC396312C4F30A3002D2419 /* KeychainAccess */,
@@ -277,7 +274,6 @@
 			);
 			mainGroup = 0BFDD11C2B81B4D000C5726F;
 			packageReferences = (
-				0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */,
 				0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */,
 				0BA6757B2C360D2A00079D45 /* XCRemoteSwiftPackageReference "SpotifyAPI" */,
 				0BC396302C4F30A3002D2419 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
@@ -567,14 +563,6 @@
 				minimumVersion = 0.1.0;
 			};
 		};
-		0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/spotify/ios-sdk";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 		0B406AE02C2A53C300631FEB /* XCRemoteSwiftPackageReference "Auth0.swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/auth0/Auth0.swift.git";
@@ -606,11 +594,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0B2348B52C66796B005DA328 /* XCRemoteSwiftPackageReference "MasonryStack" */;
 			productName = MasonryStack;
-		};
-		0B406ADC2C2A222000631FEB /* SpotifyiOS */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0B406ADB2C2A222000631FEB /* XCRemoteSwiftPackageReference "ios-sdk" */;
-			productName = SpotifyiOS;
 		};
 		0B406AE12C2A53C300631FEB /* Auth0 */ = {
 			isa = XCSwiftPackageProductDependency;

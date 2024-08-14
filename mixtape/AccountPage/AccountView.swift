@@ -28,48 +28,155 @@ struct AccountView: View {
     var body: some View {
         NavigationStack {
             List {
-                HStack {
-                    iconView(systemName: "person.fill", color:.blue)
-                        .padding(.trailing, 5)
-                    Text("Profile")
-                }
-                .padding(.top, 5)
-                HStack {
-                    iconView(systemName: "bell.fill", color:.red)
-                        .padding(.trailing, 5)
-                    Text("Notifications")
-                }
-                HStack {
-                    iconView(systemName: "bubble.left.and.bubble.right.fill", color:.yellow)
-                        .padding(.trailing, 5)
-                    Text("Frequently Asked Questions")
-                }
-                .padding(.bottom, 5)
                 
                 Section {
                     HStack {
-                        Image("spotify_icon_green")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height:30)
-                            .padding(.trailing, 5)
-                        Text("Connect to Spotify")
-//                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                        AsyncImage(url: URL(string: userProfile.picture)) {image in
+                            image.resizable()
+                        } placeholder: {
+                            Image(systemName: "person.crop.circle")
+                                .resizable()
+                                .foregroundStyle(Color(UIColor.systemGray4))
+                        }
+                        .scaledToFit()
+                        .frame(width:75)
+                        .clipShape(Circle())
+                        .padding(.trailing)
+                        
+                        VStack(alignment:.leading) {
+                            Text(userProfile.name)
+                                .font(.headline)
+                            Text(userProfile.email)
+                                .font(.subheadline)
+                                .foregroundStyle(Color(UIColor.systemGray))
+                        }
+                        Spacer()
+                        Button(action: {}) {
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:20)
+                                .foregroundStyle(Color(UIColor.systemGray4))
+                        }
                     }
-                    .padding(.top, 5)
+                }
+                
+                Section {
+                    //                .padding(.top, 5)
+                    HStack {
+                        iconView(systemName: "bell.fill", color:.red)
+                            .padding(.trailing, 5)
+                        Text("Notifications")
+                    }
+                    HStack {
+                        iconView(systemName: "bubble.left.and.bubble.right.fill", color:.yellow)
+                            .padding(.trailing, 5)
+                        Text("Frequently Asked Questions")
+                    }
+                    Button(action: {
+                        UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
+                    }) {
+                        HStack {
+                            iconView(systemName: "gearshape.fill", color:.indigo)
+                                .padding(.trailing, 5)
+                            Text("Permissions")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                    }
+                    .buttonStyle(.plain)
+                    //                .padding(.bottom, 5)
+                }
+                
+                Section {
+                    Button(action: {
+                        // TODO: CALL SPOTIFY AUTHORIZATION FUNCTION
+                    }) {
+                        HStack {
+                            Image("spotify_icon_green")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height:30)
+                                .padding(.trailing, 5)
+                            Text("Connect to Spotify")
+                            //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                    }
+                    .buttonStyle(.plain)
+//                    .padding(.top, 5)
                     HStack {
                         Image("apple_music_icon")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
                             .frame(height:30)
                             .padding(.trailing, 5)
+                            // TODO: IMPLEMENT MUSICKIT
+                            .grayscale(0.9995)
+                            .opacity(0.4)
                         Text("Connect to Apple Music")
+                            .foregroundStyle(Color(UIColor.systemGray))
 //                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
                     }
-                    .padding(.bottom, 5)
+                    .listRowBackground(Color(UIColor.systemGray5))
+                    
+                    HStack {
+                        VStack {
+                            Image("tidal")
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                                .aspectRatio(contentMode: .fit)
+                                .padding(5)
+                        }
+                        .frame(width:30, height:30)
+                        .background(.black)
+                        .cornerRadius(5)
+                        .padding(.trailing, 5)
+                        .grayscale(0.9995)
+                        .opacity(0.6)
+
+                        Text("Connect to Tidal")
+                            .foregroundStyle(Color(UIColor.systemGray))
+//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                    }
+                    .listRowBackground(Color(UIColor.systemGray5))
+                    
+                    HStack {
+                        VStack {
+                            Image("deezer")
+                                .resizable()
+                                .renderingMode(.template)
+                                .foregroundColor(.white)
+                                .aspectRatio(contentMode: .fit)
+                                .padding(5)
+                        }
+                        .frame(width:30, height:30)
+                        .background(Color(UIColor(red: 152/255, green: 49/255, blue: 255/255, alpha: 1)))
+                        .cornerRadius(5)
+                        .padding(.trailing, 5)
+                        .grayscale(0.9995)
+                        .opacity(0.6)
+
+                        Text("Connect to Deezer")
+                            .foregroundStyle(Color(UIColor.systemGray))
+//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                    }
+                    .listRowBackground(Color(UIColor.systemGray5))
+//                    .padding(.bottom, 5)
                 } header: {
                     Text("Integrations")
                 } footer: {
+                    Text("Integrations with Apple Music, Tidal, and Deezer are currently under development. These features will be available in future updates.")
                 }
                 
                 Section {
@@ -78,15 +185,50 @@ struct AccountView: View {
                             .padding(.trailing, 5)
                         Text("Provide Feedback")
                     }
-                    .padding(.top, 5)
+//                    .padding(.top, 5)
                     HStack {
                         iconView(systemName: "ant.fill", color:.gray)
                             .padding(.trailing, 5)
                         Text("Report a Bug")
                     }
-                    .padding(.bottom, 5)
+                    HStack {
+                        iconView(systemName: "heart.fill", color:.pink)
+                            .padding(.trailing, 5)
+                        Text("Acknowledgements")
+                    }
+//                    .padding(.bottom, 5)
                 } header: {
                     Text("Support Mixtape")
+                } footer: {
+                    Text("Mixtape is [open source](https://github.com/resources/articles/software-development/what-is-open-source-software) and relies on open source software. [Check out its ongoing development.](https://github.com/olinjohnson/mixtape)")
+                }
+                
+                Section {
+                    HStack {
+                        iconView(systemName: "doc.text.fill", color:.gray)
+                            .padding(.trailing, 5)
+                        Text("Terms of Service")
+                    }
+                    HStack {
+                        iconView(systemName: "lock.doc.fill", color:.blue)
+                            .padding(.trailing, 5)
+                        Text("Privacy Policy")
+                    }
+                }
+                
+                Section {
+                    Button(action: {
+                        // TODO: CALL AUTH0 LOGOUT FUNCTION
+                    }) {
+                        HStack {
+                            iconView(systemName: "lock.fill", color:.red)
+                                .padding(.trailing, 5)
+                            Text("Log Out")
+                                .foregroundStyle(.white)
+                                .bold()
+                        }
+                    }
+                    .listRowBackground(Color.red)
                 } footer: {
                     HStack{
                         Spacer()
@@ -95,21 +237,22 @@ struct AccountView: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(width:100)
+                                .opacity(0.5)
                             (
                             Text("Made with ")
                                 .font(.caption)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color(UIColor.systemGray))
                             + Text(Image(systemName: "heart.fill"))
                                 .font(.caption)
-                                .foregroundStyle(.red)
+                                .foregroundStyle(.pink)
                             + Text(" from Maine")
                                 .font(.caption)
-                                .foregroundStyle(.black)
+                                .foregroundStyle(Color(UIColor.systemGray))
                             )
                         }
                         Spacer()
                     }
-                    .padding(.top)
+                    .padding(.top, 30)
                 }
             }
             .navigationTitle("Account")

@@ -27,8 +27,7 @@ struct LoginView: View {
                         Text("Log in or create an account to continue")
                             .padding([.bottom], 40)
                         Button(action:{
-                            //login()
-                            self.isAuthenticated = true
+                            login()
                         }) {
                             Text("Log in")
                                 .font(.title2)
@@ -44,17 +43,16 @@ struct LoginView: View {
                             VStack {
                                 Divider()
                                     .background(.black)
-                                    .frame(height:1)
+//                                    .frame(height:1)
                                     .overlay(.black)
                                     .padding([.leading, .trailing], 20)
                             }
                             Text("or")
-                                .bold()
                                 .padding(10)
                             VStack{
                                 Divider()
                                     .background(.black)
-                                    .frame(height:1)
+//                                    .frame(height:1)
                                     .overlay(.black)
                                     .padding([.leading, .trailing], 20)
                             }

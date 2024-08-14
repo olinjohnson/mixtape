@@ -110,6 +110,8 @@ struct MixtapesView: View {
     }
 }
 
+/*
+ //PART OF FAILED SEARCH IMPLEMENTATION
 struct TapeCardNav: View {
     
     @Environment(\.dismissSearch) private var dismissSearch
@@ -129,6 +131,7 @@ struct TapeCardNav: View {
         })
     }
 }
+ */
 
 //struct MixtapesViewPreviews: PreviewProvider {
 //    static var previews: some View {
