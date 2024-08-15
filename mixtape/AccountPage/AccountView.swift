@@ -25,6 +25,8 @@ struct AccountView: View {
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
     
+    @State var showingFAQ = false
+    
     var body: some View {
         NavigationStack {
             List {
@@ -51,28 +53,42 @@ struct AccountView: View {
                                 .foregroundStyle(Color(UIColor.systemGray))
                         }
                         Spacer()
-                        Button(action: {}) {
-                            Image(systemName: "chevron.right")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height:20)
-                                .foregroundStyle(Color(UIColor.systemGray4))
-                        }
+//                        Button(action: {}) {
+//                            Image(systemName: "chevron.right")
+//                                .resizable()
+//                                .scaledToFit()
+//                                .frame(height:20)
+//                                .foregroundStyle(Color(UIColor.systemGray4))
+//                        }
                     }
                 }
                 
                 Section {
                     //                .padding(.top, 5)
-                    HStack {
-                        iconView(systemName: "bell.fill", color:.red)
-                            .padding(.trailing, 5)
-                        Text("Notifications")
+//                    HStack {
+//                        iconView(systemName: "bell.fill", color:.red)
+//                            .padding(.trailing, 5)
+//                        Text("Notifications")
+//                    }
+                    Button(action: {showingFAQ = true}) {
+                        HStack {
+                            iconView(systemName: "bubble.left.and.bubble.right.fill", color:.yellow)
+                                .padding(.trailing, 5)
+                            Text("Frequently Asked Questions")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                        .contentShape(Rectangle())
                     }
-                    HStack {
-                        iconView(systemName: "bubble.left.and.bubble.right.fill", color:.yellow)
-                            .padding(.trailing, 5)
-                        Text("Frequently Asked Questions")
-                    }
+                    .buttonStyle(.plain)
+                    .sheet(isPresented: $showingFAQ, content: {
+                        FAQView()
+                    })
+                    
                     Button(action: {
                         UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
                     }) {
@@ -87,6 +103,7 @@ struct AccountView: View {
                                 .frame(height:15)
                                 .foregroundStyle(Color(UIColor.systemGray3))
                         }
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     //                .padding(.bottom, 5)
@@ -111,6 +128,7 @@ struct AccountView: View {
                                 .frame(height:15)
                                 .foregroundStyle(Color(UIColor.systemGray3))
                         }
+                        .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
 //                    .padding(.top, 5)
@@ -180,22 +198,53 @@ struct AccountView: View {
                 }
                 
                 Section {
-                    HStack {
-                        iconView(systemName: "text.bubble.fill", color:.green)
-                            .padding(.trailing, 5)
-                        Text("Provide Feedback")
+                    Button(action: {}) {
+                        HStack {
+                            iconView(systemName: "text.bubble.fill", color:.green)
+                                .padding(.trailing, 5)
+                            Text("Provide Feedback")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
 //                    .padding(.top, 5)
-                    HStack {
-                        iconView(systemName: "ant.fill", color:.gray)
-                            .padding(.trailing, 5)
-                        Text("Report a Bug")
+                    Button(action: {}) {
+                        HStack {
+                            iconView(systemName: "ant.fill", color:.gray)
+                                .padding(.trailing, 5)
+                            Text("Report a Bug")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                        .contentShape(Rectangle())
                     }
-                    HStack {
-                        iconView(systemName: "heart.fill", color:.pink)
-                            .padding(.trailing, 5)
-                        Text("Acknowledgements")
+                    .buttonStyle(.plain)
+                    
+                    Button(action:{}) {
+                        HStack {
+                            iconView(systemName: "heart.fill", color:.pink)
+                                .padding(.trailing, 5)
+                            Text("Acknowledgements")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
 //                    .padding(.bottom, 5)
                 } header: {
                     Text("Support Mixtape")
