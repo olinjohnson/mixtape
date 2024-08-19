@@ -56,11 +56,20 @@ struct FAQView: View {
                             .foregroundStyle(Color(UIColor.systemGray))
                     }
                     
-                    VStack(alignment:.center) {
-                        Text("Still have unanswered questions?")
-                            .foregroundStyle(Color(UIColor.systemGray))
-                        Text("[We'd love to hear them.]()")
-                            .foregroundStyle(.blue)
+                    HStack {
+                        Spacer()
+                        VStack(alignment:.center) {
+                            Text("Still have unanswered questions?")
+                                .foregroundStyle(Color(UIColor.systemGray))
+                            Button(action: {
+                                UIApplication.shared.open(URL(string:"mailto:help@themixtapeapp.com?subject=Question&body=What's your question?\n")!)
+
+                            }) {
+                                Text("We'd love to hear them.")
+                                    .foregroundStyle(.blue)
+                            }
+                        }
+                        Spacer()
                     }
                     .padding(.top, 20)
                     

@@ -1,6 +1,15 @@
 {
-  "originHash" : "93c701b852b0f56cc216bb9d2941c3a2234e6f3e71d72b4bab73ac1f4d497bf8",
+  "originHash" : "ae5ce993d673edf3ea3b9146f8b9da30f66da1e35621ff146ddd4fefaa562136",
   "pins" : [
+    {
+      "identity" : "acknowlist",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vtourraine/AcknowList",
+      "state" : {
+        "revision" : "125ff1915a639bf7d97471a4d5ae16765d0c50f2",
+        "version" : "3.2.0"
+      }
+    },
     {
       "identity" : "auth0.swift",
       "kind" : "remoteSourceControl",
@@ -35,6 +44,15 @@
       "state" : {
         "revision" : "d0901713a72febe9bee7b8db5af6fb5d63362ab8",
         "version" : "0.1.0"
+      }
+    },
+    {
+      "identity" : "networkimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/NetworkImage",
+      "state" : {
+        "revision" : "7aff8d1b31148d32c5933d75557d42f6323ee3d1",
+        "version" : "6.0.0"
       }
     },
     {
@@ -89,6 +107,15 @@
       "state" : {
         "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
         "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "swift-markdown-ui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/gonzalezreal/swift-markdown-ui",
+      "state" : {
+        "revision" : "55441810c0f678c78ed7e2ebd46dde89228e02fc",
+        "version" : "2.4.0"
       }
     }
   ],

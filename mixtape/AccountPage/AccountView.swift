@@ -26,6 +26,8 @@ struct AccountView: View {
     @Binding var userProfile: User
     
     @State var showingFAQ = false
+    @State var showingPP = false
+    @State var showingAcknowledgements = false
     
     var body: some View {
         NavigationStack {
@@ -198,7 +200,9 @@ struct AccountView: View {
                 }
                 
                 Section {
-                    Button(action: {}) {
+                    Button(action: {
+                        UIApplication.shared.open(URL(string:"mailto:feedback@themixtapeapp.com?subject=Feedback")!)
+                    }) {
                         HStack {
                             iconView(systemName: "text.bubble.fill", color:.green)
                                 .padding(.trailing, 5)
@@ -214,7 +218,9 @@ struct AccountView: View {
                     }
                     .buttonStyle(.plain)
 //                    .padding(.top, 5)
-                    Button(action: {}) {
+                    Button(action: {
+                        UIApplication.shared.open(URL(string:"mailto:bugreport@themixtapeapp.com?subject=Bug Report&body=Please describe the bug and give detailed steps to reproduce:\n")!)
+                    }) {
                         HStack {
                             iconView(systemName: "ant.fill", color:.gray)
                                 .padding(.trailing, 5)
@@ -230,7 +236,7 @@ struct AccountView: View {
                     }
                     .buttonStyle(.plain)
                     
-                    Button(action:{}) {
+                    Button(action:{showingAcknowledgements=true}) {
                         HStack {
                             iconView(systemName: "heart.fill", color:.pink)
                                 .padding(.trailing, 5)
@@ -245,6 +251,9 @@ struct AccountView: View {
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    .sheet(isPresented: $showingAcknowledgements, content: {
+                        AcknowledgementsView()
+                    })
 //                    .padding(.bottom, 5)
                 } header: {
                     Text("Support Mixtape")
@@ -253,16 +262,31 @@ struct AccountView: View {
                 }
                 
                 Section {
+                    /*
                     HStack {
                         iconView(systemName: "doc.text.fill", color:.gray)
                             .padding(.trailing, 5)
                         Text("Terms of Service")
                     }
-                    HStack {
-                        iconView(systemName: "lock.doc.fill", color:.blue)
-                            .padding(.trailing, 5)
-                        Text("Privacy Policy")
+                     */
+                    Button(action: {showingPP = true}) {
+                        HStack {
+                            iconView(systemName: "lock.doc.fill", color:.blue)
+                                .padding(.trailing, 5)
+                            Text("Privacy Policy")
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(Color(UIColor.systemGray3))
+                        }
+                        .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
+                    .sheet(isPresented: $showingPP, content: {
+                        PrivacyPolicyView()
+                    })
                 }
                 
                 Section {
@@ -273,9 +297,25 @@ struct AccountView: View {
                             iconView(systemName: "lock.fill", color:.red)
                                 .padding(.trailing, 5)
                             Text("Log Out")
+                                .foregroundStyle(.red)
+                                .bold()
+                        }
+                        .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+//                    .listRowBackground(Color.red)
+                    Button(action: {
+                        // TODO: CALL AUTH0 DELETE FUNCTION
+                        // TODO: ALERT BEFORE ACCOUNT DELETE
+                    }) {
+                        HStack {
+                            iconView(systemName: "trash.fill", color:.red)
+                                .padding(.trailing, 5)
+                            Text("Delete Account")
                                 .foregroundStyle(.white)
                                 .bold()
                         }
+                        .contentShape(Rectangle())
                     }
                     .listRowBackground(Color.red)
                 } footer: {
