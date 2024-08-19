@@ -16,14 +16,14 @@ Additionally, Mixtape also allows users to create more typical journal entries. 
 
 # Status Update: Preparing for beta 🚀
 
-I am wrapping up the initial development of this app! Beta testing will begin soon – if you'd like to be a beta tester, feel free to reach out to me at olinlj@icloud.com
+I am wrapping up the initial development of this app! Beta testing will begin soon – if you'd like to be a beta tester, contact me at beta@themixtapeapp.com.
 
 # Feedback + Suggestions
 
-I would absolutely love to hear any and all feedback - it can be a feature suggestion, design idea, bug, or anything else that would help improve the app (feedback is greatly appreciated). I'll be publishing a feedback form soon.
+I would absolutely love to hear any and all feedback - it can be a feature suggestion, design idea, bug, or anything else that would help improve the app (feedback is greatly appreciated). I'll be publishing a feedback form soon. For now, send all feedback to feedback@themixtapeapp.com.
 
 # Contributing
 
-If you're a designer or developer wanting to lend a hand, I'd love to see contributions. Open an issue or PR, or reach out to me at olinlj@icloud.com.
+If you're a designer or developer wanting to lend a hand, I'd love to see contributions. Open an issue or PR, or reach out to me at contributing@themixtapeapp.com.
 
 ![title image](splash.png)
