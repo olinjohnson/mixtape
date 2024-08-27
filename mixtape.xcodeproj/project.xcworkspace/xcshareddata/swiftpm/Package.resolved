@@ -1,13 +1,13 @@
 {
-  "originHash" : "ae5ce993d673edf3ea3b9146f8b9da30f66da1e35621ff146ddd4fefaa562136",
+  "originHash" : "55178554eb16fa409e2459bc93d8d1638eeb2ed4140e6435416134cb17f9d554",
   "pins" : [
     {
-      "identity" : "acknowlist",
+      "identity" : "ackgen",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/vtourraine/AcknowList",
+      "location" : "https://github.com/MartinP7r/AckGen",
       "state" : {
-        "revision" : "125ff1915a639bf7d97471a4d5ae16765d0c50f2",
-        "version" : "3.2.0"
+        "revision" : "b0510489615f2b0dfd0e44da91645d8cc28e728c",
+        "version" : "0.1.8"
       }
     },
     {

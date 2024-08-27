@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>io.github.olinjohnson.mixtape</string>
+			<string>com.themixtapeapp</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>mixtape</string>

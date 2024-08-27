@@ -19,9 +19,10 @@
 		0B406AE72C2A678400631FEB /* AccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406AE62C2A678400631FEB /* AccountView.swift */; };
 		0B4605152C73C0FF00048F85 /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B4605142C73C0FF00048F85 /* PrivacyPolicyView.swift */; };
 		0B4605182C73C44A00048F85 /* MarkdownUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4605172C73C44A00048F85 /* MarkdownUI */; };
-		0B46051B2C73C7C200048F85 /* AcknowList in Frameworks */ = {isa = PBXBuildFile; productRef = 0B46051A2C73C7C200048F85 /* AcknowList */; };
 		0B46051D2C73C80600048F85 /* AcknowledgementsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B46051C2C73C80600048F85 /* AcknowledgementsView.swift */; };
-		0B46051F2C73C8FC00048F85 /* Package.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 0B46051E2C73C8FC00048F85 /* Package.resolved */; };
+		0B4605252C74333F00048F85 /* AckGen in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4605242C74333F00048F85 /* AckGen */; };
+		0B4605272C74333F00048F85 /* AckGenUI in Frameworks */ = {isa = PBXBuildFile; productRef = 0B4605262C74333F00048F85 /* AckGenUI */; };
+		0B46052A2C7435BD00048F85 /* Acknowledgements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B4605292C7435BD00048F85 /* Acknowledgements.plist */; };
 		0B59BE4C2C4EB42600BA2FF4 /* SpotifyAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */; };
 		0B5F02412C626D2B00B94F86 /* SongView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B5F02402C626D2B00B94F86 /* SongView.swift */; };
 		0B721C0D2C2136E3000939B9 /* EntryDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B721C0C2C2136E3000939B9 /* EntryDetailView.swift */; };
@@ -64,7 +65,7 @@
 		0B406AE62C2A678400631FEB /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
 		0B4605142C73C0FF00048F85 /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		0B46051C2C73C80600048F85 /* AcknowledgementsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AcknowledgementsView.swift; sourceTree = "<group>"; };
-		0B46051E2C73C8FC00048F85 /* Package.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Package.resolved; path = mixtape.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = "<group>"; };
+		0B4605292C7435BD00048F85 /* Acknowledgements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Acknowledgements.plist; sourceTree = "<group>"; };
 		0B5F02402C626D2B00B94F86 /* SongView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongView.swift; sourceTree = "<group>"; };
 		0B721C0C2C2136E3000939B9 /* EntryDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryDetailView.swift; sourceTree = "<group>"; };
 		0B721C0E2C213A0F000939B9 /* EntryCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryCardView.swift; sourceTree = "<group>"; };
@@ -102,11 +103,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BC396322C4F30A3002D2419 /* KeychainAccess in Frameworks */,
-				0B46051B2C73C7C200048F85 /* AcknowList in Frameworks */,
 				0B59BE4C2C4EB42600BA2FF4 /* SpotifyAPI in Frameworks */,
 				0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */,
 				0B2348B72C66796B005DA328 /* MasonryStack in Frameworks */,
 				0B4605182C73C44A00048F85 /* MarkdownUI in Frameworks */,
+				0B4605252C74333F00048F85 /* AckGen in Frameworks */,
+				0B4605272C74333F00048F85 /* AckGenUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -184,7 +186,6 @@
 		0BFDD11C2B81B4D000C5726F = {
 			isa = PBXGroup;
 			children = (
-				0B46051E2C73C8FC00048F85 /* Package.resolved */,
 				0BFDD1272B81B4D000C5726F /* mixtape */,
 				0BFDD1262B81B4D000C5726F /* Products */,
 			);
@@ -212,6 +213,7 @@
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
 				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
 				0BF4054C2B897ABD00902D59 /* Info.plist */,
+				0B4605292C7435BD00048F85 /* Acknowledgements.plist */,
 				0BC396332C4F3FB9002D2419 /* secrets.swift */,
 				0BFDD12C2B81B4D300C5726F /* Assets.xcassets */,
 				0BFDD12E2B81B4D300C5726F /* Preview Content */,
@@ -249,6 +251,7 @@
 				0BFDD1212B81B4D000C5726F /* Sources */,
 				0BFDD1222B81B4D000C5726F /* Frameworks */,
 				0BFDD1232B81B4D000C5726F /* Resources */,
+				0B4605282C74338C00048F85 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -261,7 +264,8 @@
 				0BC396312C4F30A3002D2419 /* KeychainAccess */,
 				0B2348B62C66796B005DA328 /* MasonryStack */,
 				0B4605172C73C44A00048F85 /* MarkdownUI */,
-				0B46051A2C73C7C200048F85 /* AcknowList */,
+				0B4605242C74333F00048F85 /* AckGen */,
+				0B4605262C74333F00048F85 /* AckGenUI */,
 			);
 			productName = mixtape;
 			productReference = 0BFDD1252B81B4D000C5726F /* mixtape.app */;
@@ -297,7 +301,7 @@
 				0BC396302C4F30A3002D2419 /* XCRemoteSwiftPackageReference "KeychainAccess" */,
 				0B2348B52C66796B005DA328 /* XCRemoteSwiftPackageReference "MasonryStack" */,
 				0B4605162C73C44A00048F85 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */,
-				0B4605192C73C7C200048F85 /* XCRemoteSwiftPackageReference "AcknowList" */,
+				0B4605232C74333F00048F85 /* XCRemoteSwiftPackageReference "AckGen" */,
 			);
 			productRefGroup = 0BFDD1262B81B4D000C5726F /* Products */;
 			projectDirPath = "";
@@ -315,12 +319,32 @@
 			files = (
 				0BFDD1302B81B4D300C5726F /* Preview Assets.xcassets in Resources */,
 				0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */,
-				0B46051F2C73C8FC00048F85 /* Package.resolved in Resources */,
 				0BFDD12D2B81B4D300C5726F /* Assets.xcassets in Resources */,
+				0B46052A2C7435BD00048F85 /* Acknowledgements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0B4605282C74338C00048F85 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nDIR=$PROJECT_TEMP_DIR/../../../SourcePackages/checkouts/AckGen\nif [ -d \"$DIR\" ]; then\n  cd $DIR\n  SDKROOT=(xcrun --sdk macosx --show-sdk-path)\n  swift run ackgen\nelse\n  echo \"warning: AckGen not found. Please install the package via SPM (https://github.com/MartinP7r/AckGen#installation)\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0BFDD1212B81B4D000C5726F /* Sources */ = {
@@ -404,7 +428,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -467,7 +491,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu17;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -511,7 +535,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themixtapeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -537,7 +561,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -546,7 +570,7 @@
 				MARKETING_VERSION = 1.0;
 				NEW_SETTING = "";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.olinjohnson.mixtape;
+				PRODUCT_BUNDLE_IDENTIFIER = com.themixtapeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -603,12 +627,12 @@
 				minimumVersion = 2.4.0;
 			};
 		};
-		0B4605192C73C7C200048F85 /* XCRemoteSwiftPackageReference "AcknowList" */ = {
+		0B4605232C74333F00048F85 /* XCRemoteSwiftPackageReference "AckGen" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/vtourraine/AcknowList";
+			repositoryURL = "https://github.com/MartinP7r/AckGen";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.2.0;
+				minimumVersion = 0.1.8;
 			};
 		};
 		0BA6757B2C360D2A00079D45 /* XCRemoteSwiftPackageReference "SpotifyAPI" */ = {
@@ -645,10 +669,15 @@
 			package = 0B4605162C73C44A00048F85 /* XCRemoteSwiftPackageReference "swift-markdown-ui" */;
 			productName = MarkdownUI;
 		};
-		0B46051A2C73C7C200048F85 /* AcknowList */ = {
+		0B4605242C74333F00048F85 /* AckGen */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 0B4605192C73C7C200048F85 /* XCRemoteSwiftPackageReference "AcknowList" */;
-			productName = AcknowList;
+			package = 0B4605232C74333F00048F85 /* XCRemoteSwiftPackageReference "AckGen" */;
+			productName = AckGen;
+		};
+		0B4605262C74333F00048F85 /* AckGenUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0B4605232C74333F00048F85 /* XCRemoteSwiftPackageReference "AckGen" */;
+			productName = AckGenUI;
 		};
 		0B59BE4B2C4EB42600BA2FF4 /* SpotifyAPI */ = {
 			isa = XCSwiftPackageProductDependency;

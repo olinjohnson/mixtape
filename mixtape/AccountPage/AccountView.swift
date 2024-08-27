@@ -112,91 +112,120 @@ struct AccountView: View {
                 }
                 
                 Section {
-                    Button(action: {
-                        // TODO: CALL SPOTIFY AUTHORIZATION FUNCTION
-                    }) {
+                    if !spotifyController.isAuthorized {
+                        Button(action: {
+                            spotifyController.authorize()
+                        }) {
+                            HStack {
+                                Image("spotify_icon_green")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:30)
+                                    .padding(.trailing, 5)
+                                Text("Connect to Spotify")
+                                //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height:15)
+                                    .foregroundStyle(Color(UIColor.systemGray3))
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        //                    .padding(.top, 5)
                         HStack {
-                            Image("spotify_icon_green")
+                            Image("apple_music_icon")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height:30)
                                 .padding(.trailing, 5)
-                            Text("Connect to Spotify")
-                            //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(height:15)
-                                .foregroundStyle(Color(UIColor.systemGray3))
-                        }
-                        .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain)
-//                    .padding(.top, 5)
-                    HStack {
-                        Image("apple_music_icon")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(height:30)
-                            .padding(.trailing, 5)
                             // TODO: IMPLEMENT MUSICKIT
+                                .grayscale(0.9995)
+                                .opacity(0.4)
+                            Text("Connect to Apple Music")
+                                .foregroundStyle(Color(UIColor.systemGray))
+                            //                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                        }
+                        .listRowBackground(Color(UIColor.systemGray5))
+                        
+                        HStack {
+                            VStack {
+                                Image("tidal")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(5)
+                            }
+                            .frame(width:30, height:30)
+                            .background(.black)
+                            .cornerRadius(5)
+                            .padding(.trailing, 5)
                             .grayscale(0.9995)
-                            .opacity(0.4)
-                        Text("Connect to Apple Music")
-                            .foregroundStyle(Color(UIColor.systemGray))
-//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
-                    }
-                    .listRowBackground(Color(UIColor.systemGray5))
-                    
-                    HStack {
-                        VStack {
-                            Image("tidal")
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(.white)
-                                .aspectRatio(contentMode: .fit)
-                                .padding(5)
+                            .opacity(0.6)
+                            
+                            Text("Connect to Tidal")
+                                .foregroundStyle(Color(UIColor.systemGray))
+                            //                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
                         }
-                        .frame(width:30, height:30)
-                        .background(.black)
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .grayscale(0.9995)
-                        .opacity(0.6)
-
-                        Text("Connect to Tidal")
-                            .foregroundStyle(Color(UIColor.systemGray))
-//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
-                    }
-                    .listRowBackground(Color(UIColor.systemGray5))
-                    
-                    HStack {
-                        VStack {
-                            Image("deezer")
-                                .resizable()
-                                .renderingMode(.template)
-                                .foregroundColor(.white)
-                                .aspectRatio(contentMode: .fit)
-                                .padding(5)
+                        .listRowBackground(Color(UIColor.systemGray5))
+                        
+                        HStack {
+                            VStack {
+                                Image("deezer")
+                                    .resizable()
+                                    .renderingMode(.template)
+                                    .foregroundColor(.white)
+                                    .aspectRatio(contentMode: .fit)
+                                    .padding(5)
+                            }
+                            .frame(width:30, height:30)
+                            .background(Color(UIColor(red: 152/255, green: 49/255, blue: 255/255, alpha: 1)))
+                            .cornerRadius(5)
+                            .padding(.trailing, 5)
+                            .grayscale(0.9995)
+                            .opacity(0.6)
+                            
+                            Text("Connect to Deezer")
+                                .foregroundStyle(Color(UIColor.systemGray))
+                            //                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
                         }
-                        .frame(width:30, height:30)
-                        .background(Color(UIColor(red: 152/255, green: 49/255, blue: 255/255, alpha: 1)))
-                        .cornerRadius(5)
-                        .padding(.trailing, 5)
-                        .grayscale(0.9995)
-                        .opacity(0.6)
-
-                        Text("Connect to Deezer")
-                            .foregroundStyle(Color(UIColor.systemGray))
-//                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                        .listRowBackground(Color(UIColor.systemGray5))
+                        //                    .padding(.bottom, 5)
+                    } else {
+                        Button(action: {
+                            spotifyController.deauthorize()
+                        }) {
+                            HStack {
+                                Image("spotify_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:30)
+                                    .padding(.trailing, 5)
+                                Text("Disconnect from Spotify")
+                                    .foregroundStyle(.white)
+                                    .bold()
+                                //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height:15)
+                                    .foregroundStyle(.white)
+                            }
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .listRowBackground(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
                     }
-                    .listRowBackground(Color(UIColor.systemGray5))
-//                    .padding(.bottom, 5)
                 } header: {
                     Text("Integrations")
                 } footer: {
-                    Text("Integrations with Apple Music, Tidal, and Deezer are currently under development. These features will be available in future updates.")
+                    if !spotifyController.isAuthorized {
+                        Text("Integrations with Apple Music, Tidal, and Deezer are currently under development. These features will be available in future updates.")
+                    }
                 }
                 
                 Section {
@@ -287,37 +316,49 @@ struct AccountView: View {
                     .sheet(isPresented: $showingPP, content: {
                         PrivacyPolicyView()
                     })
+                } header: {
+                    Text("Legal")
                 }
                 
                 Section {
                     Button(action: {
-                        // TODO: CALL AUTH0 LOGOUT FUNCTION
+                        logout()
                     }) {
                         HStack {
                             iconView(systemName: "lock.fill", color:.red)
                                 .padding(.trailing, 5)
                             Text("Log Out")
-                                .foregroundStyle(.red)
+                                .foregroundStyle(.white)
                                 .bold()
+                            Spacer()
+                            Image(systemName: "chevron.right")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(height:15)
+                                .foregroundStyle(.white)
                         }
                         .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-//                    .listRowBackground(Color.red)
+                    .listRowBackground(Color.red)
+                    
+                    /*
                     Button(action: {
                         // TODO: CALL AUTH0 DELETE FUNCTION
                         // TODO: ALERT BEFORE ACCOUNT DELETE
                     }) {
                         HStack {
-                            iconView(systemName: "trash.fill", color:.red)
-                                .padding(.trailing, 5)
+                            Spacer()
                             Text("Delete Account")
                                 .foregroundStyle(.white)
                                 .bold()
+//                            iconView(systemName: "trash.fill", color:.red)
+                            Spacer()
                         }
                         .contentShape(Rectangle())
                     }
                     .listRowBackground(Color.red)
+                     */
                 } footer: {
                     HStack{
                         Spacer()

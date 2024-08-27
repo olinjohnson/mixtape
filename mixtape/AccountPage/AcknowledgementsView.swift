@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import AcknowList
+import AckGen
 
 struct AcknowledgementsView: View {
     
@@ -14,8 +14,27 @@ struct AcknowledgementsView: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                AcknowListSwiftUIView(plistFileURL: URL(string: "Package.resolved")!)
+            List {
+                Section {
+                    ForEach(Acknowledgement.all(), id:\.self.title) { ack in
+                        Text(ack.title)
+                    }
+                } footer: {
+                    HStack {
+                        Spacer()
+                        (
+                        Text("We ")
+                            .foregroundStyle(Color(UIColor.systemGray)) +
+                        Text(Image(systemName: "heart.fill"))
+                            .foregroundStyle(.pink) +
+                        Text(" open source software")
+                            .foregroundStyle(Color(UIColor.systemGray))
+                        )
+                        .font(.subheadline)
+                        Spacer()
+                    }
+                    .padding(.top)
+                }
             }
             .toolbar {
                 ToolbarItem(placement:.confirmationAction) {
@@ -24,6 +43,7 @@ struct AcknowledgementsView: View {
                     }
                 }
             }
+            .navigationTitle("Acknowledgements")
         }
     }
 }
