@@ -8,7 +8,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.themixtapeapp</string>
+			<string>com.themixtapeapp.mixtape</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>mixtape</string>
