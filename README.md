@@ -1,11 +1,5 @@
 # Mixtape
 
-![image](https://img.shields.io/badge/Xcode-007ACC?style=for-the-badge&logo=Xcode&logoColor=white)
-![image](https://img.shields.io/badge/Swift-FA7343?style=for-the-badge&logo=swift&logoColor=white)
-![image](https://img.shields.io/badge/iOS-000000?style=for-the-badge&logo=ios&logoColor=white)
-![image](https://img.shields.io/badge/apple%20music-F34E68?style=for-the-badge&logo=apple%20music&logoColor=white)
-![image](https://img.shields.io/badge/Spotify-1ED760?&style=for-the-badge&logo=spotify&logoColor=white)
-
 ### A music-based journaling app 🎸
 
 Mixtape is a music-based journaling app for journalists, music-junkies, and musicians alike that allows users to create "mixtapes" - specialized playlists where users can find space to reflect on their own lived experiences.
