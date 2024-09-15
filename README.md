@@ -22,8 +22,8 @@ If you're a designer or developer wanting to lend a hand, I'd love to see contri
 
 # Example Photos
 <p float="left">
-  <img src="example_photos/IMG_3250.PNG" width=300>
-  <img src="example_photos/IMG_3248.PNG" width=300>
-  <img src="example_photos/IMG_3249.PNG" width=300>
+  <img src="example_photos/IMG_3250.PNG" width=200>
+  <img src="example_photos/IMG_3248.PNG" width=200>
+  <img src="example_photos/IMG_3249.PNG" width=200>
 </p>
 <!-- ![title image](splash.png) -->
