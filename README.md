@@ -2,9 +2,9 @@
 
 ### A music-based journaling app 🎸
 
-Mixtape is a music-based journaling app for journalists, music-junkies, and musicians alike that allows users to create "mixtapes" - specialized playlists where users can find space to reflect on their own lived experiences.
+Mixtape is a music-based journaling app for journalers, music-junkies, and musicians alike that allows users to create "mixtapes" - specialized playlists where users can find space to reflect and document their lives.
 
-With mixtapes, users can wield music as a tool to reflect on and journal about significant life events or important moments that are bigger than a singular journal entry or span a longer period of time. Users can add songs that represent important moments and reflect on each track, by captioning individual songs to describe their significance or reflect on their meaning. Mixtapes can be private or collaborative, and are shareable among users and friends.
+With mixtapes, users can wield music as a tool to document and journal about significant life events or important moments that are bigger than a singular journal entry or that span a longer period of time. Users can add songs that represent important moments and reflect on each track, by captioning individual songs to describe their significance or reflect on their meaning. Mixtapes can be private or collaborative, and are shareable among users and friends.
 
 Additionally, Mixtape also allows users to create more typical journal entries. With these entries, users can add standard media such as photos or music, and write or reflect about whatever they need. Users may be inspired by a particular song lyric or moment from their day which would make a journal entry the perfect space for a small moment of reflection.
 
