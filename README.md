@@ -20,4 +20,10 @@ I would absolutely love to hear any and all feedback - it can be a feature sugge
 
 If you're a designer or developer wanting to lend a hand, I'd love to see contributions. Open an issue or PR, or reach out to me at contributing@themixtapeapp.com.
 
-![title image](splash.png)
+# Example Photos
+<p float="left">
+  <img src="example_photos/IMG_3250.PNG" width=300>
+  <img src="example_photos/IMG_3248.PNG" width=300>
+  <img src="example_photos/IMG_3249.PNG" width=300>
+</p>
+<!-- ![title image](splash.png) -->
