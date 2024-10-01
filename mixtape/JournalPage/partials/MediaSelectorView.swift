@@ -9,7 +9,6 @@ import SwiftUI
 import SwiftData
 import PhotosUI
 import AVKit
-import MediaPicker
 
 struct MediaSelectorView: View {
     
