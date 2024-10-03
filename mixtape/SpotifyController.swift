@@ -57,7 +57,7 @@ class SpotifyController: ObservableObject {
     
     @Published var isAuthorized = false
     
-    private let keychain = Keychain(service: "com.themixtapeapp.themixtapeapp")
+    private let keychain = Keychain(service: "Spotify")
     
     func authorize() {
         

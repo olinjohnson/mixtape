@@ -11,8 +11,7 @@ import JWTDecode
 
 struct LoginView: View {
     
-    @Binding var isAuthenticated: Bool
-    @Binding var userProfile: User
+    var login: ([String : String]) -> Void
     
     var body: some View {
         NavigationStack {
@@ -27,7 +26,7 @@ struct LoginView: View {
                         Text("Log in or create an account to continue")
                             .padding([.bottom], 40)
                         Button(action:{
-                            login()
+                            login([:])
                         }) {
                             Text("Log in")
                                 .font(.title2)
@@ -76,23 +75,6 @@ struct LoginView: View {
                 .padding()
             }
         }
-    }
-}
-
-extension LoginView {
-    private func login(_ parameters: [String : String] = ["" : ""]) {
-        Auth0
-            .webAuth()
-            .parameters(parameters)
-            .start { result in
-                switch result {
-                    case .failure(let error):
-                        print("Failed with \(error)")
-                    case .success(let credentials):
-                    self.userProfile = User.from(credentials.idToken)
-                        self.isAuthenticated = true
-                }
-            }
     }
 }
 
