@@ -29,6 +29,8 @@ struct AccountView: View {
     @State var showingPP = false
     @State var showingAcknowledgements = false
     
+    let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
+    
     var body: some View {
         NavigationStack {
             List {
@@ -549,6 +551,7 @@ extension AccountView {
                     case .failure(let error):
                         print("Failed with \(error)")
                     case .success:
+                        let cleared = credentialsManager.clear()
                         self.userProfile = User.empty
                         self.isAuthenticated = false
                 }

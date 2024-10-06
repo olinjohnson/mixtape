@@ -20,7 +20,7 @@ struct mixtapeApp: App {
     var body: some Scene {
         WindowGroup {
             VStack {
-                if credentialsManager.hasValid() {
+                if self.isAuthenticated {//credentialsManager.hasValid() {
                     NavbarView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 } else {
                     LoginView(login: self.login)
@@ -28,7 +28,17 @@ struct mixtapeApp: App {
             }
             .onAppear(perform: {
                 if credentialsManager.hasValid() {
-                    userProfile = User(id: credentialsManager.user!.sub, name: credentialsManager.user!.name ?? "", email: credentialsManager.user!.email ?? "No email shared.", emailVerified: credentialsManager.user!.emailVerified ?? false, picture: credentialsManager.user!.picture?.absoluteString ?? "")
+                    
+                    credentialsManager.credentials { result in
+                        switch result {
+                            case .success(let credentials):
+                                self.userProfile = User.from(credentials.idToken)
+                            case .failure(let error):
+                                return
+                        }
+                    }
+                    
+                    self.isAuthenticated = true
                 }
             })
         }
