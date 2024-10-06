@@ -151,12 +151,13 @@ struct SongCardView: View {
                     .resizable()
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
-                            .stroke(Color(uiColor:UIColor.systemGray5), lineWidth: 1)
+                            .stroke(Color(uiColor:UIColor.systemGray6), lineWidth: 1)
                         if spotifyController.isAuthorized {
                             ProgressView()
                         } else {
                             Text("Connect to Spotify")
-                                .foregroundStyle(Color(uiColor:UIColor.systemGray4))
+                                .font(.caption)
+                                .foregroundStyle(Color(uiColor:UIColor.systemGray3))
                                 .padding()
                         }
                     }
@@ -182,7 +183,7 @@ struct SongCardView: View {
                     Spacer()
                 }
                 .frame(maxWidth:.infinity, maxHeight: .infinity)
-                .background(.black.opacity(0.3))
+                .background(.black.opacity(0.1))
                 .cornerRadius(10)
             }
         }

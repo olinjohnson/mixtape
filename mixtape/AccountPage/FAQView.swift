@@ -52,7 +52,7 @@ struct FAQView: View {
                         Text("Will Mixtape still work when I'm offline?")
                             .font(.title3)
                             .bold()
-                        Text("Somewhat - you'll still be able to create and edit mixtapes and journal entries, but you won't be able to add new tracks to either. Additionally, any songs that have been attached to journal entries will not be available without an internet connection, and neither will any of the album covers from songs that have been attached to mixtapes.")
+                        Text("Somewhat - you'll still be able to create and edit mixtapes and journal entries, but you won't be able to add new tracks to either. Additionally, any songs that have been attached to journal entries will not be available without an internet connection or music streaming service connection, and neither will any of the album covers from songs that have been attached to mixtapes.")
                             .foregroundStyle(Color(UIColor.systemGray))
                     }
                     
