@@ -1,4 +1,6 @@
-# Mixtape
+# Mixtape 
+
+<img src="mixtape/Assets.xcassets/AppIcon.appiconset/Mixtape icon copy 6.png" alt="app icon" width=200 align="right" style="border-radius:50%">
 
 ### A music-based journaling app 🎸
 
