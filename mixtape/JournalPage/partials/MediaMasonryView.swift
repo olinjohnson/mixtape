@@ -157,7 +157,7 @@ struct SongCardView: View {
                         } else {
                             Text("Connect to Spotify")
                                 .font(.caption)
-                                .foregroundStyle(Color(uiColor:UIColor.systemGray3))
+                                .foregroundStyle(Color(uiColor:UIColor.systemGray2))
                                 .padding()
                         }
                     }
@@ -183,7 +183,8 @@ struct SongCardView: View {
                     Spacer()
                 }
                 .frame(maxWidth:.infinity, maxHeight: .infinity)
-                .background(.black.opacity(0.1))
+                // TODO: CHANGE THIS AFTER OFFLINE MEDIA LOADING IS FIXED
+                .background(.black.opacity(spotifyController.isAuthorized ? 0.3 : 0.1))
                 .cornerRadius(10)
             }
         }

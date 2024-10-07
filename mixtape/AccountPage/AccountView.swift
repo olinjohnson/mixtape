@@ -21,6 +21,7 @@ import Auth0
 struct AccountView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
+    @EnvironmentObject var appleMusicController: AppleMusicController
     
     @Binding var isAuthenticated: Bool
     @Binding var userProfile: User
@@ -114,7 +115,7 @@ struct AccountView: View {
                 }
                 
                 Section {
-                    if !spotifyController.isAuthorized {
+                    if !spotifyController.isAuthorized && !appleMusicController.isAuthorized {
                         Button(action: {
                             spotifyController.authorize()
                         }) {
@@ -137,20 +138,30 @@ struct AccountView: View {
                         }
                         .buttonStyle(.plain)
                         //                    .padding(.top, 5)
-                        HStack {
-                            Image("apple_music_icon")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height:30)
-                                .padding(.trailing, 5)
-                            // TODO: IMPLEMENT MUSICKIT
-                                .grayscale(0.9995)
-                                .opacity(0.4)
-                            Text("Connect to Apple Music")
-                                .foregroundStyle(Color(UIColor.systemGray))
-                            //                            .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                        
+                        Button(action: {
+                            Task {
+                                await appleMusicController.requestMusicAuthorization()
+                            }
+                        }) {
+                            HStack {
+                                Image("apple_music_icon")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:30)
+                                    .padding(.trailing, 5)
+                                Text("Connect to Apple Music")
+//                                    .foregroundStyle(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(height:15)
+                                    .foregroundStyle(Color(UIColor.systemGray3))
+                            }
+                            .contentShape(Rectangle())
                         }
-                        .listRowBackground(Color(UIColor.systemGray5))
+                        .buttonStyle(.plain)
                         
                         HStack {
                             VStack {
@@ -197,35 +208,67 @@ struct AccountView: View {
                         .listRowBackground(Color(UIColor.systemGray5))
                         //                    .padding(.bottom, 5)
                     } else {
-                        Button(action: {
-                            spotifyController.deauthorize()
-                        }) {
-                            HStack {
-                                Image("spotify_icon")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height:30)
-                                    .padding(.trailing, 5)
-                                Text("Disconnect from Spotify")
-                                    .foregroundStyle(.white)
-                                    .bold()
-                                //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height:15)
-                                    .foregroundStyle(.white)
+                        
+                        if spotifyController.isAuthorized {
+                            
+                            Button(action: {
+                                spotifyController.deauthorize()
+                            }) {
+                                HStack {
+                                    Image("spotify_icon")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height:30)
+                                        .padding(.trailing, 5)
+                                    Text("Disconnect from Spotify")
+                                        .foregroundStyle(.white)
+                                        .bold()
+                                    //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height:15)
+                                        .foregroundStyle(.white)
+                                }
+                                .contentShape(Rectangle())
                             }
-                            .contentShape(Rectangle())
+                            .buttonStyle(.plain)
+                            .listRowBackground(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                            
+                        } else if appleMusicController.isAuthorized {
+                            
+                            Button(action: {
+                                appleMusicController.deauthorize()
+                            }) {
+                                HStack {
+                                    Image("apple_music_icon_light")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height:30)
+                                        .padding(.trailing, 5)
+                                    Text("Disconnect from Apple Music")
+                                        .foregroundStyle(.white)
+                                        .bold()
+                                    //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                    Spacer()
+                                    Image(systemName: "chevron.right")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(height:15)
+                                        .foregroundStyle(.white)
+                                }
+                                .contentShape(Rectangle())
+                            }
+                            .buttonStyle(.plain)
+                            .listRowBackground(Color(UIColor(red: 255/255, green: 55/255, blue: 95/255, alpha: 1)))
                         }
-                        .buttonStyle(.plain)
-                        .listRowBackground(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                        
                     }
                 } header: {
                     Text("Integrations")
                 } footer: {
-                    if !spotifyController.isAuthorized {
+                    if !spotifyController.isAuthorized && !appleMusicController.isAuthorized {
                         Text("Integrations with Apple Music, Tidal, and Deezer are currently under development. These features will be available in future updates.")
                     }
                 }
@@ -551,7 +594,7 @@ extension AccountView {
                     case .failure(let error):
                         print("Failed with \(error)")
                     case .success:
-                        let cleared = credentialsManager.clear()
+                        let _ = credentialsManager.clear()
                         self.userProfile = User.empty
                         self.isAuthenticated = false
                 }

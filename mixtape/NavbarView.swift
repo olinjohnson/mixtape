@@ -60,7 +60,8 @@ struct NavbarView: View {
     @StateObject var nBar: NBar = NBar()
     
     @StateObject var spotifyController: SpotifyController = SpotifyController()
-    
+    @StateObject var appleMusicController: AppleMusicController = AppleMusicController()
+
     var body: some View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
@@ -81,6 +82,7 @@ struct NavbarView: View {
         }
         .edgesIgnoringSafeArea(.bottom)
         .environmentObject(spotifyController)
+        .environmentObject(appleMusicController)
 //        .overlay(
 //            VStack {
 //                Spacer()

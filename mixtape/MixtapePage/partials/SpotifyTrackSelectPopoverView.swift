@@ -1,15 +1,15 @@
 //
-//  MusicSelectorView.swift
+//  TrackSelectPopoverView.swift
 //  mixtape
 //
-//  Created by Olin Johnson on 8/8/24.
+//  Created by Olin Johnson on 8/3/24.
 //
 
 import SwiftUI
 import SpotifyWebAPI
 import Combine
 
-struct MusicSelectPopoverView: View {
+struct SpotifyTrackSelectPopoverView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
     
@@ -18,8 +18,7 @@ struct MusicSelectPopoverView: View {
     
     @State private var searchCancellable: AnyCancellable? = nil
     
-    @Binding var selectedTracks: [String]
-    @Binding var alreadyAddedTracks: [String]
+    @Binding var selectedTracks: [Song]
     
     var body: some View {
         
@@ -27,13 +26,13 @@ struct MusicSelectPopoverView: View {
             if searchText != "" {
                 ScrollView {
                     ForEach(searchResults, id: \.id) { track in
-                        AlternateSearchableSongView(track:track, selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                        SearchableSongView(track:track, selectedTracks: $selectedTracks)
                     }
                     .padding(.top, 5)
                 }
                 .navigationTitle("Find tracks")
             } else {
-                Text("Search by track name or artist")
+                Text("Search by track name, album, or artist")
                     .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                     .navigationTitle("Find tracks")
             }
@@ -70,16 +69,10 @@ struct MusicSelectPopoverView: View {
     }
 }
 
-//#Preview {
-//    MusicSelectorView()
-//}
-
-
-struct AlternateSearchableSongView: View {
+struct SearchableSongView: View {
     
     var track: Track
-    @Binding var selectedTracks: [String]
-    @Binding var alreadyAddedTracks: [String]
+    @Binding var selectedTracks: [Song]
     
     var body: some View {
         HStack {
@@ -107,14 +100,15 @@ struct AlternateSearchableSongView: View {
             }
             Spacer()
             
-            if alreadyAddedTracks.contains(track.uri!) {
+            if selectedTracks.contains(where: {selectedTrack in
+                return selectedTrack.id == track.id
+            }) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = track.uri
-                    selectedTracks.append(select!)
-                    alreadyAddedTracks.append(select!)
+                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: SearchableSongView.artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count), caption: "")
+                    selectedTracks.append(select)
                 }) {
                     Image(systemName: "plus.circle")
                 }
@@ -123,4 +117,23 @@ struct AlternateSearchableSongView: View {
         .frame(height:50)
         .padding([.leading, .trailing])
     }
+    
+    /**
+    Represent a list of SpotifyAPI `Artist` objects as a String of names
+    - Parameter artists: The list of `Artist`s
+    - Returns: A String of comma-separated names
+    */
+    static func artistsToString(_ artists: [Artist]) -> String {
+        if artists.count == 0 {return ""}
+        
+        var str = artists[0].name
+        for art in artists.dropFirst() {
+            str.append(", \(art.name)")
+        }
+        return str
+    }
 }
+
+//#Preview {
+//    TrackSelectPopoverView()
+//}

@@ -10,6 +10,7 @@ import SwiftUI
 struct TracksSelectorView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
+    @EnvironmentObject var appleMusicController: AppleMusicController
     @Binding var tracks: [Song]
     
     @State private var showingConnectAlert = false
@@ -76,7 +77,7 @@ struct TracksSelectorView: View {
             }
                 //.padding([.top, .bottom], 5)
             Button(action: {
-                if spotifyController.isAuthorized {
+                if spotifyController.isAuthorized || appleMusicController.isAuthorized {
                     showingSearchTrackPopover = true
                 } else {
                     showingConnectAlert = true
@@ -92,12 +93,16 @@ struct TracksSelectorView: View {
             }
             .alert(isPresented:$showingConnectAlert) {
                 Alert(
-                    title:Text("Connect to Spotify to add tracks."),
-                    message:Text("Navigate to the Account page to manage your Spotify connection.")
+                    title:Text("Connect to a music streaming service to add tracks."),
+                    message:Text("Navigate to the Account page to manage your music integrations.")
                 )
             }
             .sheet(isPresented: $showingSearchTrackPopover) {
-                TrackSelectPopoverView(selectedTracks: $tracks)
+                if spotifyController.isAuthorized {
+                    SpotifyTrackSelectPopoverView(selectedTracks: $tracks)
+                } else {
+                    AMTrackSelectPopoverView(selectedTracks: $tracks)
+                }
             }
         }
         //.padding([.leading, .trailing])

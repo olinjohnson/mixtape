@@ -33,7 +33,7 @@ struct mixtapeApp: App {
                         switch result {
                             case .success(let credentials):
                                 self.userProfile = User.from(credentials.idToken)
-                            case .failure(let error):
+                            case .failure(_):
                                 return
                         }
                     }
@@ -57,7 +57,7 @@ extension mixtapeApp {
                     case .failure(let error):
                         print("Failed with \(error)")
                     case .success(let credentials):
-                        let stored = credentialsManager.store(credentials: credentials)
+                        let _ = credentialsManager.store(credentials: credentials)
                         self.userProfile = User.from(credentials.idToken)
                         self.isAuthenticated = true
                 }

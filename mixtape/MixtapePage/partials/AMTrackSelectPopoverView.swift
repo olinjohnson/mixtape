@@ -1,22 +1,20 @@
 //
-//  TrackSelectPopoverView.swift
+//  AMTrackSelectPopoverView.swift
 //  mixtape
 //
 //  Created by Olin Johnson on 8/3/24.
 //
 
 import SwiftUI
-import SpotifyWebAPI
+import MusicKit
 import Combine
 
-struct TrackSelectPopoverView: View {
+struct AMTrackSelectPopoverView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
     
     @State private var searchText = ""
-    @State var searchResults: [Track] = []
-    
-    @State private var searchCancellable: AnyCancellable? = nil
+    @State var searchResults: [Song] = []
     
     @Binding var selectedTracks: [Song]
     
@@ -26,57 +24,58 @@ struct TrackSelectPopoverView: View {
             if searchText != "" {
                 ScrollView {
                     ForEach(searchResults, id: \.id) { track in
-                        SearchableSongView(track:track, selectedTracks: $selectedTracks)
+                        AMSearchableSongView(track:track, selectedTracks: $selectedTracks)
                     }
                     .padding(.top, 5)
                 }
                 .navigationTitle("Find tracks")
             } else {
-                Text("Search by track name or artist")
+                Text("Search by track name, album, or artist")
                     .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                     .navigationTitle("Find tracks")
             }
         }
         .searchable(text: $searchText)
         .onChange(of:searchText) {
-            _retrieveSearchResults()
+            Task {
+                await _retrieveSearchResults()
+            }
         }
         
     }
     
     /**
-    Fetch the results of a SpotifyAPI search query
+    Fetch the results of an Apple Music search query
      
     This method does not accept any arguments - the value of `self.searchText` is used as the search query
      
-    - Returns: No return value; this method populates `self.searchResults` with a list of SpotifyAPI `Track` objects
+    - Returns: No return value; this method populates `self.searchResults` with a list of `Song`s
     */
-    func _retrieveSearchResults() {
+    func _retrieveSearchResults() async {
         
-        self.searchCancellable = spotifyController.spotify.search(query: self.searchText, categories: [.track])
-            .receive(on: RunLoop.main)
-            .sink(
-                receiveCompletion: { completion in
-                    if case(.failure) = completion {
-                        //process
-                    }
-                },
-                receiveValue: { results in
-                    self.searchResults = results.tracks?.items ?? []
-                }
-            )
+        var request = MusicCatalogSearchRequest(term: self.searchText, types: [MusicKit.Song.self])
+        request.limit = 15
+        do {
+            let response = try await request.response()
+            self.searchResults = []
+            for song in response.songs {
+                self.searchResults.append(Song(id: song.id.rawValue, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
+            }
+        } catch {
+            print("Error in search")
+        }
 
     }
 }
 
-struct SearchableSongView: View {
+struct AMSearchableSongView: View {
     
-    var track: Track
+    var track: Song
     @Binding var selectedTracks: [Song]
     
     var body: some View {
         HStack {
-            AsyncImage(url: track.album!.images![0].url) { image in
+            AsyncImage(url: URL(string: track.cover)) { image in
                 image.resizable()
             } placeholder: {
                 VStack(alignment:.center) {
@@ -92,7 +91,7 @@ struct SearchableSongView: View {
                 Text(track.name)
                     .font(.headline)
                     .multilineTextAlignment(.leading)
-                Text(SearchableSongView.artistsToString(track.artists!))
+                Text(track.artist)
                     .font(.subheadline)
                     .multilineTextAlignment(.leading)
 //                Text(track.album!.images![0].url.absoluteString)
@@ -107,8 +106,8 @@ struct SearchableSongView: View {
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: SearchableSongView.artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count), caption: "")
-                    selectedTracks.append(select)
+                    track.order = Double(selectedTracks.count)
+                    selectedTracks.append(track)
                 }) {
                     Image(systemName: "plus.circle")
                 }
@@ -116,21 +115,6 @@ struct SearchableSongView: View {
         }
         .frame(height:50)
         .padding([.leading, .trailing])
-    }
-    
-    /**
-    Represent a list of SpotifyAPI `Artist` objects as a String of names
-    - Parameter artists: The list of `Artist`s
-    - Returns: A String of comma-separated names
-    */
-    static func artistsToString(_ artists: [Artist]) -> String {
-        if artists.count == 0 {return ""}
-        
-        var str = artists[0].name
-        for art in artists.dropFirst() {
-            str.append(", \(art.name)")
-        }
-        return str
     }
 }
 

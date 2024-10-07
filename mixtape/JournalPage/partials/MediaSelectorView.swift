@@ -13,6 +13,7 @@ import AVKit
 struct MediaSelectorView: View {
     
     @EnvironmentObject var spotifyController: SpotifyController
+    @EnvironmentObject var appleMusicController: AppleMusicController
     @Environment(\.modelContext) private var modelContext
     
     @Binding var media: [Media]
@@ -50,22 +51,29 @@ struct MediaSelectorView: View {
 //                    }
                     
                     Button(action: {
-                        if spotifyController.isAuthorized {
+                        if spotifyController.isAuthorized || appleMusicController.isAuthorized {
                             trackSelectPopover = true
                         } else {
                             showingConnectAlert = true
-                        }                    }) {
+                        }
+                    }) {
                         Image(systemName: "music.note.list")
                             .font(.title3)
                             .foregroundStyle(.black)
                     }
                     .sheet(isPresented: $trackSelectPopover) {
-                        MusicSelectPopoverView(selectedTracks:$selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                        
+                        if spotifyController.isAuthorized {
+                            SpotifyMusicSelectPopoverView(selectedTracks:$selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                        } else {
+                            AppleMusicSelectPopoverView(selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                        }
+                        
                     }
                     .alert(isPresented:$showingConnectAlert) {
                         Alert(
-                            title:Text("Connect to Spotify to add tracks."),
-                            message:Text("Navigate to the Account page to manage your Spotify connection.")
+                            title:Text("Connect to a music streaming service to add tracks."),
+                            message:Text("Navigate to the Account page to manage your music integrations.")
                         )
                     }
                     .padding([.leading, .trailing], 5)
