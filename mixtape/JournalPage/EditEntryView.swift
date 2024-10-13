@@ -203,8 +203,10 @@ struct EditEntryView: View {
             
             // creates a deep copy of entry.media
             for snippet in entry.media {
-                if snippet.song != nil {
-                    inputMedia.append(Media(song: snippet.song))
+//                inputMedia.append(snippet)
+                
+                if snippet.isrc != nil {
+                    inputMedia.append(Media(isrc: snippet.isrc, songCover: snippet.songCover, songName: snippet.songName, songArtist: snippet.songArtist))
                 } else if snippet.image != nil {
                     inputMedia.append(Media(image: snippet.image))
                 }

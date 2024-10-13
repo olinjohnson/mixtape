@@ -15,6 +15,7 @@ import SpotifyWebAPI
 class SpotifyController: ObservableObject {
     
     init() {
+/*
         self.spotify.authorizationManagerDidChange
             .receive(on: RunLoop.main)
             .sink(receiveValue: authManagerChange)
@@ -37,6 +38,7 @@ class SpotifyController: ObservableObject {
                 print("Error decoding authorizationManager from keychain data")
             }
         }
+ */
     }
     
     let spotify = SpotifyAPI(

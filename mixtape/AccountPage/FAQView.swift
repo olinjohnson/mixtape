@@ -17,10 +17,10 @@ struct FAQView: View {
                 VStack(alignment:.leading, spacing:20) {
                     // TODO: Fetch FAQs from web
                     VStack(alignment:.leading) {
-                        Text("Can I use a free Spotify account?")
+                        Text("Can I use a free Apple Music account?")
                             .font(.title3)
                             .bold()
-                        Text("Yes! Of course - free Spotify accounts will work just as well with Mixtape as paid accounts.")
+                        Text("Yes! Of course - free accounts will work just as well with Mixtape as paid accounts.")
                             .foregroundStyle(Color(UIColor.systemGray))
                     }
                     
@@ -52,7 +52,7 @@ struct FAQView: View {
                         Text("Will Mixtape still work when I'm offline?")
                             .font(.title3)
                             .bold()
-                        Text("Somewhat - you'll still be able to create and edit mixtapes and journal entries, but you won't be able to add new tracks to either. Additionally, any songs that have been attached to journal entries will not be available without an internet connection or music streaming service connection, and neither will any of the album covers from songs that have been attached to mixtapes.")
+                        Text("Somewhat - you'll still be able to create and edit mixtapes and journal entries, but you won't be able to add new tracks to either.")
                             .foregroundStyle(Color(UIColor.systemGray))
                     }
                     

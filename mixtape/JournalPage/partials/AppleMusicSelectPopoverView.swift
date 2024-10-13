@@ -16,7 +16,7 @@ struct AppleMusicSelectPopoverView: View {
     @State private var searchText = ""
     @State var searchResults: [Song] = []
     
-    @Binding var selectedTracks: [String]
+    @Binding var selectedTracks: [Song]
     @Binding var alreadyAddedTracks: [String]
     
     var body: some View {
@@ -54,13 +54,14 @@ struct AppleMusicSelectPopoverView: View {
     */
     func _retrieveSearchResults() async {
         
+        self.searchResults = []
         var request = MusicCatalogSearchRequest(term: self.searchText, types: [MusicKit.Song.self])
         request.limit = 15
         do {
             let response = try await request.response()
-            self.searchResults = []
             for song in response.songs {
-                self.searchResults.append(Song(id: song.id.rawValue, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
+                //id: song.id.rawValue,
+                self.searchResults.append(Song(id: song.isrc, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
             }
         } catch {
             print("Error in search")
@@ -77,7 +78,7 @@ struct AppleMusicSelectPopoverView: View {
 struct AMAlternateSearchableSongView: View {
     
     var track: Song
-    @Binding var selectedTracks: [String]
+    @Binding var selectedTracks: [Song]
     @Binding var alreadyAddedTracks: [String]
     
     var body: some View {
@@ -106,14 +107,17 @@ struct AMAlternateSearchableSongView: View {
             }
             Spacer()
             
-            if alreadyAddedTracks.contains(track.id) {
+            if alreadyAddedTracks.contains(where: { tr in
+                tr == track.id
+            }) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
                     // TODO: implement a consistent method to record already added tracks between spotify and apple music (names cant be used, but ID's aren't the same
-                    selectedTracks.append(track.id)
-                    alreadyAddedTracks.append(track.id)
+                    selectedTracks.append(track)
+                    //TODO: improve this code to be more defensive (i suppose track.id could be nil)
+                    alreadyAddedTracks.append(track.id!)
                 }) {
                     Image(systemName: "plus.circle")
                 }

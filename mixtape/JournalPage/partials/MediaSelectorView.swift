@@ -18,7 +18,7 @@ struct MediaSelectorView: View {
     
     @Binding var media: [Media]
     @State var selectedPhotos: [PhotosPickerItem] = []
-    @State var selectedTracks: [String] = []
+    @State var selectedTracks: [Song] = []
     @State var alreadyAddedTracks: [String] = []
     
     @State var trackSelectPopover = false
@@ -64,7 +64,8 @@ struct MediaSelectorView: View {
                     .sheet(isPresented: $trackSelectPopover) {
                         
                         if spotifyController.isAuthorized {
-                            SpotifyMusicSelectPopoverView(selectedTracks:$selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                            //TODO: FIX THIS (Media DATA TYPES)
+                            //SpotifyMusicSelectPopoverView(selectedTracks:$selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
                         } else {
                             AppleMusicSelectPopoverView(selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
                         }
@@ -97,10 +98,11 @@ struct MediaSelectorView: View {
                     selectedPhotos = []
                 }
             }
-            //Saving URI for track
+
             .onChange(of: trackSelectPopover) {
                 for track in selectedTracks {
-                    media.append(Media(song: track))
+                    let m = Media(isrc: track.id, songCover: track.cover, songName: track.name, songArtist: track.artist)
+                    media.append(m)
                 }
                 selectedTracks = []
             }
@@ -109,8 +111,8 @@ struct MediaSelectorView: View {
         }
         .onAppear(perform: {
             for snippet in media {
-                if snippet.song != nil {
-                    alreadyAddedTracks.append(snippet.song!)
+                if snippet.songCover != nil {
+                    alreadyAddedTracks.append(snippet.isrc!)
                 }
             }
         })

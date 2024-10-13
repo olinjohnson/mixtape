@@ -14,7 +14,7 @@ import UIKit
 class Entry {
     
     @Attribute(.unique)
-    let id: UUID
+    var id: UUID
     
     @Attribute(.externalStorage)
     var cover: Data
@@ -33,26 +33,6 @@ class Entry {
         self.date = date
         self.media = media
     }
-}
-
-@Model
-class Media {
-
-    @Attribute(.externalStorage)
-    var image: Data?
-    
-    var song: String?
-    
-    init(image: Data?) {
-        self.image = image
-        self.song = nil
-    }
-    
-    init(song: String?) {
-        self.image = nil
-        self.song = song
-    }
-    
 }
 
 extension Entry {

@@ -40,8 +40,10 @@ class AppleMusicController: ObservableObject {
         
         switch status {
         case .authorized:
-            self.isAuthorized = true
-            self.saveAuthStatus()
+            DispatchQueue.main.async {
+                self.isAuthorized = true
+                self.saveAuthStatus()
+            }
         default:
             print("Error connecting to apple music - status: ", status)
         }

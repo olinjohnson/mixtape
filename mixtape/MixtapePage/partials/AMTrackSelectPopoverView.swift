@@ -11,8 +11,6 @@ import Combine
 
 struct AMTrackSelectPopoverView: View {
     
-    @EnvironmentObject var spotifyController: SpotifyController
-    
     @State private var searchText = ""
     @State var searchResults: [Song] = []
     
@@ -59,7 +57,7 @@ struct AMTrackSelectPopoverView: View {
             let response = try await request.response()
             self.searchResults = []
             for song in response.songs {
-                self.searchResults.append(Song(id: song.id.rawValue, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
+                self.searchResults.append(Song(id: song.isrc, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
             }
         } catch {
             print("Error in search")

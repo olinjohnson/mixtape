@@ -12,14 +12,18 @@ import SwiftData
 @Model
 class Song {
     
-    var id: String
+//    var id: UUID
+    // TODO: THIS SHOULD BE CHANGED FROM UUID TO ISRC
+    var id: String?
+    
     var cover: String
     var artist: String
     var name: String
     var order: Double
     var caption: String
     
-    init(id: String, cover: String, artist: String, name: String, order: Double = 0.0, caption: String) {
+    init(id: String? = nil, cover: String, artist: String, name: String, order: Double = 0.0, caption: String) {
+//        self.id = id
         self.id = id
         self.cover = cover
         self.artist = artist

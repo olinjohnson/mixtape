@@ -13,6 +13,7 @@
 		0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B1D74272C27E09E00719187 /* EditEntryView.swift */; };
 		0B2348B42C6671B9005DA328 /* MediaMasonryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2348B32C6671B9005DA328 /* MediaMasonryView.swift */; };
 		0B2348B72C66796B005DA328 /* MasonryStack in Frameworks */ = {isa = PBXBuildFile; productRef = 0B2348B62C66796B005DA328 /* MasonryStack */; };
+		0B3026132CBAD71500274D65 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3026122CBAD71200274D65 /* Media.swift */; };
 		0B406ADF2C2A524D00631FEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406ADE2C2A524D00631FEB /* User.swift */; };
 		0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406AE12C2A53C300631FEB /* Auth0 */; };
 		0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B406AE32C2A55DA00631FEB /* Auth0.plist */; };
@@ -63,6 +64,7 @@
 		0B1B30962C544FCA00748E1D /* TracksView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TracksView.swift; sourceTree = "<group>"; };
 		0B1D74272C27E09E00719187 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 		0B2348B32C6671B9005DA328 /* MediaMasonryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMasonryView.swift; sourceTree = "<group>"; };
+		0B3026122CBAD71200274D65 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		0B406ADE2C2A524D00631FEB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0B406AE32C2A55DA00631FEB /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
 		0B406AE62C2A678400631FEB /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				0BFDD1372B8400E900C5726F /* Theme.swift */,
 				0BFDD1392B843E0A00C5726F /* Tape.swift */,
 				0B905C482B9E1A7F00E6178F /* Entry.swift */,
+				0B3026122CBAD71200274D65 /* Media.swift */,
 				0BFDD13B2B843FFD00C5726F /* Song.swift */,
 				0B406ADE2C2A524D00631FEB /* User.swift */,
 			);
@@ -360,6 +363,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B3026132CBAD71500274D65 /* Media.swift in Sources */,
 				0BCB20262CB33589006B2B3E /* AMTrackSelectPopoverView.swift in Sources */,
 				0BAC4BCA2C23DF590002E41F /* NewEntryView.swift in Sources */,
 				0B1D74282C27E09E00719187 /* EditEntryView.swift in Sources */,

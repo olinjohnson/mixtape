@@ -116,29 +116,7 @@ struct AccountView: View {
                 
                 Section {
                     if !spotifyController.isAuthorized && !appleMusicController.isAuthorized {
-                        Button(action: {
-                            spotifyController.authorize()
-                        }) {
-                            HStack {
-                                Image("spotify_icon_green")
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(height:30)
-                                    .padding(.trailing, 5)
-                                Text("Connect to Spotify")
-                                //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
-                                Spacer()
-                                Image(systemName: "chevron.right")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(height:15)
-                                    .foregroundStyle(Color(UIColor.systemGray3))
-                            }
-                            .contentShape(Rectangle())
-                        }
-                        .buttonStyle(.plain)
-                        //                    .padding(.top, 5)
-                        
+                
                         Button(action: {
                             Task {
                                 await appleMusicController.requestMusicAuthorization()
@@ -162,6 +140,33 @@ struct AccountView: View {
                             .contentShape(Rectangle())
                         }
                         .buttonStyle(.plain)
+                        
+                        Button(action: {
+//                            spotifyController.authorize()
+                        }) {
+                            HStack {
+                                Image("spotify_icon_green")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height:30)
+                                    .padding(.trailing, 5)
+                                    .grayscale(0.9995)
+                                    .opacity(0.6)
+                                Text("Connect to Spotify")
+                                    .foregroundStyle(Color(UIColor.systemGray))
+                                //                            .foregroundStyle(Color(UIColor(red: 30/255, green: 215/255, blue: 96/255, alpha: 1)))
+                                Spacer()
+//                                Image(systemName: "chevron.right")
+//                                    .resizable()
+//                                    .scaledToFit()
+//                                    .frame(height:15)
+//                                    .foregroundStyle(Color(UIColor.systemGray3))
+                            }
+                            .contentShape(Rectangle())
+                        }
+//                        .buttonStyle(.plain)
+                        .listRowBackground(Color(UIColor.systemGray5))
+                        //                    .padding(.top, 5)
                         
                         HStack {
                             VStack {
@@ -269,7 +274,7 @@ struct AccountView: View {
                     Text("Integrations")
                 } footer: {
                     if !spotifyController.isAuthorized && !appleMusicController.isAuthorized {
-                        Text("Integrations with Apple Music, Tidal, and Deezer are currently under development. These features will be available in future updates.")
+                        Text("Integrations with Spotify, Tidal, and Deezer are currently under development. These features will be available in future updates.")
                     }
                 }
                 
@@ -562,6 +567,7 @@ struct AccountView: View {
  */
         }
         .onOpenURL { url in
+//            TODO: DO NOT DELETE THIS!
             spotifyController.setAuthTokens(url)
         }
     }
@@ -587,6 +593,9 @@ struct iconView: View {
 
 extension AccountView {
     private func logout() {
+        if spotifyController.isAuthorized { spotifyController.deauthorize() }
+        if appleMusicController.isAuthorized { appleMusicController.deauthorize() }
+        
         Auth0
             .webAuth()
             .clearSession { result in

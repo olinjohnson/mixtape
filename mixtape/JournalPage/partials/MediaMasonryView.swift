@@ -22,8 +22,8 @@ struct MediaMasonryView: View {
                 ForEach(media, id:\.self) { snippet in
                     if snippet.image != nil {
                         PVView(data: snippet.image!)
-                    } else if snippet.song != nil {
-                        SongCardView(uri: snippet.song!)
+                    } else if snippet.isrc != nil {
+                        SongCardView(song: snippet)
                     }
                 }
             }
@@ -75,8 +75,8 @@ struct MediaMasonrySelectionView: View {
                                     }
                                 }
                             }
-                    } else if snippet.song != nil {
-                        SongCardView(uri: snippet.song!)
+                    } else if snippet.isrc != nil {
+                        SongCardView(song: snippet)
                             .overlay {
                                 VStack {
                                     Spacer()
@@ -136,15 +136,11 @@ struct PVView: View {
 
 struct SongCardView: View {
     
-    @EnvironmentObject var spotifyController: SpotifyController
-    var uri: String
-    @State var url = URL(string: "")
-    @State var track: Track? = nil
-    @State var trackCancellable: AnyCancellable? = nil
+    var song: Media
     
     var body: some View {
         VStack {
-            AsyncImage(url: url) { image in
+            AsyncImage(url: URL(string: song.songCover!)) { image in
                 image.resizable()
             } placeholder: {
                 Image("blank")
@@ -152,14 +148,7 @@ struct SongCardView: View {
                     .overlay {
                         RoundedRectangle(cornerRadius: 10)
                             .stroke(Color(uiColor:UIColor.systemGray6), lineWidth: 1)
-                        if spotifyController.isAuthorized {
-                            ProgressView()
-                        } else {
-                            Text("Connect to Spotify")
-                                .font(.caption)
-                                .foregroundStyle(Color(uiColor:UIColor.systemGray2))
-                                .padding()
-                        }
+                        ProgressView()
                     }
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             }
@@ -168,12 +157,12 @@ struct SongCardView: View {
             .overlay {
                 HStack {
                     VStack(alignment:.leading) {
-                        Text(self.track?.name ?? "")
+                        Text(song.songName!)
                             .foregroundStyle(.white)
                             .font(.subheadline)
                             .bold()
                             .lineLimit(1)
-                        Text(SearchableSongView.artistsToString(self.track?.artists ?? []))
+                        Text(song.songArtist!)
                             .foregroundStyle(.white)
                             .font(.caption)
                             .lineLimit(1)
@@ -183,26 +172,10 @@ struct SongCardView: View {
                     Spacer()
                 }
                 .frame(maxWidth:.infinity, maxHeight: .infinity)
-                // TODO: CHANGE THIS AFTER OFFLINE MEDIA LOADING IS FIXED
-                .background(.black.opacity(spotifyController.isAuthorized ? 0.3 : 0.1))
+                .background(.black.opacity(0.4))
                 .cornerRadius(10)
             }
         }
-        .onAppear(perform: {
-            self.trackCancellable = spotifyController.spotify.track(uri)
-                .receive(on: RunLoop.main)
-                .sink(
-                    receiveCompletion: { completion in
-                        if case(.failure) = completion {
-                            //process
-                        }
-                    },
-                    receiveValue: { results in
-                        self.track = results
-                        self.url = results.album!.images![0].url
-                    }
-                )
-        })
     }
     
 }

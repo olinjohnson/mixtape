@@ -100,7 +100,7 @@ struct TracksSelectorView: View {
             .sheet(isPresented: $showingSearchTrackPopover) {
                 if spotifyController.isAuthorized {
                     SpotifyTrackSelectPopoverView(selectedTracks: $tracks)
-                } else {
+                } else if appleMusicController.isAuthorized {
                     AMTrackSelectPopoverView(selectedTracks: $tracks)
                 }
             }

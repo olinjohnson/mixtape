@@ -25,7 +25,7 @@ struct NewEntryView: View {
     @State var inputBody = ""
     @State var inputDate = Date()
     @State var inputCover: Data?
-    @State private var inputMedia: [Media] = []
+    @State var inputMedia: [Media] = []
     
     @FocusState private var textFieldFocus: Fields?
     @State private var keyboardOffsetAmt = 0

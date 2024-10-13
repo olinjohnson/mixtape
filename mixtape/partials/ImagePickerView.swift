@@ -34,9 +34,10 @@ struct ImagePickerView: View {
                         .padding(18)
                         .foregroundColor(.black)
                 }
-                .background(.white.opacity(0.5))
+                .background(.white.opacity(0.6))
                 .frame(width:60, height:60)
                 .cornerRadius(100)
+                .shadow(color:.black.opacity(0.7), radius:10, x:4, y:4)
             }
             .offset(y: -gr.frame(in: .global).origin.y)
         }

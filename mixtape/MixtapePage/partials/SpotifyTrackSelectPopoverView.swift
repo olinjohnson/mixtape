@@ -101,13 +101,14 @@ struct SearchableSongView: View {
             Spacer()
             
             if selectedTracks.contains(where: {selectedTrack in
-                return selectedTrack.id == track.id
+                //return selectedTrack.id == track.id
+                return selectedTrack.name == track.name
             }) {
                 Image(systemName: "checkmark.circle.fill")
                     .foregroundStyle(.blue)
             } else {
                 Button(action: {
-                    let select = Song(id: track.id!, cover: track.album!.images![0].url.absoluteString, artist: SearchableSongView.artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count), caption: "")
+                    let select = Song(cover: track.album!.images![0].url.absoluteString, artist: SearchableSongView.artistsToString(track.artists!), name: track.name, order: Double(selectedTracks.count), caption: "")
                     selectedTracks.append(select)
                 }) {
                     Image(systemName: "plus.circle")
