@@ -14,6 +14,7 @@
 		0B2348B42C6671B9005DA328 /* MediaMasonryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B2348B32C6671B9005DA328 /* MediaMasonryView.swift */; };
 		0B2348B72C66796B005DA328 /* MasonryStack in Frameworks */ = {isa = PBXBuildFile; productRef = 0B2348B62C66796B005DA328 /* MasonryStack */; };
 		0B3026132CBAD71500274D65 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3026122CBAD71200274D65 /* Media.swift */; };
+		0B3026152CBC35DF00274D65 /* palette.txt in Resources */ = {isa = PBXBuildFile; fileRef = 0B3026142CBC35DF00274D65 /* palette.txt */; };
 		0B406ADF2C2A524D00631FEB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B406ADE2C2A524D00631FEB /* User.swift */; };
 		0B406AE22C2A53C300631FEB /* Auth0 in Frameworks */ = {isa = PBXBuildFile; productRef = 0B406AE12C2A53C300631FEB /* Auth0 */; };
 		0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0B406AE32C2A55DA00631FEB /* Auth0.plist */; };
@@ -65,6 +66,7 @@
 		0B1D74272C27E09E00719187 /* EditEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEntryView.swift; sourceTree = "<group>"; };
 		0B2348B32C6671B9005DA328 /* MediaMasonryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaMasonryView.swift; sourceTree = "<group>"; };
 		0B3026122CBAD71200274D65 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
+		0B3026142CBC35DF00274D65 /* palette.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = palette.txt; sourceTree = "<group>"; };
 		0B406ADE2C2A524D00631FEB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0B406AE32C2A55DA00631FEB /* Auth0.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Auth0.plist; sourceTree = "<group>"; };
 		0B406AE62C2A678400631FEB /* AccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountView.swift; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				0B93B9152C2BC5C300588663 /* SpotifyController.swift */,
 				0BCB20272CB365E9006B2B3E /* AppleMusicController.swift */,
 				0BFDD1282B81B4D000C5726F /* mixtapeApp.swift */,
+				0B3026142CBC35DF00274D65 /* palette.txt */,
 				0B406AE32C2A55DA00631FEB /* Auth0.plist */,
 				0BF4054C2B897ABD00902D59 /* Info.plist */,
 				0B4605292C7435BD00048F85 /* Acknowledgements.plist */,
@@ -330,6 +333,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0BFDD1302B81B4D300C5726F /* Preview Assets.xcassets in Resources */,
+				0B3026152CBC35DF00274D65 /* palette.txt in Resources */,
 				0B406AE42C2A55DA00631FEB /* Auth0.plist in Resources */,
 				0BFDD12D2B81B4D300C5726F /* Assets.xcassets in Resources */,
 				0B46052A2C7435BD00048F85 /* Acknowledgements.plist in Resources */,
