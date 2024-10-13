@@ -32,7 +32,7 @@ struct LoginView: View {
                                 .font(.title2)
                                 .bold()
                                 .frame(maxWidth:.infinity, minHeight: 50)
-                                .background(.blue)
+                                .background(Color.highBase)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }
@@ -64,7 +64,7 @@ struct LoginView: View {
                                 .font(.title2)
                                 .bold()
                                 .frame(maxWidth:.infinity, minHeight: 50)
-                                .background(.green)
+                                .background(Color.accentColor)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                         }

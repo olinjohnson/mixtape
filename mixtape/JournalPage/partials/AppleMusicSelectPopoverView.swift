@@ -11,10 +11,9 @@ import Combine
 
 struct AppleMusicSelectPopoverView: View {
     
-    @EnvironmentObject var appleMusicController: AppleMusicController
-    
-    @State private var searchText = ""
-    @State var searchResults: [Song] = []
+    @MainActor @State private var searchText = ""
+    @MainActor @State var searchResults: [Song] = []
+    @State var isFetching = false
     
     @Binding var selectedTracks: [Song]
     @Binding var alreadyAddedTracks: [String]
@@ -23,22 +22,29 @@ struct AppleMusicSelectPopoverView: View {
         
         NavigationStack {
             if searchText != "" {
-                ScrollView {
-                    ForEach(searchResults, id: \.id) { track in
-                        AMAlternateSearchableSongView(track:track, selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                if isFetching {
+                    ProgressView("Searching...")
+                        .navigationTitle("Find tracks")
+                }else{
+                    ScrollView {
+                        ForEach(searchResults, id: \.id) { track in
+                            AMAlternateSearchableSongView(track:track, selectedTracks: $selectedTracks, alreadyAddedTracks: $alreadyAddedTracks)
+                        }
+                        .padding(.top, 5)
                     }
-                    .padding(.top, 5)
-                }
-                .navigationTitle("Find tracks")
-            } else {
-                Text("Search by track name, album, or artist")
-                    .foregroundStyle(Color(uiColor: UIColor.systemGray3))
                     .navigationTitle("Find tracks")
+                }
+            } else {
+                Text("Search by track name, album, artist, or lyrics")
+                    .foregroundStyle(Color(uiColor: UIColor.systemGray2))
+                    .navigationTitle("Find tracks")
+                    .padding([.leading, .trailing])
             }
         }
         .searchable(text: $searchText)
         .onChange(of:searchText) {
-            Task {
+            Task.detached { @MainActor in
+                isFetching = true
                 await _retrieveSearchResults()
             }
         }
@@ -54,6 +60,7 @@ struct AppleMusicSelectPopoverView: View {
     */
     func _retrieveSearchResults() async {
         
+        //TODO: FIX MULTIPLE RESULT BUG
         self.searchResults = []
         var request = MusicCatalogSearchRequest(term: self.searchText, types: [MusicKit.Song.self])
         request.limit = 15
@@ -61,8 +68,11 @@ struct AppleMusicSelectPopoverView: View {
             let response = try await request.response()
             for song in response.songs {
                 //id: song.id.rawValue,
-                self.searchResults.append(Song(id: song.isrc, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
+                if !self.searchResults.map({$0.id}).contains(song.isrc) {
+                    self.searchResults.append(Song(id: song.isrc, cover: song.artwork?.url(width:512, height:512)?.absoluteString ?? "", artist: song.artistName, name: song.title, caption: ""))
+                }
             }
+            self.isFetching = false
         } catch {
             print("Error in search")
         }
@@ -111,7 +121,7 @@ struct AMAlternateSearchableSongView: View {
                 tr == track.id
             }) {
                 Image(systemName: "checkmark.circle.fill")
-                    .foregroundStyle(.blue)
+                    .foregroundStyle(Color.accentColor)
             } else {
                 Button(action: {
                     // TODO: implement a consistent method to record already added tracks between spotify and apple music (names cant be used, but ID's aren't the same
