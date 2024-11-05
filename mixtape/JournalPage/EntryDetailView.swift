@@ -62,7 +62,11 @@ struct EntryDetailView: View {
                                         title:Text("Are you sure you want to delete this entry?"),
                                         message:Text("This operation cannot be undone."),
                                         primaryButton: .destructive(Text("I'm sure")) {
-                                            modelContext.delete(entry)
+                                            
+                                            var delE = entry
+                                            entry = Entry.empty
+                                            
+                                            modelContext.delete(delE)
                                             do { try modelContext.save() } catch {}
                                             dismiss()
                                         },

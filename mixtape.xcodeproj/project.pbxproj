@@ -163,9 +163,9 @@
 		0BF405462B8963DA00902D59 /* MixtapePage */ = {
 			isa = PBXGroup;
 			children = (
-				0BFDD1472B855FE200C5726F /* MixtapeDetailView.swift */,
 				0BF405472B89644A00902D59 /* partials */,
 				0BFDD12A2B81B4D000C5726F /* MixtapesView.swift */,
+				0BFDD1472B855FE200C5726F /* MixtapeDetailView.swift */,
 				0BFDD14B2B87F10000C5726F /* NewMixtapeView.swift */,
 				0BA360712C5E247200B4573E /* EditMixtapeView.swift */,
 			);

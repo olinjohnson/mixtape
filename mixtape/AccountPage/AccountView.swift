@@ -424,7 +424,7 @@ struct AccountView: View {
                                 .foregroundStyle(Color(UIColor.systemGray))
                             + Text(Image(systemName: "heart.fill"))
                                 .font(.caption)
-                                .foregroundStyle(Color.accentColor)
+                                .foregroundStyle(Color.red)
                             + Text(" from Maine")
                                 .font(.caption)
                                 .foregroundStyle(Color(UIColor.systemGray))

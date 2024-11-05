@@ -85,7 +85,11 @@ struct MixtapeDetailView: View {
                                         title:Text("Are you sure you want to delete this mixtape?"),
                                         message:Text("This operation cannot be undone."),
                                         primaryButton: .destructive(Text("I'm sure")) {
-                                            modelContext.delete(mixtape)
+                                            
+                                            var delM = mixtape
+                                            mixtape = Tape.empty
+                                            
+                                            modelContext.delete(delM)
                                             do { try modelContext.save() } catch {}
                                             dismiss()
                                         },
