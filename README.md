@@ -22,6 +22,8 @@ I would absolutely love to hear any and all feedback - it can be a feature sugge
 
 If you're a designer or developer wanting to lend a hand, I'd love to see contributions. Open an issue or PR, or reach out to me at contributing@themixtapeapp.com.
 
+I'm also looking for help on the website! [https://github.com/olinjohnson/themixtapeapp.com](https://github.com/olinjohnson/themixtapeapp.com)
+
 # Example Photos
 <p float="left">
   <img src="example_photos/IMG_3250.PNG" width=200>
