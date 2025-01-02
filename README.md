@@ -1,3 +1,6 @@
+
+**Notice: the app has been *temporarily* decomissioned in the past week due to organizational oversight. It is being re-reviewed by Apple and should be returning to the app store in the next couple of days.**
+
 # Mixtape 
 
 <img src="mixtape/Assets.xcassets/AppIcon.appiconset/Mixtape icon copy 6.png" alt="app icon" width=200 align="right" style="border-radius:50%">
@@ -10,9 +13,9 @@ With mixtapes, users can wield music as a tool to document and journal about sig
 
 Additionally, Mixtape also allows users to create more typical journal entries. With these entries, users can add standard media such as photos or music, and write or reflect about whatever they need. Users may be inspired by a particular song lyric or moment from their day which would make a journal entry the perfect space for a small moment of reflection.
 
-# Status Update: Looking for testers 🚀
+# Status Update: We've launched! 🎉
 
-Beta testing is currently underway! If you'd like to help test the initial release of the app, [join the testflight](https://testflight.apple.com/join/3XQcCWMS).
+Mixtape is out on the iPhone app store!
 
 # Feedback + Suggestions
 
