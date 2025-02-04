@@ -66,7 +66,8 @@ struct NavbarView: View {
         TabView(selection:$selection) {
             AccountView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
                 .tabItem {
-                    Label("Account", systemImage: "person.crop.circle")
+//                    Label("Account", systemImage: "person.crop.circle")
+                    Label("Settings", systemImage: "gear")
                 }
                 .tag(0)
             JournalView()

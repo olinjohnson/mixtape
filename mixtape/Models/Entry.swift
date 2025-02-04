@@ -13,17 +13,17 @@ import UIKit
 @Model
 class Entry {
     
-    @Attribute(.unique)
-    var id: UUID
+//    @Attribute(.unique)
+    var id: UUID = UUID()
     
     @Attribute(.externalStorage)
-    var cover: Data
+    var cover: Data = Data()
     
-    var title: String
-    var body: String
-    var date: Date
+    var title: String = ""
+    var body: String = ""
+    var date: Date = Date()
     
-    var media: [Media]
+    var media: [Media]? = []
     
     init(id: UUID, cover: Data, title: String, body: String, date: Date, media: [Media]) {
         self.id = id

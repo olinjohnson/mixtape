@@ -36,6 +36,9 @@ struct AccountView: View {
         NavigationStack {
             List {
                 
+                /*
+                 
+                 IMPORTANT USER PROFILE SECTION
                 Section {
                     HStack {
                         AsyncImage(url: URL(string: userProfile.picture)) {image in
@@ -67,6 +70,7 @@ struct AccountView: View {
 //                        }
                     }
                 }
+                 */
                 
                 Section {
                     //                .padding(.top, 5)
@@ -371,6 +375,10 @@ struct AccountView: View {
                 }
                 
                 Section {
+                    
+                    /*
+                     
+                     IMPORTANT LOGOUT BUTTON
                     Button(action: {
                         logout()
                     }) {
@@ -391,6 +399,8 @@ struct AccountView: View {
                     }
                     .buttonStyle(.plain)
                     .listRowBackground(Color.red)
+                     
+                     */
                     
                     /*
                     Button(action: {
@@ -432,10 +442,10 @@ struct AccountView: View {
                         }
                         Spacer()
                     }
-                    .padding(.top, 30)
+//                    .padding(.top, 30)
                 }
             }
-            .navigationTitle("Account")
+            .navigationTitle("Settings")
             /*
              HStack {
                  Text("Made with ")

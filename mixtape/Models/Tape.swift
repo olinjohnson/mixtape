@@ -12,17 +12,18 @@ import SwiftData
 @Model
 class Tape {
     
-    @Attribute(.unique)
-    var id: UUID
+//    @Attribute(.unique)
+    var id: UUID = UUID()
     
     @Attribute(.externalStorage)
-    var cover: Data
+    var cover: Data = Data()
     
-    var date: Date
-    var title: String
-    var heading: String
-    var body: String
-    var songs: [Song]
+    var date: Date = Date()
+    var title: String = ""
+    var heading: String = ""
+    var body: String = ""
+    var songs: [Song]? = []
+//    @Relationship(inverse:\Tape.songs) var tape: Tape
     
     init(id: UUID, cover: Data, date: Date, title: String, heading: String, body: String, songs: [Song]) {
         self.id = id

@@ -204,7 +204,7 @@ struct EditMixtapeView: View {
             inputDate = mixtape.date
             inputCover = mixtape.cover
 //            inputTracks = mixtape.songs
-            for song in mixtape.songs {
+            for song in mixtape.songs ?? [] {
                 inputTracks.append(Song(id: song.id, cover: song.cover, artist: song.artist, name: song.name, order: song.order, caption: song.caption))
             }
         })

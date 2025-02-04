@@ -202,7 +202,7 @@ struct EditEntryView: View {
             inputDate = entry.date
             
             // creates a deep copy of entry.media
-            for snippet in entry.media {
+            for snippet in entry.media ?? [] {
 //                inputMedia.append(snippet)
                 
                 if snippet.isrc != nil {

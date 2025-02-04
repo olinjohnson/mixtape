@@ -11,6 +11,8 @@ import SwiftData
 
 @Model
 class Media {
+    
+    @Relationship(inverse: \Entry.media) var entry: Entry?
 
     @Attribute(.externalStorage)
     var image: Data?

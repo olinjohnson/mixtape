@@ -10,15 +10,15 @@ import Combine
 
 struct TracksView: View {
     
-    @Binding var tracks: [Song]
+    @Binding var tracks: [Song]?
     var event: AnyPublisher<ExpandCollapseState, Never>
     
     var body: some View {
         VStack(alignment:.leading, spacing:5) {
-            if (tracks.count) > 0 {
-                ForEach(tracks.sorted(by: {$0.order < $1.order})) { track in
+            if ((tracks ?? []).count) > 0 {
+                ForEach(tracks!.sorted(by: {$0.order < $1.order})) { track in
                     _FoldableCaptionView(track: track, event: event)
-                    if (track.order < Double(tracks.count) - 1) {
+                    if (track.order < Double(tracks!.count) - 1) {
                         Divider()
                             .padding(.leading, 60)
                     }

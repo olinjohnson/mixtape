@@ -21,7 +21,5 @@
 	</array>
 	<key>SPOTIFY_CLIENT_ID</key>
 	<string>$(SPOTIFY_CLIENT_ID)</string>
-    <key>NSAppleMusicUsageDescription</key>
-    <string>Mixtape may be given permission to access data from Apple Music.</string>
 </dict>
 </plist>

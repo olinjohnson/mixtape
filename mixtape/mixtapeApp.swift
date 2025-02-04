@@ -12,7 +12,7 @@ import Auth0
 @main
 struct mixtapeApp: App {
     
-    @State var isAuthenticated = false
+    @State var isAuthenticated = true
     @State var userProfile = User.empty
     
     let credentialsManager = CredentialsManager(authentication: Auth0.authentication())
@@ -20,11 +20,12 @@ struct mixtapeApp: App {
     var body: some Scene {
         WindowGroup {
             VStack {
-                if self.isAuthenticated {//credentialsManager.hasValid() {
-                    NavbarView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
-                } else {
-                    LoginView(login: self.login)
-                }
+                NavbarView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
+//                if self.isAuthenticated {//credentialsManager.hasValid() {
+//                    NavbarView(isAuthenticated: $isAuthenticated, userProfile: $userProfile)
+//                } else {
+//                    LoginView(login: self.login)
+//                }
             }
             .onAppear(perform: {
                 if credentialsManager.hasValid() {

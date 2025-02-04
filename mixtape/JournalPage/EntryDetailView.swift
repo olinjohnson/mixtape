@@ -112,7 +112,7 @@ struct EntryDetailView: View {
                             }
                             .padding([.leading, .trailing])
                             .padding(.top, 35)
-                            MediaMasonryView(media: entry.media)
+                            MediaMasonryView(media: entry.media ?? [])
                                 .padding(.bottom, 10)
                             
                             Spacer()
