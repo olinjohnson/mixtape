@@ -94,7 +94,7 @@ struct TracksSelectorView: View {
             .alert(isPresented:$showingConnectAlert) {
                 Alert(
                     title:Text("Connect to a music streaming service to add tracks."),
-                    message:Text("Navigate to the Account page to manage your music integrations.")
+                    message:Text("Navigate to the Settings page to manage your music integrations.")
                 )
             }
             .sheet(isPresented: $showingSearchTrackPopover) {

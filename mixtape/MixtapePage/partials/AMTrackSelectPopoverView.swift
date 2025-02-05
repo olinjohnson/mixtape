@@ -15,6 +15,8 @@ struct AMTrackSelectPopoverView: View {
     @MainActor @State var searchResults: [Song] = []
     @State var isFetching = false
     
+    @State private var showingSearchingAlert = false
+    
     @Binding var selectedTracks: [Song]
     
     var body: some View {
@@ -47,6 +49,12 @@ struct AMTrackSelectPopoverView: View {
                 await _retrieveSearchResults()
             }
         }
+        .alert(isPresented:$showingSearchingAlert) {
+            Alert(
+                title:Text("There was an error completing your search."),
+                message:Text("Navigate to the settings page to make sure you are connected to a music streaming service.")
+            )
+        }
         
     }
     
@@ -72,6 +80,7 @@ struct AMTrackSelectPopoverView: View {
             self.isFetching = false
         } catch {
             print("Error in search")
+            self.showingSearchingAlert = true
         }
 
     }
