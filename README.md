@@ -22,7 +22,7 @@ Mixtape is out on the iPhone app store!
 
 # Feedback + Suggestions
 
-I would absolutely love to hear any and all feedback - it can be a feature suggestion, design idea, bug, or anything else that would help improve the app (feedback is greatly appreciated). I'll be publishing a feedback form soon. For now, send all feedback to feedback@themixtapeapp.com.
+I would absolutely love to hear any and all feedback - it can be a feature suggestion, design idea, bug, or anything else that would help improve the app (feedback is greatly appreciated). There's a contact form at [themixtapeapp.com/support](https://themixtapeapp.com/support) or you can email feedback@themixtapeapp.com
 
 # Contributing
 
